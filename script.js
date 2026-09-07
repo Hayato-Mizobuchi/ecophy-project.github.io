@@ -174,6 +174,11 @@ form.addEventListener("submit", (event) => {
     quantity: Number(data.quantity),
     pickupDate: data.pickup_date,
     pickupTime: data.pickup_time,
+
+    qty: Number(data.quantity),
+    date: data.pickup_date,
+    time: data.pickup_time,
+
     note: data.note.trim(),
     submittedAt: new Date().toISOString(),
     eventDates: EVENT_INFO.dates,
