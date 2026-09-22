@@ -378,3 +378,23 @@ details p { margin: 0; padding: 0 45px 26px 0; color: var(--muted); }
 .instagram-search { margin: 0; font-size: .95rem; }
 .instagram-search strong { font-weight: 900; }
 .reserve-form input[readonly] { background: #f2f0e9; color: var(--ink); cursor: default; }
+
+.goal-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 22px;
+}
+
+.goal-icon-svg {
+  width: 54px;
+  height: 54px;
+  stroke: #a86a3d;
+  fill: none;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
+}
