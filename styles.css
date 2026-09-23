@@ -940,3 +940,285 @@ textarea:focus{
     background:#302721;
   }
 }
+
+/* ===== Ecophy mobile typography tuning ===== */
+
+/* Keep device text scaling predictable */
+html{
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+}
+
+/* Japanese line-breaking defaults */
+.hero h1,
+.section-heading h2,
+.reserve-copy h2,
+.contact-band h2,
+.collab-head h2,
+.team-card h3,
+.goal-card h3,
+.product-card h3,
+.process-step h3,
+.timeline-item h3,
+.word-row h3{
+  word-break:normal;
+  line-break:strict;
+  overflow-wrap:break-word;
+}
+
+/* Modern browsers can choose more natural Japanese phrase breaks */
+@supports (word-break:auto-phrase){
+  .hero h1,
+  .section-heading h2,
+  .reserve-copy h2,
+  .contact-band h2,
+  .collab-head h2{
+    word-break:auto-phrase;
+  }
+}
+
+@media (max-width:680px){
+
+  body{
+    font-size:15.5px;
+    line-height:1.78;
+    letter-spacing:.01em;
+  }
+
+  /*
+    The desktop <br> tags are useful on wide screens but can cause
+    awkward 1–3 character lines on phones, so let the browser wrap them.
+  */
+  .hero h1 br,
+  .section-heading h2 br,
+  .reserve-copy h2 br,
+  .contact-band h2 br,
+  .collab-head h2 br{
+    display:none;
+  }
+
+  /* Main hero */
+  .hero h1{
+    max-width:11em;
+    margin-right:auto;
+    font-size:clamp(2.15rem,10.5vw,3rem);
+    line-height:1.10;
+    letter-spacing:-.035em;
+    text-wrap:balance;
+  }
+
+  .hero-lead{
+    font-size:.98rem;
+    line-height:1.86;
+    letter-spacing:.005em;
+  }
+
+  .hero-copy .eyebrow{
+    font-size:.68rem;
+    line-height:1.45;
+    letter-spacing:.11em;
+  }
+
+  .hero-signature{
+    flex-wrap:wrap;
+    gap:7px 10px;
+    font-size:.86rem;
+    line-height:1.45;
+  }
+
+  /* Section headings */
+  .section-heading h2,
+  .reserve-copy h2,
+  .contact-band h2,
+  .collab-head h2{
+    max-width:100%;
+    font-size:clamp(1.85rem,8.6vw,2.45rem);
+    line-height:1.20;
+    letter-spacing:-.028em;
+    text-wrap:balance;
+  }
+
+  .section-heading .eyebrow,
+  .reserve-copy .eyebrow,
+  .contact-band .eyebrow{
+    font-size:.68rem;
+    line-height:1.45;
+    letter-spacing:.11em;
+  }
+
+  .section-intro,
+  .about-copy,
+  .collab-head > p,
+  .split-heading > p,
+  .reserve-copy > p,
+  .contact-band p{
+    font-size:.96rem;
+    line-height:1.82;
+  }
+
+  /* Card / item headings */
+  .team-card h3,
+  .goal-card h3,
+  .product-card h3,
+  .process-step h3,
+  .timeline-item h3{
+    font-size:1.18rem;
+    line-height:1.38;
+    letter-spacing:-.015em;
+  }
+
+  .team-card p,
+  .goal-card p,
+  .product-card p,
+  .process-step p,
+  .timeline-item p{
+    font-size:.93rem;
+    line-height:1.78;
+  }
+
+  /* Keywords: English subtitle gets its own line */
+  .word-row h3{
+    font-size:1.08rem;
+    line-height:1.42;
+    letter-spacing:-.01em;
+  }
+
+  .word-row h3 span{
+    display:block;
+    margin-top:3px;
+    font-size:.66rem;
+    line-height:1.35;
+    letter-spacing:.09em;
+  }
+
+  .word-row p{
+    font-size:.92rem;
+    line-height:1.78;
+  }
+
+  /* Prevent cramped labels and dates */
+  .festival-info-item strong{
+    font-size:1.05rem;
+    line-height:1.35;
+  }
+
+  .festival-info-item small{
+    line-height:1.5;
+  }
+
+  .reserve-event-card > div{
+    grid-template-columns:88px minmax(0,1fr);
+    gap:10px;
+  }
+
+  .reserve-event-card strong{
+    min-width:0;
+    font-size:.9rem;
+    line-height:1.5;
+    overflow-wrap:break-word;
+  }
+
+  .reserve-points{
+    font-size:.86rem;
+    line-height:1.65;
+  }
+
+  /* Let narrow horizontal flows wrap instead of squeezing text */
+  .motion-flow,
+  .ecophy-equation{
+    flex-wrap:wrap;
+  }
+
+  .motion-flow{
+    gap:7px 9px;
+    line-height:1.5;
+  }
+
+  /* 16px prevents automatic zoom on many mobile browsers */
+  input,
+  select,
+  textarea{
+    font-size:16px;
+    line-height:1.45;
+  }
+
+  .reserve-form label{
+    font-size:.84rem;
+    line-height:1.55;
+  }
+
+  .field-help,
+  .form-footnote{
+    line-height:1.65;
+  }
+
+  .button{
+    font-size:.94rem;
+    line-height:1.35;
+    white-space:normal;
+    text-align:center;
+  }
+
+  .footer-grid,
+  .footer-meta{
+    font-size:.9rem;
+    line-height:1.7;
+  }
+}
+
+/* Extra-narrow phones */
+@media (max-width:420px){
+
+  .container{
+    width:min(calc(100% - 28px),var(--container));
+  }
+
+  .hero h1{
+    max-width:100%;
+    font-size:clamp(2rem,10.3vw,2.65rem);
+    line-height:1.11;
+  }
+
+  .section-heading h2,
+  .reserve-copy h2,
+  .contact-band h2,
+  .collab-head h2{
+    font-size:clamp(1.72rem,8.25vw,2.12rem);
+    line-height:1.22;
+  }
+
+  .hero-lead,
+  .section-intro,
+  .about-copy,
+  .collab-head > p,
+  .split-heading > p,
+  .reserve-copy > p{
+    font-size:.94rem;
+  }
+
+  .team-card h3,
+  .goal-card h3,
+  .product-card h3,
+  .process-step h3,
+  .timeline-item h3{
+    font-size:1.12rem;
+  }
+
+  .word-row{
+    grid-template-columns:36px minmax(0,1fr);
+    gap:11px;
+  }
+
+  .word-row h3{
+    font-size:1.02rem;
+  }
+
+  .reserve-event-card > div{
+    grid-template-columns:1fr;
+    gap:3px;
+  }
+
+  .reserve-event-card span{
+    font-size:.68rem;
+  }
+}
