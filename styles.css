@@ -398,3 +398,139 @@ details p { margin: 0; padding: 0 45px 26px 0; color: var(--muted); }
   stroke-linejoin: round;
   overflow: visible;
 }
+
+/* ===== Ecophy steam-punk accent ===== */
+
+:root{
+  --steam-brass: #b88a44;
+  --steam-copper: #9a5d37;
+  --steam-ink: #24160f;
+  --steam-paper: #efe1cc;
+  --steam-shadow: rgba(58, 34, 20, 0.18);
+}
+
+/* 背景の紙感を少し強める */
+body{
+  background:
+    radial-gradient(circle at 20% 20%, rgba(184,138,68,0.05), transparent 22%),
+    radial-gradient(circle at 80% 30%, rgba(154,93,55,0.05), transparent 24%),
+    linear-gradient(115deg, rgba(112,67,40,.03) 25%, transparent 25%) 0 0/32px 32px,
+    linear-gradient(295deg, rgba(112,67,40,.025) 25%, transparent 25%) 0 0/32px 32px,
+    var(--steam-paper);
+}
+
+/* 見出し下に控えめな装飾ライン */
+.section-heading h2,
+.reserve-copy h2,
+.contact-band h2{
+  position: relative;
+  padding-bottom: 14px;
+}
+
+.section-heading h2::after,
+.reserve-copy h2::after,
+.contact-band h2::after{
+  content: "";
+  display: block;
+  width: 78px;
+  height: 3px;
+  margin-top: 12px;
+  background:
+    linear-gradient(90deg, var(--steam-copper), var(--steam-brass));
+  box-shadow: 0 1px 0 rgba(255,255,255,0.18);
+}
+
+/* カード類を少し工房・金属板っぽく */
+.goal-card,
+.product-card,
+.team-card,
+.principle-card,
+.reserve-form,
+.festival-info,
+.word-tab{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03)),
+    rgba(73, 45, 29, 0.04);
+  border: 1px solid rgba(184,138,68,0.28);
+  box-shadow:
+    0 10px 24px var(--steam-shadow),
+    inset 0 1px 0 rgba(255,255,255,0.12);
+}
+
+/* カード左上に小さな真鍮プレート感 */
+.goal-card h3,
+.product-card h3,
+.team-card h3{
+  display: inline-block;
+  padding: 4px 10px;
+  background: rgba(184,138,68,0.10);
+  border: 1px solid rgba(184,138,68,0.28);
+}
+
+/* ボタンを真鍮調に */
+.button,
+.nav-cta{
+  background:
+    linear-gradient(180deg, #c99a4a 0%, #a77334 100%) !important;
+  border: 1px solid rgba(78,48,27,0.45) !important;
+  color: #20140e !important;
+  box-shadow:
+    0 4px 10px rgba(58,34,20,0.22),
+    inset 0 1px 0 rgba(255,255,255,0.25);
+}
+
+.button:hover,
+.nav-cta:hover{
+  transform: translateY(-1px);
+  box-shadow:
+    0 7px 14px rgba(58,34,20,0.26),
+    inset 0 1px 0 rgba(255,255,255,0.25);
+}
+
+/* 画像枠を少し装飾 */
+.hero-artwork,
+.product-visual{
+  border: 1px solid rgba(184,138,68,0.28);
+  box-shadow:
+    0 10px 22px rgba(58,34,20,0.15),
+    inset 0 0 0 1px rgba(255,255,255,0.08);
+}
+
+/* 区切り線に少し工房感 */
+.section-divider::before{
+  filter: drop-shadow(0 2px 2px rgba(58,34,20,0.12));
+}
+.section-divider::after{
+  opacity: 0.78;
+}
+
+/* キーワードの見出しやトグルも少し真鍮色へ */
+.word-title{
+  color: #f1dfc9;
+}
+.word-toggle{
+  color: var(--steam-brass);
+}
+
+/* フォームも少し統一 */
+input, select, textarea{
+  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(154,93,55,0.24);
+  box-shadow: inset 0 1px 2px rgba(58,34,20,0.06);
+}
+
+/* スマホでは装飾を少し控えめに */
+@media (max-width: 680px){
+  .section-heading h2::after,
+  .reserve-copy h2::after,
+  .contact-band h2::after{
+    width: 56px;
+    height: 2px;
+  }
+
+  .goal-card h3,
+  .product-card h3,
+  .team-card h3{
+    padding: 3px 8px;
+  }
+}
