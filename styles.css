@@ -534,3 +534,149 @@ input, select, textarea{
     padding: 3px 8px;
   }
 }
+
+
+/* ===== Timee-inspired bold linear separators (CSS-only) ===== */
+
+/*
+  The layout/content is untouched.
+  Each section gets a strong linear graphic at its top edge:
+  - long diagonal sweep
+  - crossing lines
+  - architectural zig-zag
+*/
+
+/* Keep section content above the divider graphics */
+#about,
+#teams,
+.goals-section,
+#words,
+#process,
+#timeline,
+#products,
+#reserve,
+#faq,
+.contact-band{
+  position: relative;
+  isolation: isolate;
+}
+
+#about > .container,
+#teams > .container,
+.goals-section > .container,
+#words > .container,
+#process > .container,
+#timeline > .container,
+#products > .container,
+#reserve > .container,
+#faq > .container,
+.contact-band > .container{
+  position: relative;
+  z-index: 2;
+}
+
+/* Shared divider canvas */
+#about::after,
+#teams::after,
+.goals-section::after,
+#words::after,
+#process::after,
+#timeline::after,
+#products::after,
+#reserve::after,
+#faq::after,
+.contact-band::after{
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 2px;
+  width: 100%;
+  height: clamp(86px, 9vw, 138px);
+  pointer-events: none;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/* 01 / 04 / 07 / 10 : huge diagonal sweep — light sections */
+#about::after,
+#products::after,
+.contact-band::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-40 18 L405 124 L1240 25' fill='none' stroke='%23143629' stroke-width='19' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M-40 7 L405 113 L1240 14' fill='none' stroke='%237a5139' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+/* Dark section version */
+#words::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-40 18 L405 124 L1240 25' fill='none' stroke='%23f4f0e7' stroke-width='19' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M-40 7 L405 113 L1240 14' fill='none' stroke='%23dbe7b0' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+/* 02 / 05 / 08 : crossing long lines — dark */
+#teams::after,
+#reserve::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-45 133 L515 20 L1240 123' fill='none' stroke='%23f4f0e7' stroke-width='18' stroke-linecap='square'/%3E%3Cpath d='M-45 30 L348 105 L790 24 L1240 96' fill='none' stroke='%23dbe7b0' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+/* Light section version */
+#process::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-45 133 L515 20 L1240 123' fill='none' stroke='%23143629' stroke-width='18' stroke-linecap='square'/%3E%3Cpath d='M-45 30 L348 105 L790 24 L1240 96' fill='none' stroke='%238fa470' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+/* 03 / 06 / 09 : architectural zig-zag */
+.goals-section::after,
+#timeline::after,
+#faq::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-45 31 L230 116 L500 24 L770 122 L1010 48 L1245 101' fill='none' stroke='%23143629' stroke-width='17' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M-45 20 L230 105 L500 13 L770 111 L1010 37 L1245 90' fill='none' stroke='%237a5139' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+/* Slight depth, without making it look glossy or steampunk */
+#about::after,
+#teams::after,
+.goals-section::after,
+#words::after,
+#process::after,
+#timeline::after,
+#products::after,
+#reserve::after,
+#faq::after,
+.contact-band::after{
+  filter: drop-shadow(0 6px 0 rgba(16,34,26,.065));
+}
+
+/* The divider occupies the original top whitespace, so text positions stay aligned */
+@media (max-width: 980px){
+  #about::after,
+  #teams::after,
+  .goals-section::after,
+  #words::after,
+  #process::after,
+  #timeline::after,
+  #products::after,
+  #reserve::after,
+  #faq::after,
+  .contact-band::after{
+    height: 92px;
+  }
+}
+
+@media (max-width: 680px){
+  #about::after,
+  #teams::after,
+  .goals-section::after,
+  #words::after,
+  #process::after,
+  #timeline::after,
+  #products::after,
+  #reserve::after,
+  #faq::after,
+  .contact-band::after{
+    top: 0;
+    height: 62px;
+    filter: drop-shadow(0 3px 0 rgba(16,34,26,.055));
+  }
+}
