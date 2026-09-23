@@ -1537,48 +1537,43 @@ html{
   }
 }
 
-/* ===== Product card alignment fix ===== */
-/* 商品カード内のタイトル・説明・ボタン位置をそろえる */
-.product-card{
-  display:flex;
-  flex-direction:column;
-  height:100%;
+/* ===== Product card precise alignment ===== */
+
+/* 商品03の写真を、ほかの商品画像と同じくカード上端から開始 */
+.product-card-keyholder .product-visual-keyholder{
+  margin:0 !important;
 }
 
-.product-body{
-  display:flex;
-  flex-direction:column;
-  flex:1;
+/* 商品画像の直後から、全カード同じ余白で本文を開始 */
+.product-card .product-body{
+  padding:24px;
 }
 
-/* 商品名の段差をそろえるため、PCでは見出し2行分を確保 */
+/*
+  商品名の開始位置は全カードで同じ。
+  2行の商品名に合わせて見出し領域だけ高さを確保し、
+  説明文の書き出し位置もそろえる。
+*/
 .product-card h3{
-  min-height:calc(1.35em * 2 + 8px);
+  margin:10px 0 8px;
+  min-height:3.1em;
 }
 
-/* 説明文エリアの高さもある程度そろえる */
+/* 説明文には不要な固定高さをつけない */
 .product-card p{
-  min-height:5.6em;
+  min-height:0 !important;
 }
 
-/* 下部要素をカード下端に寄せる */
+/* 前回の下端揃えは解除し、通常の間隔へ */
 .product-body > .reservation-badge,
 .product-body > .walkin-badge,
 .product-body > .button{
-  margin-top:auto;
+  margin-top:18px;
 }
 
-@media (max-width:980px){
-  .product-card p{
-    min-height:0;
-  }
-}
-
-@media (max-width:680px){
+/* スマホは縦1列になるため、余分な見出し高さを解除 */
+@media(max-width:680px){
   .product-card h3{
-    min-height:0;
-  }
-  .product-card p{
     min-height:0;
   }
 }
