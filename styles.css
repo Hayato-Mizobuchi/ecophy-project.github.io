@@ -1477,3 +1477,49 @@ html{
     font-size:.72rem;
   }
 }
+
+/* ===== Fix keyholder product photo visibility ===== */
+
+/* 商品番号03では、既存のダミー画像を完全に消して写真だけを表示 */
+.product-card-keyholder .product-placeholder{
+  display:none !important;
+}
+
+.product-card-keyholder .product-visual::before,
+.product-card-keyholder .product-visual::after{
+  display:none !important;
+}
+
+/* 元の product-visual のサイズを保ちながら写真を全面表示 */
+.product-card-keyholder .product-visual{
+  position:relative;
+  aspect-ratio:4 / 3;
+  overflow:hidden;
+  display:block !important;
+  padding:0 !important;
+  background:#e7ddd2;
+}
+
+.product-card-keyholder .product-visual img{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  width:100% !important;
+  height:100% !important;
+  max-width:none !important;
+  object-fit:cover;
+  object-position:center 54%;
+  display:block !important;
+  border-radius:0 !important;
+}
+
+/* キャプションは画像の外に出さず、商品カード側の説明に任せる */
+.product-card-keyholder .product-visual figcaption{
+  display:none !important;
+}
+
+@media(max-width:680px){
+  .product-card-keyholder .product-visual img{
+    object-position:center 52%;
+  }
+}
