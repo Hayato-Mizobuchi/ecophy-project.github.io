@@ -715,3 +715,228 @@ textarea:focus{
       #37241b;
   }
 }
+
+/* ===== Ecophy calm cafe palette ===== */
+
+/*
+  Calm café palette:
+  espresso / mocha / oat milk / warm wood / soft charcoal.
+  Lower saturation, softer contrast, less "designed" and more café-like.
+*/
+:root{
+  --ink:#2f2722;
+  --forest:#3a2f29;
+  --forest-2:#493a32;
+  --moss:#8f7d6d;
+  --lime:#ddd0bf;
+  --cream:#e9dfd3;
+  --paper:#f3eee8;
+  --coffee:#6c5142;
+  --aqua:#988472;
+  --sky:#b49f8b;
+  --line:rgba(73,55,45,.14);
+  --muted:#766a62;
+  --white:#ffffff;
+  --shadow:0 18px 48px rgba(61,45,36,.10);
+}
+
+/* Overall page — quiet café interior */
+body{
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 18% 10%, rgba(108,81,66,.035), transparent 30%),
+    radial-gradient(circle at 80% 34%, rgba(180,159,139,.04), transparent 32%),
+    linear-gradient(180deg,#f4efe9 0%,#f1ebe4 100%);
+}
+
+/* Light areas: oat milk / plaster wall */
+.section-light,
+.products-section,
+.faq-section{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,0)),
+    #f3eee8;
+}
+
+/* Hero / reservation: espresso, not black */
+.section-dark,
+.reserve-section{
+  background:
+    radial-gradient(circle at 78% 12%, rgba(221,208,191,.05), transparent 28%),
+    linear-gradient(135deg,#332922 0%,#3b2f28 52%,#30261f 100%);
+}
+
+/* Keyword section: dark roast */
+.section-ink{
+  background:
+    radial-gradient(circle at 14% 18%, rgba(180,159,139,.055), transparent 30%),
+    #302721;
+}
+
+/* Header follows the dark roast tone */
+.site-header.scrolled{
+  background:rgba(52,42,35,.94);
+}
+
+/* Team section: café counter / wood tone */
+.collab-section{
+  background:
+    radial-gradient(circle at 12% 16%, rgba(180,159,139,.07), transparent 30%),
+    radial-gradient(circle at 86% 12%, rgba(221,208,191,.045), transparent 32%),
+    linear-gradient(135deg,#302721 0%,#3d3029 55%,#332923 100%);
+}
+
+.collab-section .eyebrow,
+.team-card-ai h3,
+.team-card-lab h3,
+.team-card-ai .team-tag,
+.team-card-lab .team-tag,
+.physical-ai-index{
+  color:#c9b39d;
+}
+
+.team-card-ai::after,
+.team-card-lab::after{
+  background:#88705f;
+}
+
+/* Warm neutral sections */
+.goals-section{
+  background:#e9dfd3;
+}
+
+.timeline-section{
+  background:#eee7df;
+}
+
+.contact-band{
+  background:#d7c8b7;
+}
+
+/* Cards: off-white / ceramic */
+.principle-card,
+.goal-card,
+.product-card,
+.reserve-form,
+.festival-info{
+  background:#f8f4ef;
+  border-color:rgba(90,68,55,.11);
+  box-shadow:0 16px 38px rgba(61,45,36,.075);
+}
+
+.team-card{
+  background:rgba(255,255,255,.045);
+  border-color:rgba(255,255,255,.10);
+  box-shadow:0 22px 56px rgba(20,14,10,.18);
+}
+
+/* Buttons: latte cream + dark coffee */
+.button-primary{
+  background:#ddd0bf;
+  color:#352b25;
+  border-color:#ddd0bf;
+}
+
+.button-light{
+  background:#faf7f2;
+  color:#3a2f29;
+}
+
+.button-secondary{
+  border-color:rgba(73,55,45,.18);
+  color:#3a2f29;
+}
+
+.product-card .button{
+  background:#3a2f29;
+}
+
+/* Hero details */
+.hero h1 em{
+  color:#e1d5c5;
+}
+
+.hero-signature span:first-child,
+.hero-signature span:nth-of-type(2){
+  color:#c7b19b;
+}
+
+.hero-artwork::before{
+  border-color:rgba(221,208,191,.22);
+}
+
+/* Hand-drawn icons remain coffee brown */
+.goal-icon-svg{
+  stroke:#775947;
+}
+
+/* Accent text becomes quiet mocha */
+.festival-info-item span,
+.product-label,
+.process-step span,
+.timeline-item time{
+  color:#6c5142;
+}
+
+/* Forms: warm white, not stark white */
+input,
+select,
+textarea{
+  background:#fbf8f4;
+  color:#2f2722;
+  border-color:rgba(85,65,52,.15);
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#7a6252;
+  box-shadow:0 0 0 3px rgba(122,98,82,.08);
+}
+
+.privacy-check input{
+  accent-color:#6c5142;
+}
+
+/* Timee-inspired divider colors adapted to the calmer café palette */
+#about::after,
+#products::after,
+.contact-band::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-40 18 L405 124 L1240 25' fill='none' stroke='%233a2f29' stroke-width='19' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M-40 7 L405 113 L1240 14' fill='none' stroke='%236c5142' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+#words::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-40 18 L405 124 L1240 25' fill='none' stroke='%23f3eee8' stroke-width='19' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M-40 7 L405 113 L1240 14' fill='none' stroke='%23c7b19b' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+#teams::after,
+#reserve::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-45 133 L515 20 L1240 123' fill='none' stroke='%23f3eee8' stroke-width='18' stroke-linecap='square'/%3E%3Cpath d='M-45 30 L348 105 L790 24 L1240 96' fill='none' stroke='%23c7b19b' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+#process::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-45 133 L515 20 L1240 123' fill='none' stroke='%233a2f29' stroke-width='18' stroke-linecap='square'/%3E%3Cpath d='M-45 30 L348 105 L790 24 L1240 96' fill='none' stroke='%23988472' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+.goals-section::after,
+#timeline::after,
+#faq::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-45 31 L230 116 L500 24 L770 122 L1010 48 L1245 101' fill='none' stroke='%233a2f29' stroke-width='17' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M-45 20 L230 105 L500 13 L770 111 L1010 37 L1245 90' fill='none' stroke='%236c5142' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+/* Mobile keeps the same quiet roast palette */
+@media(max-width:680px){
+  .section-dark,
+  .reserve-section{
+    background:#342a23;
+  }
+
+  .section-ink{
+    background:#302721;
+  }
+}
