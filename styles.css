@@ -1222,3 +1222,200 @@ html{
     font-size:.68rem;
   }
 }
+
+
+/* ===== Ecophy dropdown sections ===== */
+.word-tabs,
+.process-accordions{
+  display:grid;
+  gap:10px;
+}
+
+.word-tab,
+.process-tab{
+  margin:0;
+  padding:0;
+  border:1px solid var(--line);
+  border-radius:4px;
+  overflow:hidden;
+}
+
+.word-tab{
+  background:rgba(255,255,255,.035);
+  border-color:rgba(255,255,255,.13);
+}
+
+.process-tab{
+  background:#f8f4ef;
+  border-color:rgba(90,68,55,.13);
+}
+
+.word-tab summary,
+.process-tab summary{
+  display:grid;
+  grid-template-columns:52px minmax(0,1fr) 34px;
+  align-items:center;
+  gap:16px;
+  padding:20px 22px;
+  cursor:pointer;
+  list-style:none;
+  transition:background .18s ease;
+}
+
+.word-tab summary::-webkit-details-marker,
+.process-tab summary::-webkit-details-marker{
+  display:none;
+}
+
+.word-tab summary::after,
+.process-tab summary::after{
+  content:none!important;
+}
+
+.word-tab summary:hover{
+  background:rgba(255,255,255,.045);
+}
+
+.process-tab summary:hover{
+  background:rgba(108,81,66,.035);
+}
+
+.accordion-index{
+  font-size:.72rem;
+  line-height:1;
+  letter-spacing:.10em;
+  font-weight:900;
+  color:var(--coffee);
+}
+
+.word-tab .accordion-index{
+  color:#c7b19b;
+}
+
+.accordion-title{
+  min-width:0;
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.accordion-title strong{
+  font-size:1.08rem;
+  line-height:1.35;
+  letter-spacing:-.01em;
+}
+
+.accordion-title small{
+  font-size:.67rem;
+  line-height:1.35;
+  letter-spacing:.10em;
+  font-weight:850;
+  color:var(--muted);
+}
+
+.word-tab .accordion-title strong{
+  color:#f3eee8;
+}
+
+.word-tab .accordion-title small{
+  color:rgba(243,238,232,.55);
+}
+
+.process-tab .accordion-title{
+  display:grid;
+  gap:2px;
+}
+
+.process-tab .accordion-title small{
+  color:var(--coffee);
+}
+
+.accordion-toggle{
+  justify-self:end;
+  font-size:1.45rem;
+  line-height:1;
+  font-weight:300;
+  transition:transform .2s ease;
+}
+
+.word-tab .accordion-toggle{
+  color:#c7b19b;
+}
+
+.process-tab .accordion-toggle{
+  color:var(--coffee);
+}
+
+.word-tab[open] .accordion-toggle,
+.process-tab[open] .accordion-toggle{
+  transform:rotate(45deg);
+}
+
+.accordion-panel{
+  padding:0 22px 22px 90px;
+}
+
+.accordion-panel p{
+  margin:0;
+  max-width:760px;
+  line-height:1.82;
+}
+
+.word-tab .accordion-panel{
+  color:rgba(243,238,232,.72);
+}
+
+.process-tab .accordion-panel{
+  color:var(--muted);
+}
+
+.process-grid-accordion{
+  align-items:start;
+}
+
+@media(max-width:680px){
+  .word-tabs,
+  .process-accordions{
+    gap:8px;
+  }
+
+  .word-tab summary,
+  .process-tab summary{
+    grid-template-columns:38px minmax(0,1fr) 28px;
+    gap:10px;
+    padding:17px 15px;
+  }
+
+  .accordion-index{
+    font-size:.65rem;
+  }
+
+  .accordion-title{
+    display:grid;
+    gap:3px;
+  }
+
+  .accordion-title strong{
+    font-size:1rem;
+    line-height:1.4;
+  }
+
+  .accordion-title small{
+    font-size:.61rem;
+    letter-spacing:.08em;
+  }
+
+  .accordion-toggle{
+    font-size:1.28rem;
+  }
+
+  .accordion-panel{
+    padding:0 15px 17px 63px;
+  }
+
+  .accordion-panel p{
+    font-size:.92rem;
+    line-height:1.76;
+  }
+}
