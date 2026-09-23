@@ -1536,3 +1536,49 @@ html{
     object-position:center center !important;
   }
 }
+
+/* ===== Product card alignment fix ===== */
+/* 商品カード内のタイトル・説明・ボタン位置をそろえる */
+.product-card{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+.product-body{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+
+/* 商品名の段差をそろえるため、PCでは見出し2行分を確保 */
+.product-card h3{
+  min-height:calc(1.35em * 2 + 8px);
+}
+
+/* 説明文エリアの高さもある程度そろえる */
+.product-card p{
+  min-height:5.6em;
+}
+
+/* 下部要素をカード下端に寄せる */
+.product-body > .reservation-badge,
+.product-body > .walkin-badge,
+.product-body > .button{
+  margin-top:auto;
+}
+
+@media (max-width:980px){
+  .product-card p{
+    min-height:0;
+  }
+}
+
+@media (max-width:680px){
+  .product-card h3{
+    min-height:0;
+  }
+  .product-card p{
+    min-height:0;
+  }
+}
