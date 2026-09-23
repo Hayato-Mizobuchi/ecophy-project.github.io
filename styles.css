@@ -399,143 +399,6 @@ details p { margin: 0; padding: 0 45px 26px 0; color: var(--muted); }
   overflow: visible;
 }
 
-/* ===== Ecophy steam-punk accent ===== */
-
-:root{
-  --steam-brass: #b88a44;
-  --steam-copper: #9a5d37;
-  --steam-ink: #24160f;
-  --steam-paper: #efe1cc;
-  --steam-shadow: rgba(58, 34, 20, 0.18);
-}
-
-/* 背景の紙感を少し強める */
-body{
-  background:
-    radial-gradient(circle at 20% 20%, rgba(184,138,68,0.05), transparent 22%),
-    radial-gradient(circle at 80% 30%, rgba(154,93,55,0.05), transparent 24%),
-    linear-gradient(115deg, rgba(112,67,40,.03) 25%, transparent 25%) 0 0/32px 32px,
-    linear-gradient(295deg, rgba(112,67,40,.025) 25%, transparent 25%) 0 0/32px 32px,
-    var(--steam-paper);
-}
-
-/* 見出し下に控えめな装飾ライン */
-.section-heading h2,
-.reserve-copy h2,
-.contact-band h2{
-  position: relative;
-  padding-bottom: 14px;
-}
-
-.section-heading h2::after,
-.reserve-copy h2::after,
-.contact-band h2::after{
-  content: "";
-  display: block;
-  width: 78px;
-  height: 3px;
-  margin-top: 12px;
-  background:
-    linear-gradient(90deg, var(--steam-copper), var(--steam-brass));
-  box-shadow: 0 1px 0 rgba(255,255,255,0.18);
-}
-
-/* カード類を少し工房・金属板っぽく */
-.goal-card,
-.product-card,
-.team-card,
-.principle-card,
-.reserve-form,
-.festival-info,
-.word-tab{
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03)),
-    rgba(73, 45, 29, 0.04);
-  border: 1px solid rgba(184,138,68,0.28);
-  box-shadow:
-    0 10px 24px var(--steam-shadow),
-    inset 0 1px 0 rgba(255,255,255,0.12);
-}
-
-/* カード左上に小さな真鍮プレート感 */
-.goal-card h3,
-.product-card h3,
-.team-card h3{
-  display: inline-block;
-  padding: 4px 10px;
-  background: rgba(184,138,68,0.10);
-  border: 1px solid rgba(184,138,68,0.28);
-}
-
-/* ボタンを真鍮調に */
-.button,
-.nav-cta{
-  background:
-    linear-gradient(180deg, #c99a4a 0%, #a77334 100%) !important;
-  border: 1px solid rgba(78,48,27,0.45) !important;
-  color: #20140e !important;
-  box-shadow:
-    0 4px 10px rgba(58,34,20,0.22),
-    inset 0 1px 0 rgba(255,255,255,0.25);
-}
-
-.button:hover,
-.nav-cta:hover{
-  transform: translateY(-1px);
-  box-shadow:
-    0 7px 14px rgba(58,34,20,0.26),
-    inset 0 1px 0 rgba(255,255,255,0.25);
-}
-
-/* 画像枠を少し装飾 */
-.hero-artwork,
-.product-visual{
-  border: 1px solid rgba(184,138,68,0.28);
-  box-shadow:
-    0 10px 22px rgba(58,34,20,0.15),
-    inset 0 0 0 1px rgba(255,255,255,0.08);
-}
-
-/* 区切り線に少し工房感 */
-.section-divider::before{
-  filter: drop-shadow(0 2px 2px rgba(58,34,20,0.12));
-}
-.section-divider::after{
-  opacity: 0.78;
-}
-
-/* キーワードの見出しやトグルも少し真鍮色へ */
-.word-title{
-  color: #f1dfc9;
-}
-.word-toggle{
-  color: var(--steam-brass);
-}
-
-/* フォームも少し統一 */
-input, select, textarea{
-  background: rgba(255,255,255,0.72);
-  border: 1px solid rgba(154,93,55,0.24);
-  box-shadow: inset 0 1px 2px rgba(58,34,20,0.06);
-}
-
-/* スマホでは装飾を少し控えめに */
-@media (max-width: 680px){
-  .section-heading h2::after,
-  .reserve-copy h2::after,
-  .contact-band h2::after{
-    width: 56px;
-    height: 2px;
-  }
-
-  .goal-card h3,
-  .product-card h3,
-  .team-card h3{
-    padding: 3px 8px;
-  }
-}
-
-
 /* ===== Timee-inspired bold linear separators (CSS-only) ===== */
 
 /*
@@ -604,26 +467,26 @@ input, select, textarea{
 #products::after,
 .contact-band::after{
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-40 18 L405 124 L1240 25' fill='none' stroke='%23143629' stroke-width='19' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M-40 7 L405 113 L1240 14' fill='none' stroke='%237a5139' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-40 18 L405 124 L1240 25' fill='none' stroke='%233b281d' stroke-width='19' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M-40 7 L405 113 L1240 14' fill='none' stroke='%237a5139' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
 }
 
 /* Dark section version */
 #words::after{
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-40 18 L405 124 L1240 25' fill='none' stroke='%23f4f0e7' stroke-width='19' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M-40 7 L405 113 L1240 14' fill='none' stroke='%23dbe7b0' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-40 18 L405 124 L1240 25' fill='none' stroke='%23f6ede2' stroke-width='19' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M-40 7 L405 113 L1240 14' fill='none' stroke='%23ead7bd' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
 }
 
 /* 02 / 05 / 08 : crossing long lines — dark */
 #teams::after,
 #reserve::after{
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-45 133 L515 20 L1240 123' fill='none' stroke='%23f4f0e7' stroke-width='18' stroke-linecap='square'/%3E%3Cpath d='M-45 30 L348 105 L790 24 L1240 96' fill='none' stroke='%23dbe7b0' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-45 133 L515 20 L1240 123' fill='none' stroke='%23f6ede2' stroke-width='18' stroke-linecap='square'/%3E%3Cpath d='M-45 30 L348 105 L790 24 L1240 96' fill='none' stroke='%23ead7bd' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
 }
 
 /* Light section version */
 #process::after{
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-45 133 L515 20 L1240 123' fill='none' stroke='%23143629' stroke-width='18' stroke-linecap='square'/%3E%3Cpath d='M-45 30 L348 105 L790 24 L1240 96' fill='none' stroke='%238fa470' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-45 133 L515 20 L1240 123' fill='none' stroke='%233b281d' stroke-width='18' stroke-linecap='square'/%3E%3Cpath d='M-45 30 L348 105 L790 24 L1240 96' fill='none' stroke='%23b18a67' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
 }
 
 /* 03 / 06 / 09 : architectural zig-zag */
@@ -631,7 +494,7 @@ input, select, textarea{
 #timeline::after,
 #faq::after{
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-45 31 L230 116 L500 24 L770 122 L1010 48 L1245 101' fill='none' stroke='%23143629' stroke-width='17' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M-45 20 L230 105 L500 13 L770 111 L1010 37 L1245 90' fill='none' stroke='%237a5139' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-45 31 L230 116 L500 24 L770 122 L1010 48 L1245 101' fill='none' stroke='%233b281d' stroke-width='17' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M-45 20 L230 105 L500 13 L770 111 L1010 37 L1245 90' fill='none' stroke='%237a5139' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
 }
 
 /* Slight depth, without making it look glossy or steampunk */
@@ -678,5 +541,177 @@ input, select, textarea{
     top: 0;
     height: 62px;
     filter: drop-shadow(0 3px 0 rgba(16,34,26,.055));
+  }
+}
+
+/* ===== Ecophy coffee theme ===== */
+:root{
+  --ink:#2b1d16;
+  --forest:#3b281d;
+  --forest-2:#523626;
+  --moss:#9b7b5c;
+  --lime:#ead7bd;
+  --cream:#eee0cf;
+  --paper:#f8f1e8;
+  --coffee:#7a5139;
+  --aqua:#b18a67;
+  --sky:#c7a17a;
+  --line:rgba(75,48,33,.16);
+  --muted:#756258;
+  --white:#ffffff;
+  --shadow:0 22px 60px rgba(71,43,28,.12);
+}
+
+/* Warm coffee-paper background without metallic/steampunk decoration */
+body{
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(122,81,57,.055), transparent 28%),
+    radial-gradient(circle at 85% 28%, rgba(199,161,122,.065), transparent 30%),
+    var(--paper);
+}
+
+.section-light,
+.products-section,
+.faq-section{
+  background:
+    linear-gradient(rgba(255,255,255,.16),rgba(255,255,255,.16)),
+    var(--paper);
+}
+
+.section-dark,
+.reserve-section{
+  background:
+    radial-gradient(circle at 82% 12%, rgba(234,215,189,.07), transparent 26%),
+    linear-gradient(135deg,#332118 0%,#422c20 58%,#2e1e17 100%);
+}
+
+.section-ink{
+  background:
+    radial-gradient(circle at 18% 20%, rgba(199,161,122,.08), transparent 28%),
+    #2b1d16;
+}
+
+.site-header.scrolled{
+  background:rgba(55,36,26,.93);
+}
+
+.collab-section{
+  background:
+    radial-gradient(circle at 12% 18%, rgba(199,161,122,.11), transparent 29%),
+    radial-gradient(circle at 88% 10%, rgba(234,215,189,.08), transparent 31%),
+    linear-gradient(135deg,#2c1d16 0%,#412b20 56%,#302019 100%);
+}
+
+.collab-section .eyebrow,
+.team-card-ai h3,
+.team-card-lab h3,
+.team-card-ai .team-tag,
+.team-card-lab .team-tag,
+.physical-ai-index{
+  color:#dfbd96;
+}
+
+.team-card-ai::after,
+.team-card-lab::after{
+  background:#a87957;
+}
+
+.goals-section{
+  background:#eee0cf;
+}
+
+.timeline-section{
+  background:#f0e5d8;
+}
+
+.contact-band{
+  background:#d6b58f;
+}
+
+/* Simple, natural cards: no brass plate or metallic treatment */
+.principle-card,
+.goal-card,
+.product-card,
+.reserve-form,
+.festival-info{
+  box-shadow:0 18px 44px rgba(80,51,34,.09);
+}
+
+.team-card{
+  background:rgba(255,255,255,.055);
+  box-shadow:0 26px 70px rgba(20,12,8,.22);
+}
+
+.button-primary{
+  background:#ead7bd;
+  color:#3b281d;
+  border-color:#ead7bd;
+}
+
+.button-light{
+  background:#fffaf4;
+  color:#3b281d;
+}
+
+.button-secondary{
+  border-color:rgba(75,48,33,.22);
+  color:#3b281d;
+}
+
+.nav-cta{
+  border-color:rgba(255,255,255,.46);
+}
+
+.hero h1 em{
+  color:#ead7bd;
+}
+
+.hero-signature span:first-child,
+.hero-signature span:nth-of-type(2){
+  color:#dfbd96;
+}
+
+.hero-artwork::before{
+  border-color:rgba(234,215,189,.28);
+}
+
+.goal-icon-svg{
+  stroke:#8d5d3e;
+}
+
+.festival-info-item span,
+.product-label,
+.process-step span,
+.timeline-item time{
+  color:#7a5139;
+}
+
+.product-card .button{
+  background:#3b281d;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#7a5139;
+  box-shadow:0 0 0 3px rgba(122,81,57,.09);
+}
+
+.privacy-check input{
+  accent-color:#7a5139;
+}
+
+/* Reservation is intentionally the second section */
+.reserve-section{
+  position:relative;
+}
+
+@media(max-width:680px){
+  .section-dark,
+  .reserve-section{
+    background:
+      radial-gradient(circle at 80% 10%,rgba(234,215,189,.06),transparent 24%),
+      #37241b;
   }
 }
