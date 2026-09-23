@@ -1419,3 +1419,61 @@ html{
     line-height:1.76;
   }
 }
+
+
+/* ===== Ecophy ochre accent and product image ===== */
+:root{
+  --ochre:#b6914c;
+}
+
+/* one calm ochre accent in the background */
+.contact-band{
+  background:#c7a06a;
+}
+
+/* give the linear dividers a warmer ochre accent */
+#about::after,
+#products::after,
+.contact-band::after,
+.goals-section::after,
+#timeline::after,
+#faq::after,
+#process::after,
+#teams::after,
+#reserve::after,
+#words::after{
+  filter: drop-shadow(0 6px 0 rgba(24,18,14,.05));
+}
+
+.product-visual-keyholder{
+  display:grid;
+  gap:10px;
+}
+
+.product-visual-keyholder img{
+  width:100%;
+  aspect-ratio: 4 / 3;
+  object-fit:cover;
+  border-radius:6px;
+  display:block;
+}
+
+.product-visual-keyholder figcaption{
+  font-size:.78rem;
+  line-height:1.45;
+  color:var(--muted);
+}
+
+.product-card-keyholder .product-visual-keyholder{
+  margin:12px 0 14px;
+}
+
+@media (max-width:680px){
+  .product-card-keyholder .product-visual-keyholder{
+    margin:10px 0 12px;
+  }
+
+  .product-visual-keyholder figcaption{
+    font-size:.72rem;
+  }
+}
