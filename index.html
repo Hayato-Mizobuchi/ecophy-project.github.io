@@ -520,5 +520,71 @@
   </dialog>
 
   <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var keyholderImageSrc = 'keyholder-product-03.png';
+
+      function enhanceKeyholderCard() {
+        var grid = document.getElementById('product-grid');
+        if (!grid) return;
+
+        var cards = Array.from(grid.querySelectorAll('.product-card, article, .card'));
+        if (!cards.length) return;
+
+        var target = cards.find(function (card) {
+          var text = (card.textContent || '').replace(/\s+/g, ' ');
+          return /03/.test(text) && /キーホルダー/.test(text);
+        });
+
+        if (!target) {
+          target = cards.find(function (card) {
+            var text = (card.textContent || '').replace(/\s+/g, ' ');
+            return /キーホルダー/.test(text);
+          }) || cards[2];
+        }
+
+        if (!target || target.dataset.keyholderEnhanced === '1') return;
+        target.dataset.keyholderEnhanced = '1';
+        target.classList.add('product-card-keyholder');
+
+        var visualHost = target.querySelector('.product-visual');
+        if (!visualHost) {
+          visualHost = document.createElement('figure');
+          visualHost.className = 'product-visual product-visual-keyholder';
+          var anchor = target.querySelector('.product-label, .card-kicker, h3');
+          if (anchor && anchor.parentNode) {
+            anchor.insertAdjacentElement('afterend', visualHost);
+          } else {
+            target.insertBefore(visualHost, target.firstChild);
+          }
+        } else {
+          visualHost.classList.add('product-visual-keyholder');
+        }
+
+        var existingImg = visualHost.querySelector('img');
+        if (!existingImg) {
+          existingImg = document.createElement('img');
+          visualHost.prepend(existingImg);
+        }
+
+        existingImg.src = keyholderImageSrc;
+        existingImg.alt = '商品番号03のキーホルダーの写真';
+        existingImg.loading = 'lazy';
+
+        var existingCaption = visualHost.querySelector('figcaption');
+        if (!existingCaption) {
+          existingCaption = document.createElement('figcaption');
+          existingCaption.textContent = '商品番号03 キーホルダー';
+          visualHost.appendChild(existingCaption);
+        }
+      }
+
+      enhanceKeyholderCard();
+      var grid = document.getElementById('product-grid');
+      if (grid && 'MutationObserver' in window) {
+        new MutationObserver(enhanceKeyholderCard).observe(grid, { childList: true, subtree: true });
+      }
+    });
+  </script>
 </body>
 </html>
