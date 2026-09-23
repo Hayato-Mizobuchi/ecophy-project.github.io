@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />  
   <meta name="description" content="Ecophyは、Bout.AIとLinne.Labの2チームが組み合わさり、フィジカルAIとアップサイクルの両面から新しいカフェ体験を探る学生プロジェクトです。" />
-  <meta name="theme-color" content="#143629" />
+  <meta name="theme-color" content="#3b281d" />
   <title>Ecophy | 捨てるものから、使いたくなるものへ。</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -24,12 +24,12 @@
       </button>
 
       <nav class="global-nav" id="global-nav" aria-label="メインナビゲーション">
+        <a class="nav-cta" href="#reserve">限定キーホルダーを予約</a>
         <a href="#about">私たちについて</a>
         <a href="#teams">2つのチーム</a>
         <a href="#words">キーワード</a>
         <a href="#timeline">これまでの歩み</a>
         <a href="#products">九大祭の商品</a>
-        <a class="nav-cta" href="#reserve">限定キーホルダーを予約</a>
       </nav>
     </div>
   </header>
@@ -59,6 +59,76 @@
           <img src="ecophy.svg" alt="Ecophyのプロジェクトビジュアル。コーヒー、キーホルダー、カップ、アップサイクルをモチーフにしたデザイン">
           <figcaption><span>BOUT.AI × LINNE.LAB</span><strong>KYUDAISAI / 2 DAYS</strong></figcaption>
         </figure>
+      </div>
+    </section>
+
+    <section class="section reserve-section" id="reserve">
+      <div class="container reserve-grid">
+        <div class="reserve-copy reveal">
+          <p class="eyebrow">CUSTOM KEYHOLDER RESERVATION</p>
+          <h2>世界に1つだけの<br>キーホルダーを予約する</h2>
+          <p>事前予約が必要なのは「世界に1つだけのオリジナルキーホルダー」のみです。その他の商品は予約不要で、九大祭当日に2301教室でご購入いただけます。</p>
+          <div class="reserve-event-card" aria-label="予約・受取情報">
+            <div><span>予約締切</span><strong>2026年9月30日（水）</strong></div>
+            <div><span>販売日</span><strong>10月31日（金）・11月1日（土）</strong></div>
+            <div><span>受取場所</span><strong>2301教室</strong></div>
+          </div>
+          <div class="reserve-points">
+            <span>✓ 予約対象はオリジナルキーホルダーのみ</span>
+            <span>✓ キーホルダーに印刷する名前と個数を入力</span>
+            <span>✓ 受取日・受け取り時間帯を選択</span>
+            <span>✓ 予約内容は送信前に確認できます</span>
+            <span>✓ 完成品は2301教室で受け取れます</span>
+          </div>
+        </div>
+
+        <form class="reserve-form reveal" id="reservation-form" novalidate>
+          <div class="form-row two-col">
+            <label>お名前<span>*</span><input name="name" autocomplete="name" required placeholder="九大 太郎"></label>
+            <label>メールアドレス<span>*</span><input name="email" type="email" autocomplete="email" required placeholder="example@email.com"></label>
+          </div>
+
+          <div class="form-row two-col">
+            <label>予約商品<input name="product_display" value="世界に1つだけのオリジナルキーホルダー — 700円（1個当たり）" readonly></label>
+            <input type="hidden" name="product" id="product-select" value="original-keyholder">
+            <label>個数<span>*</span><input name="quantity" type="number" min="1" max="20" value="1" required></label>
+          </div>
+
+          <div class="form-row">
+            <label>キーホルダーに印刷する名前<span>*</span><input name="print_name" required placeholder="例：Ecophy"><small class="field-help">複数個で異なる名前をご希望の場合は、備考欄にそれぞれご記入ください。</small></label>
+          </div>
+
+          <div class="form-row two-col">
+            <label>受取日<span>*</span>
+              <select name="pickup_date" required>
+                <option value="">選択してください</option>
+                <option value="10/31（金）">10/31（金）</option>
+                <option value="11/1（土）">11/1（土）</option>
+              </select>
+            </label>
+            <label>受け取り時間帯<span>*</span>
+              <select name="pickup_time" required>
+                <option value="">選択してください</option>
+                <option value="午前">午前</option>
+                <option value="午後前半">午後前半</option>
+                <option value="午後後半">午後後半</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label>備考<textarea name="note" rows="4" placeholder="例：複数個で異なる印刷名、その他の連絡事項"></textarea><small class="field-help">※ キーホルダーの色は原則として指定できません。</small></label>
+          </div>
+
+          <label class="privacy-check">
+            <input type="checkbox" name="privacy" required>
+            <span>予約対応のために入力情報を利用することに同意します。<strong>*</strong></span>
+          </label>
+
+          <button class="button button-primary form-submit" type="submit">予約内容を確認する →</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          <p class="form-footnote">※ このフォームは「世界に1つだけのオリジナルキーホルダー」専用です。事前予約は2026年9月30日（水）まで。その他の商品は予約不要です。送信された予約内容は、Ecophy運営用のGoogleスプレッドシートに保存されます。</p>
+        </form>
       </div>
     </section>
 
@@ -315,75 +385,7 @@
       </div>
     </section>
 
-    <section class="section reserve-section" id="reserve">
-      <div class="container reserve-grid">
-        <div class="reserve-copy reveal">
-          <p class="eyebrow">CUSTOM KEYHOLDER RESERVATION</p>
-          <h2>世界に1つだけの<br>キーホルダーを予約する</h2>
-          <p>事前予約が必要なのは「世界に1つだけのオリジナルキーホルダー」のみです。その他の商品は予約不要で、九大祭当日に2301教室でご購入いただけます。</p>
-          <div class="reserve-event-card" aria-label="予約・受取情報">
-            <div><span>予約締切</span><strong>2026年9月30日（水）</strong></div>
-            <div><span>販売日</span><strong>10月31日（金）・11月1日（土）</strong></div>
-            <div><span>受取場所</span><strong>2301教室</strong></div>
-          </div>
-          <div class="reserve-points">
-            <span>✓ 予約対象はオリジナルキーホルダーのみ</span>
-            <span>✓ キーホルダーに印刷する名前と個数を入力</span>
-            <span>✓ 受取日・受け取り時間帯を選択</span>
-            <span>✓ 予約内容は送信前に確認できます</span>
-            <span>✓ 完成品は2301教室で受け取れます</span>
-          </div>
-        </div>
-
-        <form class="reserve-form reveal" id="reservation-form" novalidate>
-          <div class="form-row two-col">
-            <label>お名前<span>*</span><input name="name" autocomplete="name" required placeholder="九大 太郎"></label>
-            <label>メールアドレス<span>*</span><input name="email" type="email" autocomplete="email" required placeholder="example@email.com"></label>
-          </div>
-
-          <div class="form-row two-col">
-            <label>予約商品<input name="product_display" value="世界に1つだけのオリジナルキーホルダー — 700円（1個当たり）" readonly></label>
-            <input type="hidden" name="product" id="product-select" value="original-keyholder">
-            <label>個数<span>*</span><input name="quantity" type="number" min="1" max="20" value="1" required></label>
-          </div>
-
-          <div class="form-row">
-            <label>キーホルダーに印刷する名前<span>*</span><input name="print_name" required placeholder="例：Ecophy"><small class="field-help">複数個で異なる名前をご希望の場合は、備考欄にそれぞれご記入ください。</small></label>
-          </div>
-
-          <div class="form-row two-col">
-            <label>受取日<span>*</span>
-              <select name="pickup_date" required>
-                <option value="">選択してください</option>
-                <option value="10/31（金）">10/31（金）</option>
-                <option value="11/1（土）">11/1（土）</option>
-              </select>
-            </label>
-            <label>受け取り時間帯<span>*</span>
-              <select name="pickup_time" required>
-                <option value="">選択してください</option>
-                <option value="午前">午前</option>
-                <option value="午後前半">午後前半</option>
-                <option value="午後後半">午後後半</option>
-              </select>
-            </label>
-          </div>
-
-          <div class="form-row">
-            <label>備考<textarea name="note" rows="4" placeholder="例：複数個で異なる印刷名、その他の連絡事項"></textarea><small class="field-help">※ キーホルダーの色は原則として指定できません。</small></label>
-          </div>
-
-          <label class="privacy-check">
-            <input type="checkbox" name="privacy" required>
-            <span>予約対応のために入力情報を利用することに同意します。<strong>*</strong></span>
-          </label>
-
-          <button class="button button-primary form-submit" type="submit">予約内容を確認する →</button>
-          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-          <p class="form-footnote">※ このフォームは「世界に1つだけのオリジナルキーホルダー」専用です。事前予約は2026年9月30日（水）まで。その他の商品は予約不要です。送信された予約内容は、Ecophy運営用のGoogleスプレッドシートに保存されます。</p>
-        </form>
-      </div>
-    </section>
+    
 
     <section class="section faq-section" id="faq">
       <div class="container faq-grid">
