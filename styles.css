@@ -1508,7 +1508,7 @@ html{
   height:100% !important;
   max-width:none !important;
   object-fit:cover;
-  object-position:center 54%;
+  object-position:center center;
   display:block !important;
   border-radius:0 !important;
 }
@@ -1520,6 +1520,19 @@ html{
 
 @media(max-width:680px){
   .product-card-keyholder .product-visual img{
-    object-position:center 52%;
+    object-position:center center;
+  }
+}
+
+
+/* ===== Keyholder photo centered ===== */
+/* 商品番号03の写真を画像枠の中央に固定 */
+.product-card-keyholder .product-visual img{
+  object-position:center center !important;
+}
+
+@media(max-width:680px){
+  .product-card-keyholder .product-visual img{
+    object-position:center center !important;
   }
 }
