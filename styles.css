@@ -1577,3 +1577,70 @@ html{
     min-height:0;
   }
 }
+
+/* ===== Cupholder product photo + timeline emphasis ===== */
+
+/* 「これまでの歩み」の強調文 */
+.timeline-emphasis{
+  display:inline-block;
+  margin-top:8px;
+  font-weight:900;
+  color:var(--ink);
+}
+
+.timeline-section .timeline-emphasis{
+  color:inherit;
+}
+
+/* 商品06「カップホルダー」を商品03と同じ画像枠で表示 */
+.product-card-cupholder .product-placeholder{
+  display:none !important;
+}
+
+.product-card-cupholder .product-visual::before,
+.product-card-cupholder .product-visual::after{
+  display:none !important;
+}
+
+.product-card-cupholder .product-visual{
+  position:relative;
+  aspect-ratio:4 / 3;
+  overflow:hidden;
+  display:block !important;
+  padding:0 !important;
+  margin:0 !important;
+  background:#e7ddd2;
+}
+
+.product-card-cupholder .product-visual img{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  width:100% !important;
+  height:100% !important;
+  max-width:none !important;
+  object-fit:cover;
+  object-position:center 42%;
+  display:block !important;
+  border-radius:0 !important;
+}
+
+.product-card-cupholder .product-visual figcaption{
+  display:none !important;
+}
+
+/* 商品03・06とも画像の上に余白を作らない */
+.product-card-keyholder .product-visual-keyholder,
+.product-card-cupholder .product-visual-cupholder{
+  margin:0 !important;
+}
+
+@media(max-width:680px){
+  .product-card-cupholder .product-visual img{
+    object-position:center 42%;
+  }
+
+  .timeline-emphasis{
+    margin-top:6px;
+  }
+}
