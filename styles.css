@@ -1644,3 +1644,135 @@ html{
     margin-top:6px;
   }
 }
+
+/* ===== Goal dropdown + hero caption removal ===== */
+
+/* Hero image caption removed */
+.hero-artwork figcaption{
+  display:none !important;
+}
+
+/* Goal dropdowns */
+.goal-tabs{
+  display:grid;
+  gap:10px;
+}
+
+.goal-tab{
+  margin:0;
+  padding:0;
+  background:#f8f4ef;
+  border:1px solid rgba(90,68,55,.13);
+  border-radius:6px;
+  overflow:hidden;
+  box-shadow:0 12px 30px rgba(61,45,36,.055);
+}
+
+.goal-tab summary{
+  display:grid;
+  grid-template-columns:72px minmax(0,1fr) 34px;
+  align-items:center;
+  gap:18px;
+  min-height:92px;
+  padding:14px 22px;
+  list-style:none;
+  cursor:pointer;
+  transition:background .18s ease;
+}
+
+.goal-tab summary::-webkit-details-marker{
+  display:none;
+}
+
+.goal-tab summary::after{
+  content:none !important;
+}
+
+.goal-tab summary:hover{
+  background:rgba(108,81,66,.035);
+}
+
+.goal-tab .goal-icon{
+  width:58px;
+  height:58px;
+  margin:0;
+}
+
+.goal-tab .goal-icon-svg{
+  width:50px;
+  height:50px;
+}
+
+.goal-tab-title{
+  min-width:0;
+  font-size:1.16rem;
+  line-height:1.4;
+  font-weight:850;
+  letter-spacing:-.015em;
+  color:var(--ink);
+}
+
+.goal-tab-toggle{
+  justify-self:end;
+  color:var(--coffee);
+  font-size:1.45rem;
+  line-height:1;
+  font-weight:300;
+  transition:transform .2s ease;
+}
+
+.goal-tab[open] .goal-tab-toggle{
+  transform:rotate(45deg);
+}
+
+.goal-tab-panel{
+  padding:0 22px 22px 112px;
+}
+
+.goal-tab-panel p{
+  margin:0;
+  max-width:760px;
+  color:var(--muted);
+  line-height:1.82;
+}
+
+@media(max-width:680px){
+  .goal-tabs{
+    gap:8px;
+  }
+
+  .goal-tab summary{
+    grid-template-columns:48px minmax(0,1fr) 26px;
+    gap:11px;
+    min-height:74px;
+    padding:12px 15px;
+  }
+
+  .goal-tab .goal-icon{
+    width:44px;
+    height:44px;
+  }
+
+  .goal-tab .goal-icon-svg{
+    width:40px;
+    height:40px;
+  }
+
+  .goal-tab-title{
+    font-size:1rem;
+    line-height:1.45;
+  }
+
+  .goal-tab-toggle{
+    font-size:1.25rem;
+  }
+
+  .goal-tab-panel{
+    padding:0 15px 17px 74px;
+  }
+
+  .goal-tab-panel p{
+    font-size:.92rem;
+    line-height:1.76;
+  }
+}
