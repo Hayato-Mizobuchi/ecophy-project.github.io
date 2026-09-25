@@ -2626,3 +2626,72 @@ button{
     padding-left:14px;
   }
 }
+
+/* ===== Natural mobile heading breaks ===== */
+
+/* Desktop remains visually unchanged */
+.mobile-heading-line,
+.desktop-line{
+  display:inline;
+}
+
+/* Smartphone: break headings only at meaningful phrase boundaries */
+@media(max-width:680px){
+  .smart-mobile-heading .desktop-heading-break{
+    display:none !important;
+  }
+
+  .smart-mobile-heading .mobile-heading-line{
+    display:block;
+    width:max-content;
+    max-width:100%;
+    margin-inline:0;
+    white-space:nowrap;
+  }
+
+  /* These headings need to fit whole phrases without a third accidental line */
+  .hero .smart-mobile-heading{
+    font-size:clamp(1.92rem,8vw,2.12rem) !important;
+    line-height:1.16 !important;
+  }
+
+  .reservation-main-heading{
+    font-size:clamp(1.72rem,7.25vw,2rem) !important;
+    line-height:1.2 !important;
+  }
+
+  .team-main-heading{
+    font-size:clamp(1.66rem,7vw,1.98rem) !important;
+    line-height:1.24 !important;
+  }
+
+  .contact-main-heading{
+    font-size:clamp(1.72rem,7.2vw,2rem) !important;
+    line-height:1.22 !important;
+  }
+
+  /* A little air between intentionally separated lines */
+  .smart-mobile-heading .mobile-heading-line + .mobile-heading-line,
+  .smart-mobile-heading .desktop-line > .mobile-heading-line + .mobile-heading-line{
+    margin-top:.08em;
+  }
+}
+
+/* Very narrow phones */
+@media(max-width:370px){
+  .hero .smart-mobile-heading{
+    font-size:1.82rem !important;
+  }
+
+  .reservation-main-heading{
+    font-size:1.62rem !important;
+  }
+
+  .team-main-heading{
+    font-size:1.54rem !important;
+  }
+
+  .contact-main-heading{
+    font-size:1.62rem !important;
+  }
+}
