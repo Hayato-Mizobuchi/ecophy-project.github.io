@@ -2077,3 +2077,10 @@ html{
 .timeline-section{
   background:#e8dfd5;
 }
+
+/* ===== Goals background matches FAQ ===== */
+/* 「目指していること」を「よくある質問」と同じ背景色に統一 */
+.goals-section{
+  background:linear-gradient(rgba(255,255,255,.16),rgba(255,255,255,.16)),
+    var(--paper) !important;
+}
