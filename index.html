@@ -9,7 +9,7 @@
   <meta name="description" content="Ecophyは、Bout.AIとLinne.Labの2チームが組み合わさり、フィジカルAIとアップサイクルの両面から新しいカフェ体験を探る学生プロジェクトです。" />
   <meta name="theme-color" content="#3b281d" />
   <title>Ecophy | 捨てるものから、使いたくなるものへ。</title>
-  <link rel="stylesheet" href="styles.css?v=20260925-2235">
+  <link rel="stylesheet" href="styles.css?v=20260925-2248">
 </head>
 <body>
   <a class="skip-link" href="#main">本文へ移動</a>
@@ -30,9 +30,9 @@
         <a class="nav-cta" href="#reserve">限定キーホルダーを予約</a>
         <a href="#about">私たちについて</a>
         <a href="#teams">2つのチーム</a>
+        <a href="#products">九大祭の商品</a>
         <a href="#words">キーワード</a>
         <a href="#timeline">これまでの歩み</a>
-        <a href="#products">九大祭の商品</a>
       </nav>
     </div>
   </header>
@@ -53,9 +53,8 @@
           </div>
           <div class="hero-actions">
             <a class="button button-primary" href="#about">活動を知る</a>
-            <a class="button button-ghost" href="#reserve">オリジナルキーホルダーを予約</a>
+            <a class="button button-ghost reservation-hero-cta" href="#reserve">限定キーホルダーを予約</a>
           </div>
-          <p class="micro-note">※ 環境効果は今後の検証を含みます。過度な環境優位性をうたわず、素材・製造方法の改善を重ねています。</p>
         </div>
 
         <figure class="hero-visual hero-artwork reveal">
@@ -66,10 +65,15 @@
 
     <section class="section reserve-section reserve-launch-section" id="reserve">
       <div class="container reserve-launch-inner reveal">
+        <div class="reserve-launch-badges" aria-label="予約情報">
+          <span>事前予約限定</span>
+          <strong>9/30（水）予約締切</strong>
+        </div>
         <p class="eyebrow">CUSTOM KEYHOLDER RESERVATION</p>
-        <h2>世界に1つだけの<br>キーホルダーを予約する</h2>
-        <p>「世界に1つだけのオリジナルキーホルダー」は事前予約限定です。下のボタンから予約フォームを開けます。</p>
-        <button class="button button-primary" type="button" data-open-reservation>予約フォームを開く →</button>
+        <h2>世界に1つだけの<br>オリジナルキーホルダー</h2>
+        <p>お好きな名前を入れてつくる、世界に1つだけのキーホルダーです。九大祭で受け取れる事前予約限定商品です。</p>
+        <div class="reserve-launch-price"><strong>700円</strong><span>／ 1個</span></div>
+        <button class="button button-primary reserve-launch-button" type="button" data-open-reservation>限定キーホルダーを予約する →</button>
       </div>
     </section>
 
@@ -229,6 +233,30 @@
       </div>
     </section>
 
+    <section class="section products-section" id="products">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">KYUDAISAI PRODUCTS</p>
+          <h2>九大祭で販売する製品</h2>
+          <p class="section-intro">九大祭は、<strong>10/31（金）・11/1（土）の2日間</strong>にわたって開催されます。Ecophyは2301教室で、飲み物とアップサイクルの発想を身近に感じられるグッズを販売予定です。飲み物は複数種類をご用意する予定です。なお、事前予約が必要なのは「世界に1つだけのオリジナルキーホルダー」のみです。</p>
+        </div>
+
+        <div class="festival-info reveal" aria-label="九大祭出店情報">
+          <div class="festival-info-item festival-day"><span>DAY 01</span><strong>10 / 31 <em>FRI</em></strong><small>10月31日（金）</small></div>
+          <div class="festival-info-item festival-day"><span>DAY 02</span><strong>11 / 01 <em>SAT</em></strong><small>11月1日（土）</small></div>
+          <div class="festival-info-item"><span>PLACE</span><strong>2301教室</strong><small>Ecophy 出店場所</small></div>
+          <div class="festival-info-item festival-info-deadline"><span>CUSTOM KEYHOLDER</span><strong>9 / 30 <em>WED</em></strong><small>オリジナルキーホルダー予約締切</small></div>
+        </div>
+
+        <div class="products-grid" id="product-grid"></div>
+
+        <div class="product-note reveal">
+          <strong>素材について</strong>
+          <p>一部のグッズでは、コーヒーかすの活用を目指して開発している試作材料を用いる予定です。製品ごとの使用素材や注意事項は、最終仕様に合わせて案内します。</p>
+        </div>
+      </div>
+    </section>
+
     <section class="section section-ink" id="words">
       <div class="container">
         <div class="section-heading reveal">
@@ -347,32 +375,6 @@
       </div>
     </section>
 
-    <section class="section products-section" id="products">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="eyebrow">KYUDAISAI PRODUCTS</p>
-          <h2>九大祭で販売する製品</h2>
-          <p class="section-intro">九大祭は、<strong>10/31（金）・11/1（土）の2日間</strong>にわたって開催されます。Ecophyは2301教室で、飲み物とアップサイクルの発想を身近に感じられるグッズを販売予定です。飲み物は複数種類をご用意する予定です。なお、事前予約が必要なのは「世界に1つだけのオリジナルキーホルダー」のみです。</p>
-        </div>
-
-        <div class="festival-info reveal" aria-label="九大祭出店情報">
-          <div class="festival-info-item festival-day"><span>DAY 01</span><strong>10 / 31 <em>FRI</em></strong><small>10月31日（金）</small></div>
-          <div class="festival-info-item festival-day"><span>DAY 02</span><strong>11 / 01 <em>SAT</em></strong><small>11月1日（土）</small></div>
-          <div class="festival-info-item"><span>PLACE</span><strong>2301教室</strong><small>Ecophy 出店場所</small></div>
-          <div class="festival-info-item festival-info-deadline"><span>CUSTOM KEYHOLDER</span><strong>9 / 30 <em>WED</em></strong><small>オリジナルキーホルダー予約締切</small></div>
-        </div>
-
-        <div class="products-grid" id="product-grid"></div>
-
-        <div class="product-note reveal">
-          <strong>素材について</strong>
-          <p>一部のグッズでは、コーヒーかすの活用を目指して開発している試作材料を用いる予定です。製品ごとの使用素材や注意事項は、最終仕様に合わせて案内します。</p>
-        </div>
-      </div>
-    </section>
-
-    
-
     <section class="section faq-section" id="faq">
       <div class="container faq-grid">
         <div class="section-heading reveal"><p class="eyebrow">FAQ</p><h2>よくある質問</h2></div>
@@ -401,7 +403,7 @@
     <div class="container footer-grid">
       <div>
         <a class="brand footer-brand" href="#top">
-          <img class="brand-image" src="images/ecophy.svg" alt="" aria-hidden="true">
+          <img class="brand-image" src="ecophy.svg" alt="" aria-hidden="true">
           <span>Ecophy</span>
         </a>
         <p>Waste is not the end.<br>It can be the beginning of something new.</p>
@@ -416,6 +418,9 @@
         <p>Instagram｜@ecophy.kyushu.u</p>
         <p>© <span id="current-year"></span> Ecophy</p>
       </div>
+    </div>
+    <div class="container footer-environment-note">
+      <p>※ 環境効果は今後の検証を含みます。過度な環境優位性をうたわず、素材・製造方法の改善を重ねています。</p>
     </div>
   </footer>
 
