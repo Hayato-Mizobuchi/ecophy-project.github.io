@@ -1880,3 +1880,128 @@ html{
     margin-right:0;
   }
 }
+
+
+/* ===== Reservation emphasis + footer note ===== */
+.reserve-launch-section{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(199,160,106,.26), transparent 42%),
+    #342a23;
+}
+
+.reserve-launch-inner{
+  position:relative;
+  max-width:880px;
+  padding:clamp(34px,5vw,58px);
+  border:1px solid rgba(199,160,106,.52);
+  border-radius:18px;
+  background:rgba(255,255,255,.035);
+  box-shadow:0 24px 70px rgba(15,10,7,.24);
+}
+
+.reserve-launch-badges{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:0 0 18px;
+}
+
+.reserve-launch-badges span,
+.reserve-launch-badges strong{
+  display:inline-flex;
+  align-items:center;
+  min-height:34px;
+  padding:7px 13px;
+  border-radius:999px;
+  font-size:.76rem;
+  line-height:1;
+  letter-spacing:.06em;
+  font-weight:900;
+}
+
+.reserve-launch-badges span{
+  color:#2f2118;
+  background:#f1d39d;
+}
+
+.reserve-launch-badges strong{
+  color:#fff7ea;
+  border:1px solid rgba(241,211,157,.46);
+  background:rgba(125,78,45,.65);
+}
+
+.reserve-launch-price{
+  display:flex;
+  justify-content:center;
+  align-items:baseline;
+  gap:4px;
+  margin:-6px 0 22px;
+  color:#f7e3bd;
+}
+
+.reserve-launch-price strong{
+  font-size:clamp(1.7rem,3vw,2.5rem);
+  line-height:1;
+}
+
+.reserve-launch-price span{
+  font-size:.88rem;
+  font-weight:800;
+}
+
+.reserve-launch-button{
+  min-width:min(100%,360px);
+  padding:17px 28px;
+  font-size:1.02rem;
+  font-weight:900;
+  box-shadow:0 12px 32px rgba(0,0,0,.2);
+}
+
+.reservation-hero-cta{
+  border-color:#e2bd7b !important;
+  background:#c7a06a !important;
+  color:#241a14 !important;
+  font-weight:900;
+  box-shadow:0 10px 26px rgba(0,0,0,.18);
+}
+
+.footer-environment-note{
+  margin-top:34px;
+  padding-top:22px;
+  border-top:1px solid rgba(255,255,255,.12);
+}
+
+.footer-environment-note p{
+  margin:0;
+  max-width:900px;
+  color:rgba(255,255,255,.56);
+  font-size:.76rem;
+  line-height:1.75;
+}
+
+@media(max-width:680px){
+  .reserve-launch-inner{
+    padding:28px 20px 30px;
+  }
+
+  .reserve-launch-badges{
+    justify-content:flex-start;
+  }
+
+  .reserve-launch-price{
+    justify-content:flex-start;
+  }
+
+  .reserve-launch-button{
+    width:100%;
+  }
+
+  .footer-environment-note{
+    margin-top:26px;
+    padding-top:18px;
+  }
+}
