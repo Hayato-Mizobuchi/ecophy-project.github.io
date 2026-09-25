@@ -2071,3 +2071,9 @@ html{
   opacity:1 !important;
   transform:none !important;
 }
+
+/* ===== Timeline slightly darker ===== */
+/* 「これまでの歩み」だけ、ほんの少し濃いカフェベージュへ */
+.timeline-section{
+  background:#e8dfd5;
+}
