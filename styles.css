@@ -528,3 +528,109 @@ details p { margin: 0; padding: 0 45px 26px 0; color: var(--muted); }
     font-size:clamp(2.15rem,10vw,3rem);
   }
 }
+
+
+/* ===== Timee-inspired kinetic section dividers ===== */
+/*
+  Ecophyの配色は維持したまま、セクション間だけを大胆な線形モチーフに。
+  太いダークライン + 黄土色ライン + クリームの平行線で、
+  画面を横断する折れ線に動きを持たせる。
+*/
+.section-divider{
+  --divider-dark:#3a2f29;
+  --divider-accent:#c69a5b;
+  --divider-light:#f3eee8;
+  position:relative;
+  z-index:30;
+  width:100%;
+  height:clamp(92px,9vw,138px);
+  margin:clamp(-58px,-4vw,-44px) 0;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.section-divider::before,
+.section-divider::after{
+  content:"";
+  position:absolute;
+  inset:-3% -4%;
+  will-change:transform;
+}
+
+.section-divider::before{
+  background:var(--divider-dark);
+  clip-path:var(--divider-shape);
+}
+
+.section-divider::after{
+  background:var(--divider-accent);
+  clip-path:var(--divider-accent-shape);
+  filter:drop-shadow(0 13px 0 var(--divider-light));
+}
+
+/* 01: 大きく上下するジグザグ */
+.section-divider-a{
+  --divider-shape:polygon(
+    0 29%, 18% 65%, 42% 16%, 66% 74%, 84% 31%, 100% 57%,
+    100% 72%, 84% 46%, 66% 91%, 42% 32%, 18% 82%, 0 44%
+  );
+  --divider-accent-shape:polygon(
+    0 15%, 18% 48%, 42% 5%, 66% 58%, 84% 18%, 100% 40%,
+    100% 45%, 84% 24%, 66% 65%, 42% 12%, 18% 55%, 0 21%
+  );
+}
+
+/* 02: Timeeのような速度感を意識した鋭い折れ */
+.section-divider-b{
+  --divider-shape:polygon(
+    0 69%, 29% 19%, 53% 62%, 78% 12%, 100% 48%,
+    100% 64%, 78% 29%, 53% 79%, 29% 36%, 0 86%
+  );
+  --divider-accent-shape:polygon(
+    0 52%, 29% 8%, 53% 47%, 78% 2%, 100% 34%,
+    100% 40%, 78% 9%, 53% 54%, 29% 15%, 0 59%
+  );
+}
+
+/* 03: 非対称にしてページ全体にリズムをつくる */
+.section-divider-c{
+  --divider-shape:polygon(
+    0 20%, 25% 60%, 49% 29%, 71% 77%, 100% 24%,
+    100% 41%, 71% 94%, 49% 46%, 25% 77%, 0 37%
+  );
+  --divider-accent-shape:polygon(
+    0 7%, 25% 42%, 49% 17%, 71% 60%, 100% 11%,
+    100% 17%, 71% 67%, 49% 24%, 25% 49%, 0 13%
+  );
+}
+
+/* 交互に向きを反転し、同じ線の繰り返し感をなくす */
+.section-divider-b::before,
+.section-divider-b::after{
+  transform:scaleX(-1);
+}
+
+/* 線がコンテンツより前に出すぎないよう、セクション本体を整理 */
+main > section{
+  position:relative;
+  z-index:1;
+}
+
+/* スマホでも「細い罫線」にならず、しっかり見える太さを維持 */
+@media(max-width:680px){
+  .section-divider{
+    height:86px;
+    margin:-38px 0;
+  }
+
+  .section-divider::after{
+    filter:drop-shadow(0 9px 0 var(--divider-light));
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .section-divider::before,
+  .section-divider::after{
+    will-change:auto;
+  }
+}
