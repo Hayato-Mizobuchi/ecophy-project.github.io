@@ -109,10 +109,31 @@ function escapeHtml(value) {
 
 renderProducts();
 
+const reservationDialog = document.querySelector("#reservation-dialog");
+const reservationDialogClose = document.querySelector(".reservation-dialog-close");
+
 document.addEventListener("click", (event) => {
-  const trigger = event.target.closest("[data-product]");
+  const trigger = event.target.closest('[data-open-reservation], [data-product], a[href="#reserve"]');
   if (!trigger) return;
-  productSelect.value = "original-keyholder";
+
+  event.preventDefault();
+
+  if (trigger.matches("[data-product]")) {
+    productSelect.value = "original-keyholder";
+  }
+
+  document.body.classList.remove("nav-open");
+  if (navToggle) navToggle.setAttribute("aria-expanded", "false");
+
+  if (reservationDialog && !reservationDialog.open) {
+    reservationDialog.showModal();
+  }
+});
+
+reservationDialogClose?.addEventListener("click", () => reservationDialog.close());
+
+reservationDialog?.addEventListener("click", (event) => {
+  if (event.target === reservationDialog) reservationDialog.close();
 });
 
 // Mobile navigation
@@ -217,6 +238,7 @@ finalSubmit.addEventListener("click", async (event) => {
     });
 
     dialog.close();
+    if (reservationDialog?.open) reservationDialog.close();
     formStatus.textContent = "予約を送信しました。ありがとうございます。回答はEcophy運営用のGoogleスプレッドシートに保存されます。";
     form.reset();
     pendingData = null;
