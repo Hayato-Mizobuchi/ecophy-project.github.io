@@ -109,31 +109,10 @@ function escapeHtml(value) {
 
 renderProducts();
 
-const reservationDialog = document.querySelector("#reservation-dialog");
-const reservationDialogClose = document.querySelector(".reservation-dialog-close");
-
 document.addEventListener("click", (event) => {
-  const trigger = event.target.closest('[data-open-reservation], [data-product], a[href="#reserve"]');
+  const trigger = event.target.closest("[data-product]");
   if (!trigger) return;
-
-  event.preventDefault();
-
-  if (trigger.matches("[data-product]")) {
-    productSelect.value = "original-keyholder";
-  }
-
-  document.body.classList.remove("nav-open");
-  if (navToggle) navToggle.setAttribute("aria-expanded", "false");
-
-  if (reservationDialog && !reservationDialog.open) {
-    reservationDialog.showModal();
-  }
-});
-
-reservationDialogClose?.addEventListener("click", () => reservationDialog.close());
-
-reservationDialog?.addEventListener("click", (event) => {
-  if (event.target === reservationDialog) reservationDialog.close();
+  productSelect.value = "original-keyholder";
 });
 
 // Mobile navigation
@@ -195,11 +174,6 @@ form.addEventListener("submit", (event) => {
     quantity: Number(data.quantity),
     pickupDate: data.pickup_date,
     pickupTime: data.pickup_time,
-
-    qty: Number(data.quantity),
-    date: data.pickup_date,
-    time: data.pickup_time,
-
     note: data.note.trim(),
     submittedAt: new Date().toISOString(),
     eventDates: EVENT_INFO.dates,
@@ -238,7 +212,6 @@ finalSubmit.addEventListener("click", async (event) => {
     });
 
     dialog.close();
-    if (reservationDialog?.open) reservationDialog.close();
     formStatus.textContent = "予約を送信しました。ありがとうございます。回答はEcophy運営用のGoogleスプレッドシートに保存されます。";
     form.reset();
     pendingData = null;
