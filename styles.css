@@ -387,3 +387,144 @@ details p { margin: 0; padding: 0 45px 26px 0; color: var(--muted); }
   border-radius:8px;
   object-fit:cover;
 }
+
+
+/* ===== Ecophy latest requested adjustments ===== */
+
+/* Correct hero image presentation */
+.hero-artwork{
+  overflow:hidden;
+  border-radius:18px;
+  min-height:0;
+  background:#d9c1a2;
+}
+.hero-artwork img{
+  width:100%;
+  height:100%;
+  min-height:520px;
+  aspect-ratio:4 / 3;
+  object-fit:cover;
+  object-position:center center;
+  display:block;
+  border-radius:0;
+}
+
+/* Make the reservation area unmistakably important */
+.reserve-section{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(214,169,94,.22), transparent 34%),
+    linear-gradient(135deg,#2f241d 0%,#3c2d24 48%,#513824 100%);
+}
+.reserve-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(120deg,transparent 0 58%,rgba(216,172,100,.08) 58% 100%);
+}
+.reserve-section .reserve-grid{
+  position:relative;
+  z-index:1;
+  padding:clamp(28px,4vw,48px);
+  border:1px solid rgba(225,184,112,.48);
+  border-radius:28px;
+  background:rgba(255,255,255,.035);
+  box-shadow:0 30px 80px rgba(19,12,8,.24);
+}
+.reserve-highlight-badge{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
+.reserve-highlight-badge strong,
+.reserve-highlight-badge span{
+  display:inline-flex;
+  align-items:center;
+  min-height:34px;
+  padding:8px 13px;
+  border-radius:999px;
+  font-size:.76rem;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.04em;
+}
+.reserve-highlight-badge strong{
+  color:#2c1c11;
+  background:#d7aa60;
+}
+.reserve-highlight-badge span{
+  color:#fff5df;
+  border:1px solid rgba(215,170,96,.55);
+  background:rgba(111,72,39,.72);
+}
+.reserve-section .reserve-copy h2{
+  font-size:clamp(2.5rem,4.6vw,4.8rem);
+  line-height:1.08;
+  letter-spacing:-.045em;
+}
+.reserve-section .reserve-event-card{
+  border-color:rgba(225,184,112,.35);
+  box-shadow:0 12px 34px rgba(0,0,0,.12);
+}
+.reserve-section .reserve-form{
+  border:2px solid rgba(215,170,96,.72);
+  box-shadow:0 26px 70px rgba(14,9,6,.27);
+}
+.reserve-section .form-submit{
+  background:#d2a258;
+  color:#21160e;
+  font-weight:900;
+  box-shadow:0 12px 28px rgba(0,0,0,.18);
+}
+.reserve-section .form-submit:hover{
+  filter:brightness(1.05);
+}
+.reservation-hero-cta{
+  background:#d2a258 !important;
+  border-color:#d2a258 !important;
+  color:#21160e !important;
+  font-weight:900;
+  box-shadow:0 10px 26px rgba(0,0,0,.18);
+}
+
+/* Requested ochre background */
+.contact-band{
+  background:#c69a5b;
+}
+
+/* Same logo asset at top and bottom; constrain consistently */
+.brand-image{
+  object-fit:contain;
+}
+
+/* Environmental disclaimer at the absolute bottom */
+.footer-environment-note{
+  margin-top:34px;
+  padding-top:22px;
+  border-top:1px solid rgba(255,255,255,.12);
+}
+.footer-environment-note p{
+  margin:0;
+  max-width:980px;
+  color:rgba(255,255,255,.56);
+  font-size:.76rem;
+  line-height:1.75;
+}
+
+@media(max-width:680px){
+  .hero-artwork img{
+    min-height:0;
+    aspect-ratio:4 / 3;
+  }
+  .reserve-section .reserve-grid{
+    padding:24px 18px;
+    border-radius:20px;
+  }
+  .reserve-section .reserve-copy h2{
+    font-size:clamp(2.15rem,10vw,3rem);
+  }
+}
