@@ -379,258 +379,1400 @@ details p { margin: 0; padding: 0 45px 26px 0; color: var(--muted); }
 .instagram-search strong { font-weight: 900; }
 .reserve-form input[readonly] { background: #f2f0e9; color: var(--ink); cursor: default; }
 
-
-.hero-artwork img{
-  width:100%;
-  height:auto;
-  display:block;
-  border-radius:8px;
-  object-fit:cover;
+.goal-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 22px;
 }
 
-
-/* ===== Ecophy latest requested adjustments ===== */
-
-/* Correct hero image presentation */
-.hero-artwork{
-  overflow:hidden;
-  border-radius:18px;
-  min-height:0;
-  background:#d9c1a2;
-}
-.hero-artwork img{
-  width:100%;
-  height:100%;
-  min-height:520px;
-  aspect-ratio:4 / 3;
-  object-fit:cover;
-  object-position:center center;
-  display:block;
-  border-radius:0;
+.goal-icon-svg {
+  width: 54px;
+  height: 54px;
+  stroke: #a86a3d;
+  fill: none;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
 }
 
-/* Make the reservation area unmistakably important */
+/* ===== Timee-inspired bold linear separators (CSS-only) ===== */
+
+/*
+  The layout/content is untouched.
+  Each section gets a strong linear graphic at its top edge:
+  - long diagonal sweep
+  - crossing lines
+  - architectural zig-zag
+*/
+
+/* Keep section content above the divider graphics */
+#about,
+#teams,
+.goals-section,
+#words,
+#process,
+#timeline,
+#products,
+#reserve,
+#faq,
+.contact-band{
+  position: relative;
+  isolation: isolate;
+}
+
+#about > .container,
+#teams > .container,
+.goals-section > .container,
+#words > .container,
+#process > .container,
+#timeline > .container,
+#products > .container,
+#reserve > .container,
+#faq > .container,
+.contact-band > .container{
+  position: relative;
+  z-index: 2;
+}
+
+/* Shared divider canvas */
+#about::after,
+#teams::after,
+.goals-section::after,
+#words::after,
+#process::after,
+#timeline::after,
+#products::after,
+#reserve::after,
+#faq::after,
+.contact-band::after{
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 2px;
+  width: 100%;
+  height: clamp(86px, 9vw, 138px);
+  pointer-events: none;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/* 01 / 04 / 07 / 10 : huge diagonal sweep — light sections */
+#about::after,
+#products::after,
+.contact-band::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-40 18 L405 124 L1240 25' fill='none' stroke='%233b281d' stroke-width='19' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M-40 7 L405 113 L1240 14' fill='none' stroke='%237a5139' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+/* Dark section version */
+#words::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-40 18 L405 124 L1240 25' fill='none' stroke='%23f6ede2' stroke-width='19' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M-40 7 L405 113 L1240 14' fill='none' stroke='%23ead7bd' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+/* 02 / 05 / 08 : crossing long lines — dark */
+#teams::after,
+#reserve::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-45 133 L515 20 L1240 123' fill='none' stroke='%23f6ede2' stroke-width='18' stroke-linecap='square'/%3E%3Cpath d='M-45 30 L348 105 L790 24 L1240 96' fill='none' stroke='%23ead7bd' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+/* Light section version */
+#process::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-45 133 L515 20 L1240 123' fill='none' stroke='%233b281d' stroke-width='18' stroke-linecap='square'/%3E%3Cpath d='M-45 30 L348 105 L790 24 L1240 96' fill='none' stroke='%23b18a67' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+/* 03 / 06 / 09 : architectural zig-zag */
+.goals-section::after,
+#timeline::after,
+#faq::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-45 31 L230 116 L500 24 L770 122 L1010 48 L1245 101' fill='none' stroke='%233b281d' stroke-width='17' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M-45 20 L230 105 L500 13 L770 111 L1010 37 L1245 90' fill='none' stroke='%237a5139' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+/* Slight depth, without making it look glossy or steampunk */
+#about::after,
+#teams::after,
+.goals-section::after,
+#words::after,
+#process::after,
+#timeline::after,
+#products::after,
+#reserve::after,
+#faq::after,
+.contact-band::after{
+  filter: drop-shadow(0 6px 0 rgba(16,34,26,.065));
+}
+
+/* The divider occupies the original top whitespace, so text positions stay aligned */
+@media (max-width: 980px){
+  #about::after,
+  #teams::after,
+  .goals-section::after,
+  #words::after,
+  #process::after,
+  #timeline::after,
+  #products::after,
+  #reserve::after,
+  #faq::after,
+  .contact-band::after{
+    height: 92px;
+  }
+}
+
+@media (max-width: 680px){
+  #about::after,
+  #teams::after,
+  .goals-section::after,
+  #words::after,
+  #process::after,
+  #timeline::after,
+  #products::after,
+  #reserve::after,
+  #faq::after,
+  .contact-band::after{
+    top: 0;
+    height: 62px;
+    filter: drop-shadow(0 3px 0 rgba(16,34,26,.055));
+  }
+}
+
+/* ===== Ecophy coffee theme ===== */
+:root{
+  --ink:#2b1d16;
+  --forest:#3b281d;
+  --forest-2:#523626;
+  --moss:#9b7b5c;
+  --lime:#ead7bd;
+  --cream:#eee0cf;
+  --paper:#f8f1e8;
+  --coffee:#7a5139;
+  --aqua:#b18a67;
+  --sky:#c7a17a;
+  --line:rgba(75,48,33,.16);
+  --muted:#756258;
+  --white:#ffffff;
+  --shadow:0 22px 60px rgba(71,43,28,.12);
+}
+
+/* Warm coffee-paper background without metallic/steampunk decoration */
+body{
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(122,81,57,.055), transparent 28%),
+    radial-gradient(circle at 85% 28%, rgba(199,161,122,.065), transparent 30%),
+    var(--paper);
+}
+
+.section-light,
+.products-section,
+.faq-section{
+  background:
+    linear-gradient(rgba(255,255,255,.16),rgba(255,255,255,.16)),
+    var(--paper);
+}
+
+.section-dark,
+.reserve-section{
+  background:
+    radial-gradient(circle at 82% 12%, rgba(234,215,189,.07), transparent 26%),
+    linear-gradient(135deg,#332118 0%,#422c20 58%,#2e1e17 100%);
+}
+
+.section-ink{
+  background:
+    radial-gradient(circle at 18% 20%, rgba(199,161,122,.08), transparent 28%),
+    #2b1d16;
+}
+
+.site-header.scrolled{
+  background:rgba(55,36,26,.93);
+}
+
+.collab-section{
+  background:
+    radial-gradient(circle at 12% 18%, rgba(199,161,122,.11), transparent 29%),
+    radial-gradient(circle at 88% 10%, rgba(234,215,189,.08), transparent 31%),
+    linear-gradient(135deg,#2c1d16 0%,#412b20 56%,#302019 100%);
+}
+
+.collab-section .eyebrow,
+.team-card-ai h3,
+.team-card-lab h3,
+.team-card-ai .team-tag,
+.team-card-lab .team-tag,
+.physical-ai-index{
+  color:#dfbd96;
+}
+
+.team-card-ai::after,
+.team-card-lab::after{
+  background:#a87957;
+}
+
+.goals-section{
+  background:#eee0cf;
+}
+
+.timeline-section{
+  background:#f0e5d8;
+}
+
+.contact-band{
+  background:#d6b58f;
+}
+
+/* Simple, natural cards: no brass plate or metallic treatment */
+.principle-card,
+.goal-card,
+.product-card,
+.reserve-form,
+.festival-info{
+  box-shadow:0 18px 44px rgba(80,51,34,.09);
+}
+
+.team-card{
+  background:rgba(255,255,255,.055);
+  box-shadow:0 26px 70px rgba(20,12,8,.22);
+}
+
+.button-primary{
+  background:#ead7bd;
+  color:#3b281d;
+  border-color:#ead7bd;
+}
+
+.button-light{
+  background:#fffaf4;
+  color:#3b281d;
+}
+
+.button-secondary{
+  border-color:rgba(75,48,33,.22);
+  color:#3b281d;
+}
+
+.nav-cta{
+  border-color:rgba(255,255,255,.46);
+}
+
+.hero h1 em{
+  color:#ead7bd;
+}
+
+.hero-signature span:first-child,
+.hero-signature span:nth-of-type(2){
+  color:#dfbd96;
+}
+
+.hero-artwork::before{
+  border-color:rgba(234,215,189,.28);
+}
+
+.goal-icon-svg{
+  stroke:#8d5d3e;
+}
+
+.festival-info-item span,
+.product-label,
+.process-step span,
+.timeline-item time{
+  color:#7a5139;
+}
+
+.product-card .button{
+  background:#3b281d;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#7a5139;
+  box-shadow:0 0 0 3px rgba(122,81,57,.09);
+}
+
+.privacy-check input{
+  accent-color:#7a5139;
+}
+
+/* Reservation is intentionally the second section */
 .reserve-section{
   position:relative;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 18% 8%, rgba(214,169,94,.22), transparent 34%),
-    linear-gradient(135deg,#2f241d 0%,#3c2d24 48%,#513824 100%);
 }
-.reserve-section::before{
-  content:"";
+
+@media(max-width:680px){
+  .section-dark,
+  .reserve-section{
+    background:
+      radial-gradient(circle at 80% 10%,rgba(234,215,189,.06),transparent 24%),
+      #37241b;
+  }
+}
+
+/* ===== Ecophy calm cafe palette ===== */
+
+/*
+  Calm café palette:
+  espresso / mocha / oat milk / warm wood / soft charcoal.
+  Lower saturation, softer contrast, less "designed" and more café-like.
+*/
+:root{
+  --ink:#2f2722;
+  --forest:#3a2f29;
+  --forest-2:#493a32;
+  --moss:#8f7d6d;
+  --lime:#ddd0bf;
+  --cream:#e9dfd3;
+  --paper:#f3eee8;
+  --coffee:#6c5142;
+  --aqua:#988472;
+  --sky:#b49f8b;
+  --line:rgba(73,55,45,.14);
+  --muted:#766a62;
+  --white:#ffffff;
+  --shadow:0 18px 48px rgba(61,45,36,.10);
+}
+
+/* Overall page — quiet café interior */
+body{
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 18% 10%, rgba(108,81,66,.035), transparent 30%),
+    radial-gradient(circle at 80% 34%, rgba(180,159,139,.04), transparent 32%),
+    linear-gradient(180deg,#f4efe9 0%,#f1ebe4 100%);
+}
+
+/* Light areas: oat milk / plaster wall */
+.section-light,
+.products-section,
+.faq-section{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,0)),
+    #f3eee8;
+}
+
+/* Hero / reservation: espresso, not black */
+.section-dark,
+.reserve-section{
+  background:
+    radial-gradient(circle at 78% 12%, rgba(221,208,191,.05), transparent 28%),
+    linear-gradient(135deg,#332922 0%,#3b2f28 52%,#30261f 100%);
+}
+
+/* Keyword section: dark roast */
+.section-ink{
+  background:
+    radial-gradient(circle at 14% 18%, rgba(180,159,139,.055), transparent 30%),
+    #302721;
+}
+
+/* Header follows the dark roast tone */
+.site-header.scrolled{
+  background:rgba(52,42,35,.94);
+}
+
+/* Team section: café counter / wood tone */
+.collab-section{
+  background:
+    radial-gradient(circle at 12% 16%, rgba(180,159,139,.07), transparent 30%),
+    radial-gradient(circle at 86% 12%, rgba(221,208,191,.045), transparent 32%),
+    linear-gradient(135deg,#302721 0%,#3d3029 55%,#332923 100%);
+}
+
+.collab-section .eyebrow,
+.team-card-ai h3,
+.team-card-lab h3,
+.team-card-ai .team-tag,
+.team-card-lab .team-tag,
+.physical-ai-index{
+  color:#c9b39d;
+}
+
+.team-card-ai::after,
+.team-card-lab::after{
+  background:#88705f;
+}
+
+/* Warm neutral sections */
+.goals-section{
+  background:#e9dfd3;
+}
+
+.timeline-section{
+  background:#eee7df;
+}
+
+.contact-band{
+  background:#d7c8b7;
+}
+
+/* Cards: off-white / ceramic */
+.principle-card,
+.goal-card,
+.product-card,
+.reserve-form,
+.festival-info{
+  background:#f8f4ef;
+  border-color:rgba(90,68,55,.11);
+  box-shadow:0 16px 38px rgba(61,45,36,.075);
+}
+
+.team-card{
+  background:rgba(255,255,255,.045);
+  border-color:rgba(255,255,255,.10);
+  box-shadow:0 22px 56px rgba(20,14,10,.18);
+}
+
+/* Buttons: latte cream + dark coffee */
+.button-primary{
+  background:#ddd0bf;
+  color:#352b25;
+  border-color:#ddd0bf;
+}
+
+.button-light{
+  background:#faf7f2;
+  color:#3a2f29;
+}
+
+.button-secondary{
+  border-color:rgba(73,55,45,.18);
+  color:#3a2f29;
+}
+
+.product-card .button{
+  background:#3a2f29;
+}
+
+/* Hero details */
+.hero h1 em{
+  color:#e1d5c5;
+}
+
+.hero-signature span:first-child,
+.hero-signature span:nth-of-type(2){
+  color:#c7b19b;
+}
+
+.hero-artwork::before{
+  border-color:rgba(221,208,191,.22);
+}
+
+/* Hand-drawn icons remain coffee brown */
+.goal-icon-svg{
+  stroke:#775947;
+}
+
+/* Accent text becomes quiet mocha */
+.festival-info-item span,
+.product-label,
+.process-step span,
+.timeline-item time{
+  color:#6c5142;
+}
+
+/* Forms: warm white, not stark white */
+input,
+select,
+textarea{
+  background:#fbf8f4;
+  color:#2f2722;
+  border-color:rgba(85,65,52,.15);
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#7a6252;
+  box-shadow:0 0 0 3px rgba(122,98,82,.08);
+}
+
+.privacy-check input{
+  accent-color:#6c5142;
+}
+
+/* Timee-inspired divider colors adapted to the calmer café palette */
+#about::after,
+#products::after,
+.contact-band::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-40 18 L405 124 L1240 25' fill='none' stroke='%233a2f29' stroke-width='19' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M-40 7 L405 113 L1240 14' fill='none' stroke='%236c5142' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+#words::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-40 18 L405 124 L1240 25' fill='none' stroke='%23f3eee8' stroke-width='19' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M-40 7 L405 113 L1240 14' fill='none' stroke='%23c7b19b' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+#teams::after,
+#reserve::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-45 133 L515 20 L1240 123' fill='none' stroke='%23f3eee8' stroke-width='18' stroke-linecap='square'/%3E%3Cpath d='M-45 30 L348 105 L790 24 L1240 96' fill='none' stroke='%23c7b19b' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+#process::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-45 133 L515 20 L1240 123' fill='none' stroke='%233a2f29' stroke-width='18' stroke-linecap='square'/%3E%3Cpath d='M-45 30 L348 105 L790 24 L1240 96' fill='none' stroke='%23988472' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+.goals-section::after,
+#timeline::after,
+#faq::after{
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 150' preserveAspectRatio='none'%3E%3Cpath d='M-45 31 L230 116 L500 24 L770 122 L1010 48 L1245 101' fill='none' stroke='%233a2f29' stroke-width='17' stroke-linecap='square' stroke-linejoin='miter'/%3E%3Cpath d='M-45 20 L230 105 L500 13 L770 111 L1010 37 L1245 90' fill='none' stroke='%236c5142' stroke-width='4' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+/* Mobile keeps the same quiet roast palette */
+@media(max-width:680px){
+  .section-dark,
+  .reserve-section{
+    background:#342a23;
+  }
+
+  .section-ink{
+    background:#302721;
+  }
+}
+
+/* ===== Ecophy mobile typography tuning ===== */
+
+/* Keep device text scaling predictable */
+html{
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+}
+
+/* Japanese line-breaking defaults */
+.hero h1,
+.section-heading h2,
+.reserve-copy h2,
+.contact-band h2,
+.collab-head h2,
+.team-card h3,
+.goal-card h3,
+.product-card h3,
+.process-step h3,
+.timeline-item h3,
+.word-row h3{
+  word-break:normal;
+  line-break:strict;
+  overflow-wrap:break-word;
+}
+
+/* Modern browsers can choose more natural Japanese phrase breaks */
+@supports (word-break:auto-phrase){
+  .hero h1,
+  .section-heading h2,
+  .reserve-copy h2,
+  .contact-band h2,
+  .collab-head h2{
+    word-break:auto-phrase;
+  }
+}
+
+@media (max-width:680px){
+
+  body{
+    font-size:15.5px;
+    line-height:1.78;
+    letter-spacing:.01em;
+  }
+
+  /*
+    The desktop <br> tags are useful on wide screens but can cause
+    awkward 1–3 character lines on phones, so let the browser wrap them.
+  */
+  .hero h1 br,
+  .section-heading h2 br,
+  .reserve-copy h2 br,
+  .contact-band h2 br,
+  .collab-head h2 br{
+    display:none;
+  }
+
+  /* Main hero */
+  .hero h1{
+    max-width:11em;
+    margin-right:auto;
+    font-size:clamp(2.15rem,10.5vw,3rem);
+    line-height:1.10;
+    letter-spacing:-.035em;
+    text-wrap:balance;
+  }
+
+  .hero-lead{
+    font-size:.98rem;
+    line-height:1.86;
+    letter-spacing:.005em;
+  }
+
+  .hero-copy .eyebrow{
+    font-size:.68rem;
+    line-height:1.45;
+    letter-spacing:.11em;
+  }
+
+  .hero-signature{
+    flex-wrap:wrap;
+    gap:7px 10px;
+    font-size:.86rem;
+    line-height:1.45;
+  }
+
+  /* Section headings */
+  .section-heading h2,
+  .reserve-copy h2,
+  .contact-band h2,
+  .collab-head h2{
+    max-width:100%;
+    font-size:clamp(1.85rem,8.6vw,2.45rem);
+    line-height:1.20;
+    letter-spacing:-.028em;
+    text-wrap:balance;
+  }
+
+  .section-heading .eyebrow,
+  .reserve-copy .eyebrow,
+  .contact-band .eyebrow{
+    font-size:.68rem;
+    line-height:1.45;
+    letter-spacing:.11em;
+  }
+
+  .section-intro,
+  .about-copy,
+  .collab-head > p,
+  .split-heading > p,
+  .reserve-copy > p,
+  .contact-band p{
+    font-size:.96rem;
+    line-height:1.82;
+  }
+
+  /* Card / item headings */
+  .team-card h3,
+  .goal-card h3,
+  .product-card h3,
+  .process-step h3,
+  .timeline-item h3{
+    font-size:1.18rem;
+    line-height:1.38;
+    letter-spacing:-.015em;
+  }
+
+  .team-card p,
+  .goal-card p,
+  .product-card p,
+  .process-step p,
+  .timeline-item p{
+    font-size:.93rem;
+    line-height:1.78;
+  }
+
+  /* Keywords: English subtitle gets its own line */
+  .word-row h3{
+    font-size:1.08rem;
+    line-height:1.42;
+    letter-spacing:-.01em;
+  }
+
+  .word-row h3 span{
+    display:block;
+    margin-top:3px;
+    font-size:.66rem;
+    line-height:1.35;
+    letter-spacing:.09em;
+  }
+
+  .word-row p{
+    font-size:.92rem;
+    line-height:1.78;
+  }
+
+  /* Prevent cramped labels and dates */
+  .festival-info-item strong{
+    font-size:1.05rem;
+    line-height:1.35;
+  }
+
+  .festival-info-item small{
+    line-height:1.5;
+  }
+
+  .reserve-event-card > div{
+    grid-template-columns:88px minmax(0,1fr);
+    gap:10px;
+  }
+
+  .reserve-event-card strong{
+    min-width:0;
+    font-size:.9rem;
+    line-height:1.5;
+    overflow-wrap:break-word;
+  }
+
+  .reserve-points{
+    font-size:.86rem;
+    line-height:1.65;
+  }
+
+  /* Let narrow horizontal flows wrap instead of squeezing text */
+  .motion-flow,
+  .ecophy-equation{
+    flex-wrap:wrap;
+  }
+
+  .motion-flow{
+    gap:7px 9px;
+    line-height:1.5;
+  }
+
+  /* 16px prevents automatic zoom on many mobile browsers */
+  input,
+  select,
+  textarea{
+    font-size:16px;
+    line-height:1.45;
+  }
+
+  .reserve-form label{
+    font-size:.84rem;
+    line-height:1.55;
+  }
+
+  .field-help,
+  .form-footnote{
+    line-height:1.65;
+  }
+
+  .button{
+    font-size:.94rem;
+    line-height:1.35;
+    white-space:normal;
+    text-align:center;
+  }
+
+  .footer-grid,
+  .footer-meta{
+    font-size:.9rem;
+    line-height:1.7;
+  }
+}
+
+/* Extra-narrow phones */
+@media (max-width:420px){
+
+  .container{
+    width:min(calc(100% - 28px),var(--container));
+  }
+
+  .hero h1{
+    max-width:100%;
+    font-size:clamp(2rem,10.3vw,2.65rem);
+    line-height:1.11;
+  }
+
+  .section-heading h2,
+  .reserve-copy h2,
+  .contact-band h2,
+  .collab-head h2{
+    font-size:clamp(1.72rem,8.25vw,2.12rem);
+    line-height:1.22;
+  }
+
+  .hero-lead,
+  .section-intro,
+  .about-copy,
+  .collab-head > p,
+  .split-heading > p,
+  .reserve-copy > p{
+    font-size:.94rem;
+  }
+
+  .team-card h3,
+  .goal-card h3,
+  .product-card h3,
+  .process-step h3,
+  .timeline-item h3{
+    font-size:1.12rem;
+  }
+
+  .word-row{
+    grid-template-columns:36px minmax(0,1fr);
+    gap:11px;
+  }
+
+  .word-row h3{
+    font-size:1.02rem;
+  }
+
+  .reserve-event-card > div{
+    grid-template-columns:1fr;
+    gap:3px;
+  }
+
+  .reserve-event-card span{
+    font-size:.68rem;
+  }
+}
+
+
+/* ===== Ecophy dropdown sections ===== */
+.word-tabs,
+.process-accordions{
+  display:grid;
+  gap:10px;
+}
+
+.word-tab,
+.process-tab{
+  margin:0;
+  padding:0;
+  border:1px solid var(--line);
+  border-radius:4px;
+  overflow:hidden;
+}
+
+.word-tab{
+  background:rgba(255,255,255,.035);
+  border-color:rgba(255,255,255,.13);
+}
+
+.process-tab{
+  background:#f8f4ef;
+  border-color:rgba(90,68,55,.13);
+}
+
+.word-tab summary,
+.process-tab summary{
+  display:grid;
+  grid-template-columns:52px minmax(0,1fr) 34px;
+  align-items:center;
+  gap:16px;
+  padding:20px 22px;
+  cursor:pointer;
+  list-style:none;
+  transition:background .18s ease;
+}
+
+.word-tab summary::-webkit-details-marker,
+.process-tab summary::-webkit-details-marker{
+  display:none;
+}
+
+.word-tab summary::after,
+.process-tab summary::after{
+  content:none!important;
+}
+
+.word-tab summary:hover{
+  background:rgba(255,255,255,.045);
+}
+
+.process-tab summary:hover{
+  background:rgba(108,81,66,.035);
+}
+
+.accordion-index{
+  font-size:.72rem;
+  line-height:1;
+  letter-spacing:.10em;
+  font-weight:900;
+  color:var(--coffee);
+}
+
+.word-tab .accordion-index{
+  color:#c7b19b;
+}
+
+.accordion-title{
+  min-width:0;
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.accordion-title strong{
+  font-size:1.08rem;
+  line-height:1.35;
+  letter-spacing:-.01em;
+}
+
+.accordion-title small{
+  font-size:.67rem;
+  line-height:1.35;
+  letter-spacing:.10em;
+  font-weight:850;
+  color:var(--muted);
+}
+
+.word-tab .accordion-title strong{
+  color:#f3eee8;
+}
+
+.word-tab .accordion-title small{
+  color:rgba(243,238,232,.55);
+}
+
+.process-tab .accordion-title{
+  display:grid;
+  gap:2px;
+}
+
+.process-tab .accordion-title small{
+  color:var(--coffee);
+}
+
+.accordion-toggle{
+  justify-self:end;
+  font-size:1.45rem;
+  line-height:1;
+  font-weight:300;
+  transition:transform .2s ease;
+}
+
+.word-tab .accordion-toggle{
+  color:#c7b19b;
+}
+
+.process-tab .accordion-toggle{
+  color:var(--coffee);
+}
+
+.word-tab[open] .accordion-toggle,
+.process-tab[open] .accordion-toggle{
+  transform:rotate(45deg);
+}
+
+.accordion-panel{
+  padding:0 22px 22px 90px;
+}
+
+.accordion-panel p{
+  margin:0;
+  max-width:760px;
+  line-height:1.82;
+}
+
+.word-tab .accordion-panel{
+  color:rgba(243,238,232,.72);
+}
+
+.process-tab .accordion-panel{
+  color:var(--muted);
+}
+
+.process-grid-accordion{
+  align-items:start;
+}
+
+@media(max-width:680px){
+  .word-tabs,
+  .process-accordions{
+    gap:8px;
+  }
+
+  .word-tab summary,
+  .process-tab summary{
+    grid-template-columns:38px minmax(0,1fr) 28px;
+    gap:10px;
+    padding:17px 15px;
+  }
+
+  .accordion-index{
+    font-size:.65rem;
+  }
+
+  .accordion-title{
+    display:grid;
+    gap:3px;
+  }
+
+  .accordion-title strong{
+    font-size:1rem;
+    line-height:1.4;
+  }
+
+  .accordion-title small{
+    font-size:.61rem;
+    letter-spacing:.08em;
+  }
+
+  .accordion-toggle{
+    font-size:1.28rem;
+  }
+
+  .accordion-panel{
+    padding:0 15px 17px 63px;
+  }
+
+  .accordion-panel p{
+    font-size:.92rem;
+    line-height:1.76;
+  }
+}
+
+
+/* ===== Ecophy ochre accent and product image ===== */
+:root{
+  --ochre:#b6914c;
+}
+
+/* one calm ochre accent in the background */
+.contact-band{
+  background:#c7a06a;
+}
+
+/* give the linear dividers a warmer ochre accent */
+#about::after,
+#products::after,
+.contact-band::after,
+.goals-section::after,
+#timeline::after,
+#faq::after,
+#process::after,
+#teams::after,
+#reserve::after,
+#words::after{
+  filter: drop-shadow(0 6px 0 rgba(24,18,14,.05));
+}
+
+.product-visual-keyholder{
+  display:grid;
+  gap:10px;
+}
+
+.product-visual-keyholder img{
+  width:100%;
+  aspect-ratio: 4 / 3;
+  object-fit:cover;
+  border-radius:6px;
+  display:block;
+}
+
+.product-visual-keyholder figcaption{
+  font-size:.78rem;
+  line-height:1.45;
+  color:var(--muted);
+}
+
+.product-card-keyholder .product-visual-keyholder{
+  margin:12px 0 14px;
+}
+
+@media (max-width:680px){
+  .product-card-keyholder .product-visual-keyholder{
+    margin:10px 0 12px;
+  }
+
+  .product-visual-keyholder figcaption{
+    font-size:.72rem;
+  }
+}
+
+/* ===== Fix keyholder product photo visibility ===== */
+
+/* 商品番号03では、既存のダミー画像を完全に消して写真だけを表示 */
+.product-card-keyholder .product-placeholder{
+  display:none !important;
+}
+
+.product-card-keyholder .product-visual::before,
+.product-card-keyholder .product-visual::after{
+  display:none !important;
+}
+
+/* 元の product-visual のサイズを保ちながら写真を全面表示 */
+.product-card-keyholder .product-visual{
+  position:relative;
+  aspect-ratio:4 / 3;
+  overflow:hidden;
+  display:block !important;
+  padding:0 !important;
+  background:#e7ddd2;
+}
+
+.product-card-keyholder .product-visual img{
   position:absolute;
   inset:0;
-  pointer-events:none;
-  background:linear-gradient(120deg,transparent 0 58%,rgba(216,172,100,.08) 58% 100%);
-}
-.reserve-section .reserve-grid{
-  position:relative;
-  z-index:1;
-  padding:clamp(28px,4vw,48px);
-  border:1px solid rgba(225,184,112,.48);
-  border-radius:28px;
-  background:rgba(255,255,255,.035);
-  box-shadow:0 30px 80px rgba(19,12,8,.24);
-}
-.reserve-highlight-badge{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:18px;
-}
-.reserve-highlight-badge strong,
-.reserve-highlight-badge span{
-  display:inline-flex;
-  align-items:center;
-  min-height:34px;
-  padding:8px 13px;
-  border-radius:999px;
-  font-size:.76rem;
-  line-height:1;
-  font-weight:900;
-  letter-spacing:.04em;
-}
-.reserve-highlight-badge strong{
-  color:#2c1c11;
-  background:#d7aa60;
-}
-.reserve-highlight-badge span{
-  color:#fff5df;
-  border:1px solid rgba(215,170,96,.55);
-  background:rgba(111,72,39,.72);
-}
-.reserve-section .reserve-copy h2{
-  font-size:clamp(2.5rem,4.6vw,4.8rem);
-  line-height:1.08;
-  letter-spacing:-.045em;
-}
-.reserve-section .reserve-event-card{
-  border-color:rgba(225,184,112,.35);
-  box-shadow:0 12px 34px rgba(0,0,0,.12);
-}
-.reserve-section .reserve-form{
-  border:2px solid rgba(215,170,96,.72);
-  box-shadow:0 26px 70px rgba(14,9,6,.27);
-}
-.reserve-section .form-submit{
-  background:#d2a258;
-  color:#21160e;
-  font-weight:900;
-  box-shadow:0 12px 28px rgba(0,0,0,.18);
-}
-.reserve-section .form-submit:hover{
-  filter:brightness(1.05);
-}
-.reservation-hero-cta{
-  background:#d2a258 !important;
-  border-color:#d2a258 !important;
-  color:#21160e !important;
-  font-weight:900;
-  box-shadow:0 10px 26px rgba(0,0,0,.18);
+  z-index:2;
+  width:100% !important;
+  height:100% !important;
+  max-width:none !important;
+  object-fit:cover;
+  object-position:center center;
+  display:block !important;
+  border-radius:0 !important;
 }
 
-/* Requested ochre background */
-.contact-band{
-  background:#c69a5b;
-}
-
-/* Same logo asset at top and bottom; constrain consistently */
-.brand-image{
-  object-fit:contain;
-}
-
-/* Environmental disclaimer at the absolute bottom */
-.footer-environment-note{
-  margin-top:34px;
-  padding-top:22px;
-  border-top:1px solid rgba(255,255,255,.12);
-}
-.footer-environment-note p{
-  margin:0;
-  max-width:980px;
-  color:rgba(255,255,255,.56);
-  font-size:.76rem;
-  line-height:1.75;
+/* キャプションは画像の外に出さず、商品カード側の説明に任せる */
+.product-card-keyholder .product-visual figcaption{
+  display:none !important;
 }
 
 @media(max-width:680px){
-  .hero-artwork img{
-    min-height:0;
-    aspect-ratio:4 / 3;
-  }
-  .reserve-section .reserve-grid{
-    padding:24px 18px;
-    border-radius:20px;
-  }
-  .reserve-section .reserve-copy h2{
-    font-size:clamp(2.15rem,10vw,3rem);
+  .product-card-keyholder .product-visual img{
+    object-position:center center;
   }
 }
 
 
-/* ===== Timee-inspired kinetic section dividers ===== */
+/* ===== Keyholder photo centered ===== */
+/* 商品番号03の写真を画像枠の中央に固定 */
+.product-card-keyholder .product-visual img{
+  object-position:center center !important;
+}
+
+@media(max-width:680px){
+  .product-card-keyholder .product-visual img{
+    object-position:center center !important;
+  }
+}
+
+/* ===== Product card precise alignment ===== */
+
+/* 商品03の写真を、ほかの商品画像と同じくカード上端から開始 */
+.product-card-keyholder .product-visual-keyholder{
+  margin:0 !important;
+}
+
+/* 商品画像の直後から、全カード同じ余白で本文を開始 */
+.product-card .product-body{
+  padding:24px;
+}
+
 /*
-  Ecophyの配色は維持したまま、セクション間だけを大胆な線形モチーフに。
-  太いダークライン + 黄土色ライン + クリームの平行線で、
-  画面を横断する折れ線に動きを持たせる。
+  商品名の開始位置は全カードで同じ。
+  2行の商品名に合わせて見出し領域だけ高さを確保し、
+  説明文の書き出し位置もそろえる。
 */
-.section-divider{
-  --divider-dark:#3a2f29;
-  --divider-accent:#c69a5b;
-  --divider-light:#f3eee8;
-  position:relative;
-  z-index:30;
-  width:100%;
-  height:clamp(92px,9vw,138px);
-  margin:clamp(-58px,-4vw,-44px) 0;
-  overflow:hidden;
-  pointer-events:none;
+.product-card h3{
+  margin:10px 0 8px;
+  min-height:3.1em;
 }
 
-.section-divider::before,
-.section-divider::after{
-  content:"";
-  position:absolute;
-  inset:-3% -4%;
-  will-change:transform;
+/* 説明文には不要な固定高さをつけない */
+.product-card p{
+  min-height:0 !important;
 }
 
-.section-divider::before{
-  background:var(--divider-dark);
-  clip-path:var(--divider-shape);
+/* 前回の下端揃えは解除し、通常の間隔へ */
+.product-body > .reservation-badge,
+.product-body > .walkin-badge,
+.product-body > .button{
+  margin-top:18px;
 }
 
-.section-divider::after{
-  background:var(--divider-accent);
-  clip-path:var(--divider-accent-shape);
-  filter:drop-shadow(0 13px 0 var(--divider-light));
-}
-
-/* 01: 大きく上下するジグザグ */
-.section-divider-a{
-  --divider-shape:polygon(
-    0 29%, 18% 65%, 42% 16%, 66% 74%, 84% 31%, 100% 57%,
-    100% 72%, 84% 46%, 66% 91%, 42% 32%, 18% 82%, 0 44%
-  );
-  --divider-accent-shape:polygon(
-    0 15%, 18% 48%, 42% 5%, 66% 58%, 84% 18%, 100% 40%,
-    100% 45%, 84% 24%, 66% 65%, 42% 12%, 18% 55%, 0 21%
-  );
-}
-
-/* 02: Timeeのような速度感を意識した鋭い折れ */
-.section-divider-b{
-  --divider-shape:polygon(
-    0 69%, 29% 19%, 53% 62%, 78% 12%, 100% 48%,
-    100% 64%, 78% 29%, 53% 79%, 29% 36%, 0 86%
-  );
-  --divider-accent-shape:polygon(
-    0 52%, 29% 8%, 53% 47%, 78% 2%, 100% 34%,
-    100% 40%, 78% 9%, 53% 54%, 29% 15%, 0 59%
-  );
-}
-
-/* 03: 非対称にしてページ全体にリズムをつくる */
-.section-divider-c{
-  --divider-shape:polygon(
-    0 20%, 25% 60%, 49% 29%, 71% 77%, 100% 24%,
-    100% 41%, 71% 94%, 49% 46%, 25% 77%, 0 37%
-  );
-  --divider-accent-shape:polygon(
-    0 7%, 25% 42%, 49% 17%, 71% 60%, 100% 11%,
-    100% 17%, 71% 67%, 49% 24%, 25% 49%, 0 13%
-  );
-}
-
-/* 交互に向きを反転し、同じ線の繰り返し感をなくす */
-.section-divider-b::before,
-.section-divider-b::after{
-  transform:scaleX(-1);
-}
-
-/* 線がコンテンツより前に出すぎないよう、セクション本体を整理 */
-main > section{
-  position:relative;
-  z-index:1;
-}
-
-/* スマホでも「細い罫線」にならず、しっかり見える太さを維持 */
+/* スマホは縦1列になるため、余分な見出し高さを解除 */
 @media(max-width:680px){
-  .section-divider{
-    height:86px;
-    margin:-38px 0;
-  }
-
-  .section-divider::after{
-    filter:drop-shadow(0 9px 0 var(--divider-light));
+  .product-card h3{
+    min-height:0;
   }
 }
 
-@media(prefers-reduced-motion:reduce){
-  .section-divider::before,
-  .section-divider::after{
-    will-change:auto;
+/* ===== Cupholder product photo + timeline emphasis ===== */
+
+/* 「これまでの歩み」の強調文 */
+.timeline-emphasis{
+  display:inline-block;
+  margin-top:8px;
+  font-weight:900;
+  color:var(--ink);
+}
+
+.timeline-section .timeline-emphasis{
+  color:inherit;
+}
+
+/* 商品06「カップホルダー」を商品03と同じ画像枠で表示 */
+.product-card-cupholder .product-placeholder{
+  display:none !important;
+}
+
+.product-card-cupholder .product-visual::before,
+.product-card-cupholder .product-visual::after{
+  display:none !important;
+}
+
+.product-card-cupholder .product-visual{
+  position:relative;
+  aspect-ratio:4 / 3;
+  overflow:hidden;
+  display:block !important;
+  padding:0 !important;
+  margin:0 !important;
+  background:#e7ddd2;
+}
+
+.product-card-cupholder .product-visual img{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  width:100% !important;
+  height:100% !important;
+  max-width:none !important;
+  object-fit:cover;
+  object-position:center 42%;
+  display:block !important;
+  border-radius:0 !important;
+}
+
+.product-card-cupholder .product-visual figcaption{
+  display:none !important;
+}
+
+/* 商品03・06とも画像の上に余白を作らない */
+.product-card-keyholder .product-visual-keyholder,
+.product-card-cupholder .product-visual-cupholder{
+  margin:0 !important;
+}
+
+@media(max-width:680px){
+  .product-card-cupholder .product-visual img{
+    object-position:center 42%;
+  }
+
+  .timeline-emphasis{
+    margin-top:6px;
+  }
+}
+
+/* ===== Goal dropdown + hero caption removal ===== */
+
+/* Hero image caption removed */
+.hero-artwork figcaption{
+  display:none !important;
+}
+
+/* Goal dropdowns */
+.goal-tabs{
+  display:grid;
+  gap:10px;
+}
+
+.goal-tab{
+  margin:0;
+  padding:0;
+  background:#f8f4ef;
+  border:1px solid rgba(90,68,55,.13);
+  border-radius:6px;
+  overflow:hidden;
+  box-shadow:0 12px 30px rgba(61,45,36,.055);
+}
+
+.goal-tab summary{
+  display:grid;
+  grid-template-columns:72px minmax(0,1fr) 34px;
+  align-items:center;
+  gap:18px;
+  min-height:92px;
+  padding:14px 22px;
+  list-style:none;
+  cursor:pointer;
+  transition:background .18s ease;
+}
+
+.goal-tab summary::-webkit-details-marker{
+  display:none;
+}
+
+.goal-tab summary::after{
+  content:none !important;
+}
+
+.goal-tab summary:hover{
+  background:rgba(108,81,66,.035);
+}
+
+.goal-tab .goal-icon{
+  width:58px;
+  height:58px;
+  margin:0;
+}
+
+.goal-tab .goal-icon-svg{
+  width:50px;
+  height:50px;
+}
+
+.goal-tab-title{
+  min-width:0;
+  font-size:1.16rem;
+  line-height:1.4;
+  font-weight:850;
+  letter-spacing:-.015em;
+  color:var(--ink);
+}
+
+.goal-tab-toggle{
+  justify-self:end;
+  color:var(--coffee);
+  font-size:1.45rem;
+  line-height:1;
+  font-weight:300;
+  transition:transform .2s ease;
+}
+
+.goal-tab[open] .goal-tab-toggle{
+  transform:rotate(45deg);
+}
+
+.goal-tab-panel{
+  padding:0 22px 22px 112px;
+}
+
+.goal-tab-panel p{
+  margin:0;
+  max-width:760px;
+  color:var(--muted);
+  line-height:1.82;
+}
+
+@media(max-width:680px){
+  .goal-tabs{
+    gap:8px;
+  }
+
+  .goal-tab summary{
+    grid-template-columns:48px minmax(0,1fr) 26px;
+    gap:11px;
+    min-height:74px;
+    padding:12px 15px;
+  }
+
+  .goal-tab .goal-icon{
+    width:44px;
+    height:44px;
+  }
+
+  .goal-tab .goal-icon-svg{
+    width:40px;
+    height:40px;
+  }
+
+  .goal-tab-title{
+    font-size:1rem;
+    line-height:1.45;
+  }
+
+  .goal-tab-toggle{
+    font-size:1.25rem;
+  }
+
+  .goal-tab-panel{
+    padding:0 15px 17px 74px;
+  }
+
+  .goal-tab-panel p{
+    font-size:.92rem;
+    line-height:1.76;
   }
 }
