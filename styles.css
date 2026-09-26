@@ -2695,3 +2695,14 @@ button{
     font-size:1.62rem !important;
   }
 }
+
+
+/* ===== Print-name field refinement ===== */
+.reserve-form .field-help{
+  line-height:1.6;
+}
+
+.reserve-form input[name="print_name"]{
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
