@@ -1,149 +1,263 @@
 /* ============================================================
-   Ecophy website configuration
-   商品情報・予約商品・予約送信先を管理します。
+   Ecophy
+   商品一覧・複数商品予約フォーム
+   ============================================================ */
+
+
+/* ============================================================
+   九大祭の商品一覧
    ============================================================ */
 
 const PRODUCTS = [
+
   {
     id: "original-keyholder",
     label: "CUSTOM 01",
     name: "世界に1つだけのオリジナルキーホルダー（大・小）",
     price: "700円",
     priceNote: "1個当たり",
+
     description:
       "大・小の2サイズから選べるオリジナルキーホルダーです。大はアルファベット5文字以内、小はアルファベット1文字を印刷できます。",
+
     requiresReservation: true
   },
-  {
-    id: "drink",
-    label: "DRINK 02",
-    name: "飲み物（単体）",
-    price: "300円",
-    description:
-      "九大祭で提供するドリンクです。複数種類をご用意する予定で、ラインナップは確定次第お知らせします。",
-    requiresReservation: false
-  },
+
+
   {
     id: "keyholder",
     label: "GOODS 03",
     name: "キーホルダー（大・小）",
     price: "500円",
     priceNote: "1個当たり",
+
     description:
       "大・小の2サイズから選べるキーホルダーです。こちらは印刷名なしの仕様です。",
+
     requiresReservation: true
   },
-  {
-    id: "drink-keyholder-set",
-    label: "SET 04",
-    name: "飲み物＋キーホルダーセット",
-    price: "600円",
-    description:
-      "お好きな飲み物とキーホルダーを一緒に楽しめるセットです。単品で購入するよりお得な価格です。",
-    requiresReservation: false
-  },
-  {
-    id: "coaster",
-    label: "GOODS 05",
-    name: "コースター",
-    price: "300円",
-    description:
-      "毎日の飲み物時間に使えるコースター。Ecophyらしい素材の背景も一緒に楽しめる製品を目指しています。",
-    requiresReservation: false
-  },
+
+
   {
     id: "drink-cupholder-set",
     label: "SET 06",
     name: "飲み物＋カップホルダーセット",
     price: "700円",
+
     description:
       "飲み物とカップホルダーを組み合わせたセットです。カップホルダーにはアルファベット5文字以内で名前を印刷できます。",
+
     requiresReservation: true
   },
+
+
+  {
+    id: "drink-keyholder-set",
+    label: "SET 04",
+    name: "飲み物＋キーホルダーセット",
+    price: "600円",
+
+    description:
+      "お好きな飲み物とキーホルダーを一緒に楽しめるセットです。単品で購入するよりお得な価格です。",
+
+    caution:
+      "このキーホルダーには、入れる名前を指定することはできませんので、ご注意ください。",
+
+    requiresReservation: false
+  },
+
+
+  {
+    id: "coaster",
+    label: "GOODS 05",
+    name: "コースター",
+    price: "300円",
+
+    description:
+      "毎日の飲み物時間に使えるコースター。Ecophyらしい素材の背景も一緒に楽しめる製品を目指しています。",
+
+    requiresReservation: false
+  },
+
+
+  {
+    id: "drink",
+    label: "DRINK 02",
+    name: "飲み物（単体）",
+    price: "300円",
+
+    description:
+      "九大祭で提供するドリンクです。複数種類をご用意する予定で、ラインナップは確定次第お知らせします。",
+
+    requiresReservation: false
+  },
+
+
   {
     id: "coffee-deodorizer",
     label: "UPCYCLE 07",
     name: "コーヒー由来消臭剤",
     price: "200円",
+
     description:
       "コーヒー由来の素材を活用した消臭剤です。身近な未利用資源の新しい使い道を感じていただける商品です。",
+
     requiresReservation: false
   }
+
 ];
 
 
 /* ============================================================
-   予約フォームで選択できる商品
+   予約できる商品
    ============================================================ */
 
 const RESERVATION_PRODUCTS = {
 
   "original-keyholder-large": {
-    name: "世界に1つだけのオリジナルキーホルダー（大）",
+
+    name:
+      "世界に1つだけのオリジナルキーホルダー（大）",
+
+    price: 700,
+
     printName: {
+
       required: true,
-      label: "キーホルダーに印刷する名前",
+
+      label:
+        "キーホルダーに印刷する名前",
+
       maxLength: 5,
-      pattern: "[A-Za-z]{1,5}",
-      placeholder: "例：ECOPH",
-      help: "アルファベット5文字以内で入力してください。"
+
+      pattern:
+        "[A-Za-z]{1,5}",
+
+      placeholder:
+        "例：ECOPH",
+
+      help:
+        "アルファベット5文字以内で入力してください。"
+
     }
+
   },
+
 
   "original-keyholder-small": {
-    name: "世界に1つだけのオリジナルキーホルダー（小）",
+
+    name:
+      "世界に1つだけのオリジナルキーホルダー（小）",
+
+    price: 700,
+
     printName: {
+
       required: true,
-      label: "キーホルダーに印刷するアルファベット",
+
+      label:
+        "キーホルダーに印刷するアルファベット",
+
       maxLength: 1,
-      pattern: "[A-Za-z]{1}",
-      placeholder: "例：E",
-      help: "アルファベット1文字を入力してください。"
+
+      pattern:
+        "[A-Za-z]{1}",
+
+      placeholder:
+        "例：E",
+
+      help:
+        "アルファベット1文字を入力してください。"
+
     }
+
   },
+
 
   "keyholder-large": {
-    name: "キーホルダー（大）",
+
+    name:
+      "キーホルダー（大）",
+
+    price: 500,
+
     printName: {
+
       required: false
+
     }
+
   },
+
 
   "keyholder-small": {
-    name: "キーホルダー（小）",
+
+    name:
+      "キーホルダー（小）",
+
+    price: 500,
+
     printName: {
+
       required: false
+
     }
+
   },
 
+
   "cupholder-set-06": {
-    name: "カップホルダーセット（商品No.6）",
+
+    name:
+      "カップホルダー（SET 03）",
+
+    price: 700,
+
     printName: {
+
       required: true,
-      label: "カップホルダーに印刷する名前",
+
+      label:
+        "カップホルダーに印刷する名前",
+
       maxLength: 5,
-      pattern: "[A-Za-z]{1,5}",
-      placeholder: "例：ECOPH",
-      help: "アルファベット5文字以内で入力してください。"
+
+      pattern:
+        "[A-Za-z]{1,5}",
+
+      placeholder:
+        "例：ECOPH",
+
+      help:
+        "アルファベット5文字以内で入力してください。"
+
     }
+
   }
 
 };
 
 
 /* ============================================================
-   九大祭情報
+   イベント情報
    ============================================================ */
 
 const EVENT_INFO = {
-  dates: "10月31日（金）・11月1日（土）",
-  place: "2301教室",
-  reservationDeadline: "2026-10-12"
+
+  dates:
+    "10月31日（金）・11月1日（土）",
+
+  place:
+    "2301教室",
+
+  reservationDeadline:
+    "2026-10-12"
+
 };
 
 
 /* ============================================================
-   Google Apps Script 予約送信先
+   Google Apps Script
    ============================================================ */
 
 const RESERVATION_ENDPOINT =
@@ -151,34 +265,56 @@ const RESERVATION_ENDPOINT =
 
 
 /* ============================================================
-   HTML取得
+   共通処理
    ============================================================ */
 
 const productGrid =
-  document.querySelector("#product-grid");
+  document.querySelector(
+    "#product-grid"
+  );
 
-const productSelect =
-  document.querySelector("#product-select");
-
-
-/* ============================================================
-   HTMLエスケープ
-   ============================================================ */
 
 function escapeHtml(value) {
 
   return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
+
+}
+
+
+function formatPrice(value) {
+
+  return `${Number(value).toLocaleString("ja-JP")}円`;
 
 }
 
 
 /* ============================================================
-   商品一覧を表示
+   商品一覧
    ============================================================ */
 
 function renderProducts() {
@@ -187,91 +323,124 @@ function renderProducts() {
 
 
   productGrid.innerHTML =
-    PRODUCTS.map((product) => `
+    PRODUCTS.map(
+      (product) => `
 
-      <article
-        class="product-card reveal${
-          product.requiresReservation
-            ? " product-card-reservable"
-            : ""
-        }"
-      >
-
-        <div
-          class="product-visual"
-          aria-label="${escapeHtml(product.name)} の商品画像スペース"
+        <article
+          class="product-card reveal${
+            product.requiresReservation
+              ? " product-card-reservable"
+              : ""
+          }"
         >
+
           <div
-            class="product-placeholder"
-            aria-hidden="true"
-          ></div>
-        </div>
+            class="product-visual"
+            aria-label="${escapeHtml(product.name)} の商品画像スペース"
+          >
 
-
-        <div class="product-body">
-
-          <div class="product-meta">
-
-            <span class="product-label">
-              ${escapeHtml(product.label)}
-            </span>
-
-            <span class="product-price">
-
-              <strong>
-                ${escapeHtml(product.price)}
-              </strong>
-
-              ${
-                product.priceNote
-                  ? `<small>${escapeHtml(product.priceNote)}</small>`
-                  : ""
-              }
-
-            </span>
+            <div
+              class="product-placeholder"
+              aria-hidden="true"
+            ></div>
 
           </div>
 
 
-          <h3>
-            ${escapeHtml(product.name)}
-          </h3>
+          <div class="product-body">
+
+            <div class="product-meta">
+
+              <span class="product-label">
+                ${escapeHtml(product.label)}
+              </span>
 
 
-          <p>
-            ${escapeHtml(product.description)}
-          </p>
+              <span class="product-price">
+
+                <strong>
+                  ${escapeHtml(product.price)}
+                </strong>
+
+                ${
+                  product.priceNote
+
+                    ? `<small>${escapeHtml(product.priceNote)}</small>`
+
+                    : ""
+                }
+
+              </span>
+
+            </div>
 
 
-          ${
-            product.requiresReservation
+            <h3>
+              ${escapeHtml(product.name)}
+            </h3>
 
-              ? `
-                <span class="reservation-badge">
-                  事前予約できます
-                </span>
 
-                <a
-                  class="button"
-                  href="#reserve"
-                  data-product="${escapeHtml(product.id)}"
-                >
-                  この商品を予約する
-                </a>
-              `
+            <p>
+              ${escapeHtml(product.description)}
+            </p>
 
-              : `
-                <span class="walkin-badge">
-                  予約不要・九大祭当日に販売
-                </span>
-              `
-          }
 
-        </div>
+            ${
+              product.caution
 
-      </article>
+                ? `
+                  <p class="product-caution">
 
-    `).join("");
+                    <strong>
+                      ご注意
+                    </strong>
+
+                    ${escapeHtml(product.caution)}
+
+                  </p>
+                `
+
+                : ""
+            }
+
+
+            ${
+              product.requiresReservation
+
+                ? `
+
+                  <span class="reservation-badge">
+                    事前予約できます
+                  </span>
+
+
+                  <a
+                    class="button"
+                    href="#reserve"
+                    data-product="${escapeHtml(product.id)}"
+                  >
+
+                    この商品を予約する
+
+                  </a>
+
+                `
+
+                : `
+
+                  <span class="walkin-badge">
+                    予約不要・九大祭当日に販売
+                  </span>
+
+                `
+            }
+
+          </div>
+
+        </article>
+
+      `
+    ).join("");
 
 }
 
@@ -280,65 +449,515 @@ renderProducts();
 
 
 /* ============================================================
-   印刷名入力欄
+   複数商品予約
    ============================================================ */
 
-const printNameRow =
-  document.querySelector("#print-name-row");
+const reservationItems =
+  document.querySelector(
+    "#reservation-items"
+  );
 
-const printNameInput =
-  document.querySelector("#print-name-input");
 
-const printNameLabel =
-  document.querySelector("#print-name-label");
+const addReservationItemButton =
+  document.querySelector(
+    "#add-reservation-item"
+  );
 
-const printNameHelp =
-  document.querySelector("#print-name-help");
+
+const totalQuantityEl =
+  document.querySelector(
+    "#reservation-total-quantity"
+  );
+
+
+const grandTotalEl =
+  document.querySelector(
+    "#reservation-grand-total"
+  );
 
 
 /* ============================================================
-   印刷名から英字以外を除外
+   予約商品プルダウン
    ============================================================ */
 
-function sanitizePrintName() {
+const RESERVATION_OPTIONS = `
 
-  if (!printNameInput) return;
+  <option value="">
+    選択してください
+  </option>
 
-  if (printNameInput.disabled) return;
+  <option value="original-keyholder-large">
+    世界に1つだけのオリジナルキーホルダー（大）
+  </option>
 
-  if (!productSelect) return;
+  <option value="original-keyholder-small">
+    世界に1つだけのオリジナルキーホルダー（小）
+  </option>
+
+  <option value="keyholder-large">
+    キーホルダー（大）
+  </option>
+
+  <option value="keyholder-small">
+    キーホルダー（小）
+  </option>
+
+  <option value="cupholder-set-06">
+    カップホルダー（SET 03）
+  </option>
+
+`;
 
 
-  const product =
-    RESERVATION_PRODUCTS[
-      productSelect.value
-    ];
+/* ============================================================
+   予約商品を1行追加
+   ============================================================ */
+
+function createReservationItem(
+  initialProductId = ""
+) {
+
+  if (!reservationItems) {
+    return null;
+  }
+
+
+  const item =
+    document.createElement(
+      "div"
+    );
+
+
+  item.className =
+    "reservation-item";
+
+
+  item.innerHTML = `
+
+    <div class="reservation-item-head">
+
+      <strong class="reservation-item-title">
+        商品
+      </strong>
+
+
+      <button
+        class="reservation-item-remove"
+        type="button"
+        aria-label="この商品を予約から削除"
+      >
+        削除
+      </button>
+
+    </div>
+
+
+    <div class="reservation-item-fields">
+
+      <label>
+
+        予約商品<span>*</span>
+
+        <select
+          class="reservation-item-product"
+          required
+        >
+
+          ${RESERVATION_OPTIONS}
+
+        </select>
+
+      </label>
+
+
+      <label>
+
+        個数<span>*</span>
+
+        <input
+          class="reservation-item-quantity"
+          type="number"
+          min="1"
+          max="20"
+          value="1"
+          required
+        >
+
+      </label>
+
+    </div>
+
+
+    <div
+      class="reservation-item-print"
+      hidden
+    >
+
+      <label>
+
+        <span
+          class="reservation-item-print-label"
+        >
+          印刷する名前
+        </span>
+
+        <span>*</span>
+
+
+        <input
+          class="reservation-item-print-input"
+          type="text"
+          inputmode="latin"
+          autocapitalize="characters"
+          autocomplete="off"
+          disabled
+        >
+
+
+        <small
+          class="field-help reservation-item-print-help"
+        ></small>
+
+      </label>
+
+    </div>
+
+
+    <div
+      class="reservation-item-price"
+      aria-live="polite"
+    >
+
+      <span>
+        小計
+      </span>
+
+      <strong
+        class="reservation-item-subtotal"
+      >
+        —
+      </strong>
+
+    </div>
+
+  `;
+
+
+  reservationItems.appendChild(
+    item
+  );
+
+
+  const select =
+    item.querySelector(
+      ".reservation-item-product"
+    );
+
+
+  const quantity =
+    item.querySelector(
+      ".reservation-item-quantity"
+    );
+
+
+  const removeButton =
+    item.querySelector(
+      ".reservation-item-remove"
+    );
+
+
+  const printInput =
+    item.querySelector(
+      ".reservation-item-print-input"
+    );
 
 
   if (
-    !product ||
-    !product.printName ||
-    !product.printName.required
+    initialProductId &&
+    RESERVATION_PRODUCTS[
+      initialProductId
+    ]
   ) {
+
+    select.value =
+      initialProductId;
+
+  }
+
+
+  select.addEventListener(
+    "change",
+    () => {
+
+      select.setCustomValidity("");
+
+      syncReservationItem(
+        item
+      );
+
+      syncOrderSummary();
+
+    }
+  );
+
+
+  quantity.addEventListener(
+    "input",
+    () => {
+
+      syncReservationItem(
+        item
+      );
+
+      syncOrderSummary();
+
+    }
+  );
+
+
+  quantity.addEventListener(
+    "change",
+    () => {
+
+      syncReservationItem(
+        item
+      );
+
+      syncOrderSummary();
+
+    }
+  );
+
+
+  printInput.addEventListener(
+    "input",
+    () => {
+
+      sanitizeReservationItemPrintName(
+        item
+      );
+
+    }
+  );
+
+
+  printInput.addEventListener(
+    "paste",
+    () => {
+
+      window.setTimeout(
+        () =>
+          sanitizeReservationItemPrintName(
+            item
+          ),
+        0
+      );
+
+    }
+  );
+
+
+  removeButton.addEventListener(
+    "click",
+    () => {
+
+      const allItems =
+        reservationItems.querySelectorAll(
+          ".reservation-item"
+        );
+
+
+      if (
+        allItems.length === 1
+      ) {
+
+        resetReservationItem(
+          item
+        );
+
+      } else {
+
+        item.remove();
+
+      }
+
+
+      renumberReservationItems();
+
+      syncOrderSummary();
+
+    }
+  );
+
+
+  syncReservationItem(
+    item
+  );
+
+
+  renumberReservationItems();
+
+
+  syncOrderSummary();
+
+
+  return item;
+
+}
+
+
+/* ============================================================
+   商品行をリセット
+   ============================================================ */
+
+function resetReservationItem(
+  item
+) {
+
+  const select =
+    item.querySelector(
+      ".reservation-item-product"
+    );
+
+
+  const quantity =
+    item.querySelector(
+      ".reservation-item-quantity"
+    );
+
+
+  const printInput =
+    item.querySelector(
+      ".reservation-item-print-input"
+    );
+
+
+  select.value = "";
+
+  select.setCustomValidity("");
+
+  quantity.value = "1";
+
+  printInput.value = "";
+
+
+  syncReservationItem(
+    item
+  );
+
+}
+
+
+/* ============================================================
+   商品番号
+   ============================================================ */
+
+function renumberReservationItems() {
+
+  if (!reservationItems) {
     return;
   }
 
 
-  const maxLength =
-    product.printName.maxLength;
+  const items =
+    reservationItems.querySelectorAll(
+      ".reservation-item"
+    );
 
 
-  const cleaned =
-    printNameInput.value
-      .replace(/[^A-Za-z]/g, "")
-      .slice(0, maxLength);
+  items.forEach(
+    (item, index) => {
+
+      const title =
+        item.querySelector(
+          ".reservation-item-title"
+        );
+
+
+      const removeButton =
+        item.querySelector(
+          ".reservation-item-remove"
+        );
+
+
+      title.textContent =
+        `商品 ${index + 1}`;
+
+
+      removeButton.hidden =
+        items.length === 1;
+
+    }
+  );
+
+}
+
+
+/* ============================================================
+   印刷名を英字のみに制限
+   ============================================================ */
+
+function sanitizeReservationItemPrintName(
+  item
+) {
+
+  const select =
+    item.querySelector(
+      ".reservation-item-product"
+    );
+
+
+  const input =
+    item.querySelector(
+      ".reservation-item-print-input"
+    );
 
 
   if (
-    printNameInput.value !== cleaned
+    !select ||
+    !input ||
+    input.disabled
   ) {
 
-    printNameInput.value =
+    return;
+
+  }
+
+
+  const config =
+    RESERVATION_PRODUCTS[
+      select.value
+    ]?.printName;
+
+
+  if (
+    !config?.required
+  ) {
+
+    return;
+
+  }
+
+
+  const cleaned =
+    input.value
+
+      .replace(
+        /[^A-Za-z]/g,
+        ""
+      )
+
+      .slice(
+        0,
+        config.maxLength
+      );
+
+
+  if (
+    input.value !== cleaned
+  ) {
+
+    input.value =
       cleaned;
 
   }
@@ -347,163 +966,432 @@ function sanitizePrintName() {
 
 
 /* ============================================================
-   商品に応じて印刷名欄を切り替える
+   商品選択に応じてフォーム変更
    ============================================================ */
 
-function syncReservationFields() {
+function syncReservationItem(
+  item
+) {
 
-  if (
-    !productSelect ||
-    !printNameRow ||
-    !printNameInput ||
-    !printNameLabel ||
-    !printNameHelp
-  ) {
-    return;
-  }
+  const select =
+    item.querySelector(
+      ".reservation-item-product"
+    );
 
 
-  const selectedProduct =
+  const quantityInput =
+    item.querySelector(
+      ".reservation-item-quantity"
+    );
+
+
+  const printWrap =
+    item.querySelector(
+      ".reservation-item-print"
+    );
+
+
+  const printInput =
+    item.querySelector(
+      ".reservation-item-print-input"
+    );
+
+
+  const printLabel =
+    item.querySelector(
+      ".reservation-item-print-label"
+    );
+
+
+  const printHelp =
+    item.querySelector(
+      ".reservation-item-print-help"
+    );
+
+
+  const subtotalEl =
+    item.querySelector(
+      ".reservation-item-subtotal"
+    );
+
+
+  const product =
     RESERVATION_PRODUCTS[
-      productSelect.value
+      select.value
     ];
 
 
-  const config =
-    selectedProduct?.printName;
-
-
-  /* --------------------------------------------
-     印刷名が不要な商品
-     -------------------------------------------- */
-
-  if (!config?.required) {
-
-    printNameRow.hidden = true;
-
-    printNameInput.disabled = true;
-
-    printNameInput.required = false;
-
-    printNameInput.value = "";
-
-    printNameInput.removeAttribute(
-      "maxlength"
+  const quantity =
+    Math.max(
+      1,
+      Number(
+        quantityInput.value || 1
+      )
     );
 
-    printNameInput.removeAttribute(
-      "minlength"
-    );
 
-    printNameInput.removeAttribute(
-      "pattern"
-    );
+  if (!product) {
 
-    printNameInput.removeAttribute(
-      "placeholder"
-    );
+    printWrap.hidden =
+      true;
 
-    printNameInput.removeAttribute(
-      "title"
-    );
+    printInput.disabled =
+      true;
+
+    printInput.required =
+      false;
+
+    printInput.value =
+      "";
+
+    subtotalEl.textContent =
+      "—";
 
     return;
 
   }
 
 
-  /* --------------------------------------------
-     印刷名が必要な商品
-     -------------------------------------------- */
-
-  printNameRow.hidden = false;
-
-  printNameInput.disabled = false;
-
-  printNameInput.required = true;
-
-  printNameInput.maxLength =
-    config.maxLength;
-
-  printNameInput.minLength = 1;
-
-  printNameInput.pattern =
-    config.pattern;
-
-  printNameInput.placeholder =
-    config.placeholder;
-
-  printNameInput.title =
-    config.help;
-
-  printNameLabel.textContent =
-    config.label;
+  const config =
+    product.printName;
 
 
-  printNameHelp.textContent =
-    config.help +
-    " 複数個で異なる文字・名前をご希望の場合は、備考欄にそれぞれご記入ください。";
+  if (
+    config?.required
+  ) {
+
+    printWrap.hidden =
+      false;
+
+    printInput.disabled =
+      false;
+
+    printInput.required =
+      true;
+
+    printInput.maxLength =
+      config.maxLength;
+
+    printInput.minLength =
+      1;
+
+    printInput.pattern =
+      config.pattern;
+
+    printInput.placeholder =
+      config.placeholder;
+
+    printInput.title =
+      config.help;
+
+    printLabel.textContent =
+      config.label;
 
 
-  sanitizePrintName();
+    printHelp.textContent =
+      config.help +
+      " 同じ商品を異なる名前で予約する場合は「商品を追加」から分けて入力してください。";
+
+
+    sanitizeReservationItemPrintName(
+      item
+    );
+
+  } else {
+
+    printWrap.hidden =
+      true;
+
+    printInput.disabled =
+      true;
+
+    printInput.required =
+      false;
+
+    printInput.value =
+      "";
+
+
+    printInput.removeAttribute(
+      "maxlength"
+    );
+
+
+    printInput.removeAttribute(
+      "minlength"
+    );
+
+
+    printInput.removeAttribute(
+      "pattern"
+    );
+
+
+    printInput.removeAttribute(
+      "placeholder"
+    );
+
+
+    printInput.removeAttribute(
+      "title"
+    );
+
+  }
+
+
+  subtotalEl.textContent =
+    formatPrice(
+      product.price *
+      quantity
+    );
 
 }
 
 
 /* ============================================================
-   予約商品を変更したとき
+   入力済みの商品を取得
    ============================================================ */
 
-if (productSelect) {
+function getReservationOrderItems() {
 
-  productSelect.addEventListener(
-    "change",
-    () => {
+  if (!reservationItems) {
+    return [];
+  }
 
-      productSelect.setCustomValidity("");
 
-      syncReservationFields();
+  return Array.from(
+
+    reservationItems.querySelectorAll(
+      ".reservation-item"
+    )
+
+  ).map(
+    (item) => {
+
+      const productId =
+        item.querySelector(
+          ".reservation-item-product"
+        ).value;
+
+
+      const quantity =
+        Math.max(
+
+          1,
+
+          Number(
+            item.querySelector(
+              ".reservation-item-quantity"
+            ).value || 1
+          )
+
+        );
+
+
+      const printName =
+        item.querySelector(
+          ".reservation-item-print-input"
+        ).value.trim();
+
+
+      const product =
+        RESERVATION_PRODUCTS[
+          productId
+        ];
+
+
+      if (!product) {
+        return null;
+      }
+
+
+      return {
+
+        productId:
+          productId,
+
+        product:
+          product.name,
+
+        quantity:
+          quantity,
+
+        printName:
+          printName,
+
+        unitPrice:
+          product.price,
+
+        subtotal:
+          product.price *
+          quantity
+
+      };
 
     }
-  );
+
+  ).filter(Boolean);
 
 }
 
 
 /* ============================================================
-   印刷名入力時
+   合計金額
    ============================================================ */
 
-if (printNameInput) {
+function syncOrderSummary() {
 
-  printNameInput.addEventListener(
-    "input",
-    sanitizePrintName
-  );
+  const items =
+    getReservationOrderItems();
 
 
-  printNameInput.addEventListener(
-    "paste",
-    () => {
+  const totalQuantity =
+    items.reduce(
+      (sum, item) =>
+        sum + item.quantity,
+      0
+    );
 
-      window.setTimeout(
-        sanitizePrintName,
-        0
+
+  const grandTotal =
+    items.reduce(
+      (sum, item) =>
+        sum + item.subtotal,
+      0
+    );
+
+
+  if (totalQuantityEl) {
+
+    totalQuantityEl.textContent =
+      `${totalQuantity}点`;
+
+  }
+
+
+  if (grandTotalEl) {
+
+    grandTotalEl.textContent =
+      formatPrice(
+        grandTotal
       );
 
-    }
-  );
+  }
 
 }
 
 
-syncReservationFields();
+/* ============================================================
+   商品カードから予約
+   ============================================================ */
+
+function addProductFromCard(
+  productId
+) {
+
+  const map = {
+
+    "original-keyholder":
+      "original-keyholder-large",
+
+    "keyholder":
+      "keyholder-large",
+
+    "drink-cupholder-set":
+      "cupholder-set-06"
+
+  };
+
+
+  const reservationProductId =
+    map[
+      productId
+    ];
+
+
+  if (
+    !reservationProductId ||
+    !reservationItems
+  ) {
+
+    return;
+
+  }
+
+
+  const currentItems =
+    reservationItems.querySelectorAll(
+      ".reservation-item"
+    );
+
+
+  if (
+    currentItems.length === 1 &&
+    !currentItems[0]
+      .querySelector(
+        ".reservation-item-product"
+      ).value
+  ) {
+
+    const select =
+      currentItems[0]
+        .querySelector(
+          ".reservation-item-product"
+        );
+
+
+    select.value =
+      reservationProductId;
+
+
+    syncReservationItem(
+      currentItems[0]
+    );
+
+  } else {
+
+    createReservationItem(
+      reservationProductId
+    );
+
+  }
+
+
+  syncOrderSummary();
+
+}
 
 
 /* ============================================================
-   商品カードの「予約する」から予約フォームへ
+   ＋商品を追加
    ============================================================ */
 
+if (
+  addReservationItemButton
+) {
+
+  addReservationItemButton
+    .addEventListener(
+      "click",
+      () => {
+
+        createReservationItem(
+          ""
+        );
+
+      }
+    );
+
+}
+
+
+/* 最初の商品欄を作る */
+createReservationItem(
+  ""
+);
+
+
+/* 商品カードから予約 */
 document.addEventListener(
   "click",
   (event) => {
@@ -514,79 +1402,28 @@ document.addEventListener(
       );
 
 
-    if (!trigger) return;
-
-    if (!productSelect) return;
-
-
-    const productId =
-      trigger.dataset.product;
-
-
-    /* --------------------------------------------
-       CUSTOM 01
-       オリジナルキーホルダー
-       → 初期値は「大」
-       -------------------------------------------- */
-
-    if (
-      productId ===
-      "original-keyholder"
-    ) {
-
-      productSelect.value =
-        "original-keyholder-large";
-
+    if (!trigger) {
+      return;
     }
 
 
-    /* --------------------------------------------
-       GOODS 03
-       通常キーホルダー
-       → 初期値は「大」
-       -------------------------------------------- */
-
-    if (
-      productId ===
-      "keyholder"
-    ) {
-
-      productSelect.value =
-        "keyholder-large";
-
-    }
-
-
-    /* --------------------------------------------
-       SET 06
-       カップホルダーセット
-       -------------------------------------------- */
-
-    if (
-      productId ===
-      "drink-cupholder-set"
-    ) {
-
-      productSelect.value =
-        "cupholder-set-06";
-
-    }
-
-
-    syncReservationFields();
+    addProductFromCard(
+      trigger.dataset.product
+    );
 
   }
 );
 
 
 /* ============================================================
-   スマホ用ナビゲーション
+   スマホメニュー
    ============================================================ */
 
 const navToggle =
   document.querySelector(
     ".nav-toggle"
   );
+
 
 const navLinks =
   document.querySelectorAll(
@@ -624,9 +1461,10 @@ navLinks.forEach(
       "click",
       () => {
 
-        document.body.classList.remove(
-          "nav-open"
-        );
+        document.body
+          .classList.remove(
+            "nav-open"
+          );
 
 
         if (navToggle) {
@@ -646,7 +1484,7 @@ navLinks.forEach(
 
 
 /* ============================================================
-   ヘッダー表示
+   ヘッダー
    ============================================================ */
 
 const header =
@@ -657,7 +1495,9 @@ const header =
 
 const syncHeader = () => {
 
-  if (!header) return;
+  if (!header) {
+    return;
+  }
 
 
   header.classList.toggle(
@@ -681,7 +1521,7 @@ window.addEventListener(
 
 
 /* ============================================================
-   スクロール表示アニメーション
+   表示アニメーション
    ============================================================ */
 
 const revealElements =
@@ -696,6 +1536,7 @@ if (
 
   const revealObserver =
     new IntersectionObserver(
+
       (entries) => {
 
         entries.forEach(
@@ -722,9 +1563,11 @@ if (
         );
 
       },
+
       {
         threshold: 0.12
       }
+
     );
 
 
@@ -762,25 +1605,30 @@ const form =
     "#reservation-form"
   );
 
+
 const dialog =
   document.querySelector(
     "#confirm-dialog"
   );
+
 
 const confirmList =
   document.querySelector(
     "#confirm-list"
   );
 
+
 const finalSubmit =
   document.querySelector(
     "#final-submit"
   );
 
+
 const formStatus =
   document.querySelector(
     "#form-status"
   );
+
 
 const dialogNote =
   document.querySelector(
@@ -788,11 +1636,12 @@ const dialogNote =
   );
 
 
-let pendingData = null;
+let pendingData =
+  null;
 
 
 /* ============================================================
-   予約内容確認
+   内容確認
    ============================================================ */
 
 if (form) {
@@ -806,15 +1655,34 @@ if (form) {
 
       if (formStatus) {
 
-        formStatus.textContent = "";
+        formStatus.textContent =
+          "";
 
       }
 
 
-      sanitizePrintName();
+      reservationItems
+        ?.querySelectorAll(
+          ".reservation-item"
+        )
+        .forEach(
+          (item) => {
+
+            sanitizeReservationItemPrintName(
+              item
+            );
+
+            syncReservationItem(
+              item
+            );
+
+          }
+        );
 
 
-      if (!form.checkValidity()) {
+      if (
+        !form.checkValidity()
+      ) {
 
         form.reportValidity();
 
@@ -825,45 +1693,91 @@ if (form) {
 
       const data =
         Object.fromEntries(
-          new FormData(form).entries()
+
+          new FormData(
+            form
+          ).entries()
+
         );
 
 
-      const selected =
-        RESERVATION_PRODUCTS[
-          data.product
-        ];
+      const items =
+        getReservationOrderItems();
 
 
-      if (!selected) {
+      if (
+        items.length === 0
+      ) {
 
-        if (productSelect) {
+        const firstSelect =
+          reservationItems
+            ?.querySelector(
+              ".reservation-item-product"
+            );
 
-          productSelect.setCustomValidity(
+
+        if (firstSelect) {
+
+          firstSelect.setCustomValidity(
             "予約商品を選択してください。"
           );
 
 
-          productSelect.reportValidity();
+          firstSelect.reportValidity();
 
         }
+
 
         return;
 
       }
 
 
-      if (productSelect) {
+      const totalQuantity =
+        items.reduce(
+          (sum, item) =>
+            sum + item.quantity,
+          0
+        );
 
-        productSelect.setCustomValidity("");
 
-      }
+      const totalPrice =
+        items.reduce(
+          (sum, item) =>
+            sum + item.subtotal,
+          0
+        );
 
 
-      const printName =
-        (
-          data.print_name || ""
-        ).trim();
+      const orderSummary =
+        items
+
+          .map(
+            (item) =>
+              `${item.product} ×${item.quantity}`
+          )
+
+          .join(
+            " / "
+          );
+
+
+      const printNameSummary =
+        items
+
+          .filter(
+            (item) =>
+              item.printName
+          )
+
+          .map(
+            (item) =>
+              `${item.product}: ${item.printName}`
+          )
+
+          .join(
+            " / "
+          );
 
 
       pendingData = {
@@ -874,37 +1788,76 @@ if (form) {
         email:
           data.email.trim(),
 
+
         productId:
-          data.product,
+          items.length === 1
+
+            ? items[0].productId
+
+            : "multi-item-order",
+
 
         product:
-          selected.name,
+          orderSummary,
+
 
         printName:
-          printName,
+          printNameSummary,
+
 
         quantity:
-          Number(
-            data.quantity
+          totalQuantity,
+
+
+        unitPrice:
+          items.length === 1
+
+            ? items[0].unitPrice
+
+            : "",
+
+
+        totalPrice:
+          totalPrice,
+
+
+        items:
+          items,
+
+
+        itemsJson:
+          JSON.stringify(
+            items
           ),
+
+
+        orderSummary:
+          orderSummary,
+
 
         pickupDate:
           data.pickup_date,
 
+
         pickupTime:
           data.pickup_time,
+
 
         note:
           data.note.trim(),
 
+
         submittedAt:
           new Date().toISOString(),
+
 
         eventDates:
           EVENT_INFO.dates,
 
+
         pickupPlace:
           EVENT_INFO.place,
+
 
         reservationDeadline:
           EVENT_INFO.reservationDeadline
@@ -912,9 +1865,9 @@ if (form) {
       };
 
 
-      /* --------------------------------------------
+      /* ======================================================
          確認画面
-         -------------------------------------------- */
+         ====================================================== */
 
       const rows = [
 
@@ -926,38 +1879,73 @@ if (form) {
         [
           "メール",
           pendingData.email
-        ],
-
-        [
-          "予約商品",
-          pendingData.product
-        ],
-
-        [
-          "個数",
-          `${pendingData.quantity}個`
         ]
 
       ];
 
 
-      /* 印刷名がある商品のみ表示 */
+      items.forEach(
+        (item, index) => {
 
-      if (
-        selected.printName?.required
-      ) {
+          rows.push(
 
-        rows.push(
-          [
-            selected.printName.label,
-            pendingData.printName
-          ]
-        );
+            [
+              `予約商品 ${index + 1}`,
+              item.product
+            ],
 
-      }
+            [
+              `商品 ${index + 1}・個数`,
+              `${item.quantity}個`
+            ]
+
+          );
+
+
+          if (
+            item.printName
+          ) {
+
+            rows.push(
+
+              [
+                `商品 ${index + 1}・印刷名`,
+                item.printName
+              ]
+
+            );
+
+          }
+
+
+          rows.push(
+
+            [
+              `商品 ${index + 1}・小計`,
+              formatPrice(
+                item.subtotal
+              )
+            ]
+
+          );
+
+        }
+      );
 
 
       rows.push(
+
+        [
+          "合計点数",
+          `${totalQuantity}点`
+        ],
+
+        [
+          "合計金額",
+          formatPrice(
+            totalPrice
+          )
+        ],
 
         [
           "受取日",
@@ -971,7 +1959,8 @@ if (form) {
 
         [
           "備考",
-          pendingData.note || "なし"
+          pendingData.note ||
+          "なし"
         ]
 
       );
@@ -981,10 +1970,12 @@ if (form) {
 
         confirmList.innerHTML =
           rows
+
             .map(
               ([key, value]) => `
 
                 <div>
+
                   <dt>
                     ${escapeHtml(key)}
                   </dt>
@@ -992,10 +1983,12 @@ if (form) {
                   <dd>
                     ${escapeHtml(value)}
                   </dd>
+
                 </div>
 
               `
             )
+
             .join("");
 
       }
@@ -1004,7 +1997,7 @@ if (form) {
       if (dialogNote) {
 
         dialogNote.textContent =
-          "送信すると予約内容がEcophy運営用のGoogleスプレッドシートに登録されます。";
+          "送信すると、すべての商品を1件の予約としてEcophy運営用のGoogleスプレッドシートへ登録します。";
 
       }
 
@@ -1028,16 +2021,22 @@ if (form) {
 if (finalSubmit) {
 
   finalSubmit.addEventListener(
+
     "click",
+
     async (event) => {
 
       event.preventDefault();
 
 
-      if (!pendingData) return;
+      if (!pendingData) {
+        return;
+      }
 
 
-      finalSubmit.disabled = true;
+      finalSubmit.disabled =
+        true;
+
 
       finalSubmit.textContent =
         "送信中…";
@@ -1046,16 +2045,22 @@ if (finalSubmit) {
       try {
 
         await fetch(
+
           RESERVATION_ENDPOINT,
+
           {
 
-            method: "POST",
+            method:
+              "POST",
 
-            mode: "no-cors",
+            mode:
+              "no-cors",
 
             headers: {
+
               "Content-Type":
                 "text/plain;charset=utf-8"
+
             },
 
             body:
@@ -1064,6 +2069,7 @@ if (finalSubmit) {
               )
 
           }
+
         );
 
 
@@ -1077,7 +2083,7 @@ if (finalSubmit) {
         if (formStatus) {
 
           formStatus.textContent =
-            "予約を送信しました。ありがとうございます。回答はEcophy運営用のGoogleスプレッドシートに保存されます。";
+            "予約を送信しました。ありがとうございます。複数の商品もまとめて1件の予約として送信されています。";
 
         }
 
@@ -1089,25 +2095,28 @@ if (finalSubmit) {
         }
 
 
-        if (productSelect) {
+        if (reservationItems) {
 
-          productSelect.value = "";
+          reservationItems.innerHTML =
+            "";
 
-          productSelect
-            .setCustomValidity("");
+
+          createReservationItem(
+            ""
+          );
 
         }
 
 
-        syncReservationFields();
-
-
-        pendingData = null;
+        pendingData =
+          null;
 
 
       } catch (error) {
 
-        console.error(error);
+        console.error(
+          error
+        );
 
 
         if (dialogNote) {
@@ -1120,7 +2129,9 @@ if (finalSubmit) {
 
       } finally {
 
-        finalSubmit.disabled = false;
+        finalSubmit.disabled =
+          false;
+
 
         finalSubmit.textContent =
           "この内容で送信";
@@ -1128,13 +2139,14 @@ if (finalSubmit) {
       }
 
     }
+
   );
 
 }
 
 
 /* ============================================================
-   フッターの西暦
+   フッターの年
    ============================================================ */
 
 const year =
