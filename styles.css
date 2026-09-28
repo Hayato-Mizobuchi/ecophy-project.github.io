@@ -2706,3 +2706,217 @@ button{
   text-transform:uppercase;
   letter-spacing:.08em;
 }
+
+/* ===== Mobile reservation/form final polish ===== */
+
+.product-card h3,
+.reserve-form label,
+.form-footnote,
+.field-help,
+.reservation-feature-note{
+  overflow-wrap:normal;
+  word-break:normal;
+  line-break:strict;
+  text-wrap:pretty;
+}
+
+@supports (word-break:auto-phrase){
+  .product-card h3,
+  .reserve-form label,
+  .form-footnote,
+  .field-help,
+  .reservation-feature-note{
+    word-break:auto-phrase;
+  }
+}
+
+.reserve-form,
+.reserve-form .form-row,
+.reserve-form label{
+  min-width:0;
+}
+
+.reserve-form input,
+.reserve-form select,
+.reserve-form textarea{
+  box-sizing:border-box;
+  width:100%;
+  min-width:0;
+}
+
+#product-select{
+  width:100%;
+  max-width:100%;
+}
+
+@media(max-width:680px){
+
+  .reservation-dialog .reserve-form{
+    width:100%;
+    padding:18px 14px;
+  }
+
+  .reserve-form .form-row,
+  .reserve-form .form-row.two-col{
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    gap:16px;
+    width:100%;
+  }
+
+  .reserve-form label{
+    display:block;
+    width:100%;
+    font-size:.92rem;
+    line-height:1.55;
+  }
+
+  .reserve-form input,
+  .reserve-form select,
+  .reserve-form textarea{
+    width:100%;
+    max-width:100%;
+    margin-top:7px;
+    font-size:16px;
+    line-height:1.4;
+  }
+
+  .reserve-form input,
+  .reserve-form select{
+    min-height:50px;
+  }
+
+  #product-select{
+    font-size:15px;
+    padding-left:12px;
+    padding-right:34px;
+  }
+
+  #print-name-row[hidden]{
+    display:none !important;
+  }
+
+  #print-name-row:not([hidden]){
+    display:grid;
+  }
+
+  .field-help{
+    display:block;
+    margin-top:7px;
+    font-size:.76rem;
+    line-height:1.65;
+  }
+
+  .privacy-check{
+    display:grid !important;
+    grid-template-columns:22px minmax(0,1fr);
+    align-items:start;
+    gap:10px;
+    margin-top:18px;
+  }
+
+  .privacy-check input{
+    width:18px !important;
+    min-height:18px !important;
+    height:18px;
+    margin:3px 0 0;
+  }
+
+  .privacy-check span{
+    min-width:0;
+    font-size:.84rem;
+    line-height:1.65;
+  }
+
+  .form-submit{
+    width:100%;
+    min-height:54px;
+    margin-top:20px;
+    white-space:normal;
+    text-align:center;
+  }
+
+  .form-footnote{
+    font-size:.7rem;
+    line-height:1.7;
+  }
+
+  #confirm-list div{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:3px;
+    padding:11px 0;
+  }
+
+  #confirm-list dt{
+    font-size:.72rem;
+  }
+
+  #confirm-list dd{
+    margin:0;
+    min-width:0;
+    overflow-wrap:anywhere;
+    font-size:.94rem;
+    line-height:1.55;
+  }
+
+  .dialog-actions{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+
+  .dialog-actions .button,
+  .dialog-actions button{
+    width:100%;
+    min-height:50px;
+  }
+
+  .product-card h3{
+    max-width:100%;
+    font-size:1.16rem;
+    line-height:1.48;
+    letter-spacing:-.015em;
+  }
+
+  .product-card .button{
+    width:100%;
+    white-space:normal;
+    text-align:center;
+    line-height:1.45;
+    padding-inline:14px;
+  }
+
+  .reservation-badge,
+  .walkin-badge{
+    max-width:100%;
+    white-space:normal;
+    line-height:1.45;
+  }
+}
+
+@media(max-width:390px){
+  .reservation-dialog{
+    width:calc(100vw - 12px);
+  }
+
+  .reservation-dialog-shell{
+    padding-inline:10px;
+  }
+
+  .reservation-dialog .reserve-form{
+    padding-inline:11px;
+  }
+
+  #product-select{
+    font-size:14px;
+  }
+
+  .product-card h3{
+    font-size:1.1rem;
+  }
+
+  .form-footnote{
+    font-size:.67rem;
+  }
+}
