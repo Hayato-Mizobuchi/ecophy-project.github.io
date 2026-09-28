@@ -2920,3 +2920,272 @@ button{
     font-size:.67rem;
   }
 }
+
+/* ============================================================
+   Multi-item reservation order
+   複数商品予約フォーム
+   ============================================================ */
+
+/* 飲み物＋キーホルダーセットの注意書き */
+.product-caution {
+  margin: 14px 0 0 !important;
+  min-height: 0 !important;
+  padding: 11px 12px;
+  border-left: 3px solid var(--ochre);
+  border-radius: 0 8px 8px 0;
+  background: rgba(182, 145, 76, .10);
+  color: #6b5547 !important;
+  font-size: .78rem !important;
+  line-height: 1.65 !important;
+}
+
+.product-caution strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--coffee);
+  font-size: .68rem;
+  letter-spacing: .08em;
+}
+
+
+/* ============================================================
+   予約商品の見出し部分
+   ============================================================ */
+
+.reservation-order-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 8px 0 16px;
+  padding-top: 6px;
+}
+
+.reservation-order-head h3 {
+  margin: 4px 0 5px;
+  font-size: 1.28rem;
+  line-height: 1.35;
+}
+
+.reservation-order-head p {
+  margin: 0;
+  max-width: 650px;
+  color: var(--muted);
+  font-size: .82rem;
+  line-height: 1.65;
+}
+
+.reservation-order-kicker {
+  color: var(--coffee);
+  font-size: .64rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.reservation-add-item {
+  flex: 0 0 auto;
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   商品ごとの予約カード
+   ============================================================ */
+
+.reservation-items {
+  display: grid;
+  gap: 14px;
+}
+
+.reservation-item {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid rgba(73, 55, 45, .14);
+  border-radius: 12px;
+  background: #f8f4ef;
+}
+
+.reservation-item-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.reservation-item-title {
+  font-size: .93rem;
+  color: var(--ink);
+}
+
+.reservation-item-remove {
+  appearance: none;
+  padding: 5px 8px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: .76rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.reservation-item-remove:hover {
+  color: var(--coffee);
+}
+
+
+/* 商品名と個数 */
+.reservation-item-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(110px, .65fr);
+  gap: 12px;
+}
+
+.reservation-item-fields label,
+.reservation-item-print label {
+  min-width: 0;
+}
+
+.reservation-item-fields select,
+.reservation-item-fields input,
+.reservation-item-print input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* 印刷名 */
+.reservation-item-print {
+  margin-top: 12px;
+}
+
+.reservation-item-print[hidden] {
+  display: none !important;
+}
+
+
+/* 商品ごとの小計 */
+.reservation-item-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(73, 55, 45, .10);
+}
+
+.reservation-item-price span {
+  color: var(--muted);
+  font-size: .72rem;
+}
+
+.reservation-item-price strong {
+  color: var(--coffee);
+  font-size: 1.15rem;
+}
+
+
+/* ============================================================
+   合計点数・合計金額
+   ============================================================ */
+
+.reservation-order-total {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0 22px;
+}
+
+.reservation-order-total > div {
+  padding: 15px 17px;
+  border-radius: 10px;
+  background: #3a2f29;
+  color: #fff;
+}
+
+.reservation-order-total span {
+  display: block;
+  margin-bottom: 4px;
+  color: rgba(255, 255, 255, .58);
+  font-size: .64rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.reservation-order-total strong {
+  display: block;
+  font-size: 1.26rem;
+  line-height: 1.3;
+}
+
+
+/* ============================================================
+   スマートフォン
+   ============================================================ */
+
+@media (max-width: 680px) {
+
+  .reservation-order-head {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+
+  .reservation-add-item {
+    width: 100%;
+    white-space: normal;
+  }
+
+  .reservation-item {
+    padding: 15px 12px;
+  }
+
+  .reservation-item-fields {
+    grid-template-columns: 1fr;
+    gap: 13px;
+  }
+
+  .reservation-item-fields select,
+  .reservation-item-fields input,
+  .reservation-item-print input {
+    min-height: 50px;
+    font-size: 16px;
+  }
+
+  .reservation-item-price {
+    justify-content: space-between;
+  }
+
+  .reservation-order-total {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .reservation-order-total > div {
+    padding: 13px 12px;
+  }
+
+  .reservation-order-total strong {
+    font-size: 1.08rem;
+  }
+
+  .product-caution {
+    font-size: .76rem !important;
+  }
+
+}
+
+
+/* かなり幅の狭いスマホ */
+@media (max-width: 390px) {
+
+  .reservation-order-total {
+    grid-template-columns: 1fr;
+  }
+
+}
