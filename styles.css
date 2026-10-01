@@ -3693,3 +3693,720 @@ button{
     line-height:1.5;
   }
 }
+
+
+/* ===== Mobile final hardening 20261001 ===== */
+
+/* ============================================================
+   Final smartphone hardening
+   PC/tablet styling remains unchanged.
+   ============================================================ */
+
+@media(max-width:680px){
+
+  html,
+  body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+  }
+
+  body{
+    font-size:15.5px;
+  }
+
+  *,
+  *::before,
+  *::after{
+    box-sizing:border-box;
+  }
+
+  img,
+  svg,
+  video,
+  canvas{
+    max-width:100%;
+    height:auto;
+  }
+
+  .container{
+    width:min(calc(100% - 24px),var(--container));
+    margin-inline:auto;
+  }
+
+  .section{
+    padding-top:60px;
+    padding-bottom:60px;
+  }
+
+  /* Any grid/flex child must be allowed to shrink on a phone. */
+  .hero-grid > *,
+  .about-grid > *,
+  .products-grid > *,
+  .team-composition > *,
+  .collab-head > *,
+  .split-heading > *,
+  .contact-band-inner > *,
+  .footer-grid > *,
+  .reservation-feature-card > *,
+  .reservation-item,
+  .reservation-item-fields > *,
+  .team-card,
+  .goal-tab,
+  .timeline-dropdown{
+    min-width:0;
+  }
+
+  /* Japanese headings: natural phrase-aware wrapping. */
+  .hero h1,
+  .section-heading h2,
+  .reservation-main-heading,
+  .team-main-heading,
+  .contact-main-heading,
+  .team-card h3,
+  .team-card .team-lead,
+  .product-card h3,
+  .timeline-summary-title,
+  .goal-tab-title,
+  .reservation-order-head h3,
+  .reservation-dialog-head h2{
+    max-width:100%;
+    overflow-wrap:normal;
+    word-break:normal;
+    line-break:strict;
+    text-wrap:balance;
+  }
+
+  @supports (word-break:auto-phrase){
+    .hero h1,
+    .section-heading h2,
+    .reservation-main-heading,
+    .team-main-heading,
+    .contact-main-heading,
+    .team-card h3,
+    .team-card .team-lead,
+    .product-card h3,
+    .timeline-summary-title,
+    .goal-tab-title,
+    .reservation-order-head h3,
+    .reservation-dialog-head h2{
+      word-break:auto-phrase;
+    }
+  }
+
+  /* The explicit phrase spans remain separate lines, but may wrap safely
+     on very narrow devices instead of overflowing the viewport. */
+  .smart-mobile-heading .mobile-heading-line{
+    display:block !important;
+    width:auto !important;
+    max-width:100% !important;
+    white-space:normal !important;
+    text-wrap:balance;
+  }
+
+  .smart-mobile-heading .desktop-heading-break{
+    display:none !important;
+  }
+
+  /* Header / navigation */
+  .header-inner{
+    min-height:66px;
+  }
+
+  .global-nav{
+    max-width:100%;
+  }
+
+  .global-nav a{
+    max-width:100%;
+    white-space:normal;
+  }
+
+  /* Hero */
+  .hero{
+    min-height:auto;
+    padding-top:94px;
+    padding-bottom:58px;
+  }
+
+  .hero-grid{
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:32px;
+  }
+
+  .hero-copy{
+    min-width:0;
+  }
+
+  .hero .smart-mobile-heading{
+    font-size:clamp(1.88rem,8.2vw,2.2rem) !important;
+    line-height:1.17 !important;
+    letter-spacing:-.035em;
+  }
+
+  .hero-lead{
+    font-size:.94rem;
+    line-height:1.82;
+  }
+
+  .hero-signature{
+    flex-wrap:wrap;
+    row-gap:7px;
+  }
+
+  .hero-actions{
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    gap:10px;
+  }
+
+  .hero-actions .button{
+    width:100%;
+    max-width:100%;
+    min-height:54px;
+    padding-inline:15px;
+    white-space:normal;
+    text-align:center;
+  }
+
+  .hero-reservation-cta{
+    display:flex !important;
+    width:100% !important;
+    max-width:100%;
+  }
+
+  .hero-reservation-cta-label{
+    min-width:0;
+    text-wrap:balance;
+  }
+
+  .hero-pick-card{
+    width:100% !important;
+    max-width:100%;
+    grid-template-columns:100px minmax(0,1fr) !important;
+    gap:12px !important;
+    padding:11px !important;
+  }
+
+  .hero-pick-image{
+    width:100%;
+  }
+
+  .hero-pick-copy{
+    min-width:0;
+  }
+
+  .hero-pick-copy strong{
+    font-size:.98rem !important;
+    line-height:1.38 !important;
+  }
+
+  .hero-pick-copy p{
+    font-size:.71rem !important;
+    line-height:1.52 !important;
+  }
+
+  .hero-pick-badges{
+    flex-wrap:wrap;
+  }
+
+  .hero-pick-cta{
+    max-width:100%;
+    white-space:normal;
+  }
+
+  .hero-artwork,
+  .hero-artwork .hero-main-image{
+    width:100%;
+  }
+
+  .hero-artwork .hero-main-image{
+    aspect-ratio:4 / 3;
+    object-fit:cover;
+  }
+
+  /* Reservation feature */
+  .reservation-feature-card{
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:24px;
+    padding:22px 16px;
+  }
+
+  .reservation-main-heading{
+    font-size:clamp(1.62rem,7vw,1.98rem) !important;
+    line-height:1.24 !important;
+  }
+
+  .reservation-feature-copy > p:last-child,
+  .reservation-feature-note{
+    font-size:.9rem;
+    line-height:1.72;
+  }
+
+  .reservation-feature-meta{
+    grid-template-columns:minmax(0,1fr) !important;
+  }
+
+  .reservation-feature-meta > div{
+    grid-template-columns:68px minmax(0,1fr) auto;
+    gap:8px;
+    min-width:0;
+  }
+
+  .reservation-open-button{
+    width:100% !important;
+    max-width:100%;
+    min-height:60px !important;
+    padding:14px 15px !important;
+    white-space:normal !important;
+    text-align:center;
+  }
+
+  /* About */
+  .about-grid{
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:28px;
+  }
+
+  .about-copy,
+  .principle-card{
+    min-width:0;
+  }
+
+  .about-copy p,
+  .principle-card small{
+    overflow-wrap:anywhere;
+  }
+
+  /* Product section */
+  .products-grid{
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:16px;
+  }
+
+  .product-card{
+    width:100%;
+    min-width:0;
+  }
+
+  .product-body{
+    padding:19px 16px;
+    min-width:0;
+  }
+
+  .product-meta{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:7px 10px !important;
+  }
+
+  .product-label{
+    white-space:nowrap;
+    flex:0 0 auto;
+  }
+
+  .product-price{
+    margin-left:auto;
+    min-width:0;
+    text-align:right;
+  }
+
+  .product-card h3{
+    font-size:1.1rem !important;
+    line-height:1.48 !important;
+  }
+
+  .product-card p,
+  .product-caution{
+    font-size:.88rem;
+    line-height:1.72 !important;
+  }
+
+  .product-card .button,
+  .reservation-badge,
+  .walkin-badge{
+    max-width:100%;
+    white-space:normal;
+    text-align:center;
+  }
+
+  .festival-info{
+    grid-template-columns:minmax(0,1fr) !important;
+  }
+
+  /* Teams */
+  .collab-head{
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:18px;
+  }
+
+  .team-main-heading{
+    font-size:clamp(1.55rem,6.8vw,1.9rem) !important;
+    line-height:1.3 !important;
+  }
+
+  .team-composition{
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:18px;
+  }
+
+  .team-card{
+    width:100%;
+    padding:22px 16px;
+    border-radius:22px;
+  }
+
+  .team-card-top{
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  .team-card h3{
+    margin-top:24px !important;
+    font-size:clamp(2.3rem,12.5vw,3.35rem) !important;
+    line-height:1.02 !important;
+  }
+
+  .team-card .team-lead{
+    font-size:1.22rem !important;
+    line-height:1.55 !important;
+    text-wrap:balance;
+  }
+
+  .team-details{
+    margin-top:18px;
+  }
+
+  .team-details summary{
+    min-height:50px;
+    gap:10px;
+  }
+
+  .team-details-panel > p{
+    font-size:.88rem;
+    line-height:1.72;
+  }
+
+  .motion-flow{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px 8px;
+  }
+
+  .motion-flow span{
+    max-width:100%;
+    white-space:normal;
+  }
+
+  .team-cross{
+    grid-template-columns:auto auto;
+    justify-content:center;
+  }
+
+  .team-cross small{
+    writing-mode:horizontal-tb;
+  }
+
+  .physical-ai-note{
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:9px;
+    padding:20px 16px;
+  }
+
+  .ecophy-equation{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:flex-start;
+    gap:8px;
+    padding:15px;
+    border-radius:15px;
+  }
+
+  /* Goal accordions */
+  .goal-tab summary{
+    grid-template-columns:42px minmax(0,1fr) 24px !important;
+    gap:9px;
+    min-height:68px;
+    padding:11px 12px;
+  }
+
+  .goal-tab-title{
+    min-width:0;
+    font-size:.96rem;
+    line-height:1.5;
+  }
+
+  .goal-tab-panel{
+    padding:0 12px 15px 62px;
+  }
+
+  /* Timeline accordion */
+  .timeline-accordion{
+    gap:9px;
+  }
+
+  .timeline-dropdown summary{
+    grid-template-columns:minmax(0,1fr) 27px !important;
+    gap:7px 10px;
+    padding:14px 12px;
+  }
+
+  .timeline-dropdown summary time{
+    grid-column:1;
+    min-width:0;
+    font-size:.65rem;
+    letter-spacing:.07em;
+  }
+
+  .timeline-summary-title{
+    grid-column:1;
+    min-width:0;
+    font-size:.98rem;
+    line-height:1.52;
+  }
+
+  .timeline-toggle{
+    grid-column:2;
+    grid-row:1 / span 2;
+    width:27px;
+    height:27px;
+    align-self:center;
+  }
+
+  .timeline-panel{
+    padding:0 12px 16px;
+  }
+
+  .timeline-panel p{
+    font-size:.87rem;
+    line-height:1.73;
+  }
+
+  /* Contact */
+  .contact-band-inner{
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:22px;
+  }
+
+  .contact-main-heading{
+    font-size:clamp(1.58rem,7vw,1.95rem) !important;
+    line-height:1.28 !important;
+  }
+
+  .contact-actions{
+    width:100%;
+    min-width:0;
+    align-items:stretch;
+  }
+
+  .contact-actions .button,
+  .instagram-gradient-button{
+    width:100% !important;
+    max-width:100%;
+    min-height:54px;
+    white-space:normal;
+    text-align:center;
+  }
+
+  .instagram-search{
+    overflow-wrap:anywhere;
+  }
+
+  /* Footer */
+  .footer-grid{
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:22px;
+  }
+
+  .site-footer nav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 16px;
+  }
+
+  /* Reservation dialog / form */
+  .reservation-dialog{
+    width:calc(100vw - 12px) !important;
+    max-width:calc(100vw - 12px) !important;
+    max-height:95dvh;
+    margin:auto;
+  }
+
+  .reservation-dialog-shell{
+    width:100%;
+    min-width:0;
+    padding:18px 10px 14px;
+  }
+
+  .reservation-dialog-head{
+    padding:5px 38px 16px 3px;
+  }
+
+  .reservation-dialog-head h2{
+    font-size:clamp(1.5rem,7.2vw,1.95rem) !important;
+    line-height:1.25;
+  }
+
+  .reservation-dialog .reserve-form{
+    width:100%;
+    min-width:0;
+    padding:16px 10px;
+  }
+
+  .reserve-form .form-row,
+  .reserve-form .form-row.two-col,
+  .reservation-item-fields{
+    grid-template-columns:minmax(0,1fr) !important;
+    width:100%;
+    min-width:0;
+  }
+
+  .reserve-form label,
+  .reservation-item-fields label,
+  .reservation-item-print label{
+    min-width:0;
+  }
+
+  .reserve-form input,
+  .reserve-form select,
+  .reserve-form textarea,
+  .reservation-item-product,
+  .reservation-item-quantity,
+  .reservation-item-print-input{
+    display:block;
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    font-size:16px !important;
+  }
+
+  .reservation-order-head{
+    grid-template-columns:minmax(0,1fr) !important;
+  }
+
+  .reservation-order-head p{
+    overflow-wrap:anywhere;
+  }
+
+  .reservation-add-item{
+    width:100%;
+    white-space:normal;
+  }
+
+  .reservation-item{
+    padding:14px 11px;
+  }
+
+  .reservation-item-head{
+    gap:8px;
+  }
+
+  .reservation-item-price{
+    justify-content:space-between;
+  }
+
+  .reservation-order-total{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  #confirm-list div{
+    grid-template-columns:minmax(0,1fr) !important;
+  }
+
+  #confirm-list dd{
+    min-width:0;
+    overflow-wrap:anywhere;
+  }
+
+  .dialog-actions{
+    grid-template-columns:minmax(0,1fr) !important;
+  }
+
+  .dialog-actions .button,
+  .dialog-actions button{
+    width:100%;
+    min-height:50px;
+    white-space:normal;
+  }
+}
+
+/* Very narrow smartphones */
+@media(max-width:390px){
+
+  .container{
+    width:min(calc(100% - 18px),var(--container));
+  }
+
+  .section{
+    padding-top:54px;
+    padding-bottom:54px;
+  }
+
+  .hero{
+    padding-top:88px;
+  }
+
+  .hero .smart-mobile-heading{
+    font-size:1.78rem !important;
+  }
+
+  .hero-pick-card{
+    grid-template-columns:84px minmax(0,1fr) !important;
+    gap:10px !important;
+    padding:10px !important;
+  }
+
+  .hero-pick-copy strong{
+    font-size:.9rem !important;
+  }
+
+  .hero-pick-copy p{
+    font-size:.66rem !important;
+  }
+
+  .hero-pick-recommend,
+  .hero-pick-limited{
+    font-size:.55rem !important;
+  }
+
+  .hero-pick-cta{
+    font-size:.69rem !important;
+    padding-inline:8px !important;
+  }
+
+  .reservation-main-heading,
+  .contact-main-heading{
+    font-size:1.52rem !important;
+  }
+
+  .team-main-heading{
+    font-size:1.46rem !important;
+  }
+
+  .team-card{
+    padding:20px 14px;
+  }
+
+  .team-card h3{
+    font-size:2.35rem !important;
+  }
+
+  .team-card .team-lead{
+    font-size:1.12rem !important;
+  }
+
+  .goal-tab-panel{
+    padding-left:12px;
+  }
+
+  .reservation-order-total{
+    grid-template-columns:minmax(0,1fr);
+  }
+
+  .reservation-dialog{
+    width:calc(100vw - 8px) !important;
+    max-width:calc(100vw - 8px) !important;
+  }
+}
