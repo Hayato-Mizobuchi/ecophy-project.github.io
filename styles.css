@@ -3661,3 +3661,21 @@ button{
     margin-top:18px;
   }
 }
+
+
+/* ===== Team dropdown hard collapse fix ===== */
+.team-details:not([open]) > .team-details-panel{
+  display:none !important;
+}
+
+.team-details[open] > .team-details-panel{
+  display:block !important;
+}
+
+.team-card > .team-details{
+  width:100%;
+}
+
+.team-card .team-details-panel > p{
+  padding:0 !important;
+}
