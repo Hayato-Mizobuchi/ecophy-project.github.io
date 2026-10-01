@@ -3189,3 +3189,54 @@ button{
   }
 
 }
+
+
+/* ===== Instagram cute gradient button ===== */
+.instagram-gradient-button{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.62) !important;
+  background:
+    linear-gradient(135deg,#f4a7b8 0%,#e987b0 36%,#c89bd2 68%,#f1bd8d 100%) !important;
+  color:#fff !important;
+  font-weight:900 !important;
+  letter-spacing:.02em;
+  box-shadow:
+    0 12px 28px rgba(205,123,158,.28),
+    inset 0 1px rgba(255,255,255,.28) !important;
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    filter .18s ease;
+}
+
+.instagram-gradient-button::before{
+  content:"";
+  position:absolute;
+  inset:-45% auto -45% -30%;
+  width:34%;
+  background:rgba(255,255,255,.24);
+  transform:rotate(18deg);
+  transition:left .35s ease;
+  pointer-events:none;
+}
+
+.instagram-gradient-button:hover{
+  transform:translateY(-2px);
+  filter:saturate(1.06) brightness(1.03);
+  box-shadow:
+    0 17px 34px rgba(205,123,158,.34),
+    inset 0 1px rgba(255,255,255,.34) !important;
+}
+
+.instagram-gradient-button:hover::before{
+  left:105%;
+}
+
+@media(max-width:680px){
+  .instagram-gradient-button{
+    width:100%;
+    min-height:54px;
+    font-size:.96rem;
+  }
+}
