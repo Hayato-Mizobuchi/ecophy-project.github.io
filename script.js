@@ -26,7 +26,7 @@ const PRODUCTS = [
 
   {
     id: "keyholder",
-    label: "GOODS 03",
+    label: "GOODS 02",
     name: "キーホルダー（大・小）",
     price: "500円",
     priceNote: "1個当たり",
@@ -40,7 +40,7 @@ const PRODUCTS = [
 
   {
     id: "drink-cupholder-set",
-    label: "SET 06",
+    label: "SET 03",
     name: "飲み物＋カップホルダーセット",
     price: "700円",
 
@@ -82,7 +82,7 @@ const PRODUCTS = [
 
   {
     id: "drink",
-    label: "DRINK 02",
+    label: "DRINK 06",
     name: "飲み物（単体）",
     price: "300円",
 
