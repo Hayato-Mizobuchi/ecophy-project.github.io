@@ -3395,3 +3395,18 @@ button{
     line-height:1.72;
   }
 }
+
+
+/* ===== Timeline single-plus fix ===== */
+.timeline-dropdown summary::after{
+  content:none !important;
+  display:none !important;
+}
+
+.timeline-dropdown summary::marker{
+  content:"";
+}
+
+.timeline-dropdown summary::-webkit-details-marker{
+  display:none !important;
+}
