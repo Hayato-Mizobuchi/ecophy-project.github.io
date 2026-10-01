@@ -3410,3 +3410,117 @@ button{
 .timeline-dropdown summary::-webkit-details-marker{
   display:none !important;
 }
+
+
+/* ===== Hero reservation CTA polish ===== */
+.hero-reservation-cta{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  min-height:58px;
+  padding:15px 24px;
+  border:1px solid rgba(255,255,255,.58) !important;
+  border-radius:999px;
+  background:
+    linear-gradient(135deg,#d86f83 0%,#d987b8 36%,#bd93d3 66%,#e8ab7f 100%) !important;
+  color:#fff !important;
+  font-weight:950;
+  letter-spacing:.015em;
+  box-shadow:
+    0 14px 34px rgba(184,91,126,.34),
+    0 0 0 5px rgba(255,255,255,.055),
+    inset 0 1px rgba(255,255,255,.28);
+  text-shadow:0 1px 2px rgba(73,38,48,.18);
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    filter .18s ease;
+}
+
+.hero-reservation-cta::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  top:-80%;
+  bottom:-80%;
+  left:-32%;
+  width:25%;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.38),
+    transparent
+  );
+  transform:rotate(18deg);
+  transition:left .42s ease;
+}
+
+.hero-reservation-cta:hover{
+  transform:translateY(-3px) scale(1.015);
+  filter:saturate(1.08) brightness(1.04);
+  box-shadow:
+    0 20px 42px rgba(184,91,126,.44),
+    0 0 0 6px rgba(255,255,255,.08),
+    inset 0 1px rgba(255,255,255,.34);
+}
+
+.hero-reservation-cta:hover::before{
+  left:112%;
+}
+
+.hero-reservation-cta:active{
+  transform:translateY(-1px) scale(.995);
+}
+
+.hero-reservation-cta-label{
+  position:relative;
+  z-index:1;
+}
+
+.hero-reservation-cta-arrow{
+  position:relative;
+  z-index:1;
+  display:inline-grid;
+  place-items:center;
+  width:28px;
+  height:28px;
+  flex:0 0 28px;
+  border-radius:50%;
+  background:rgba(255,255,255,.18);
+  font-size:1rem;
+  transition:transform .18s ease,background .18s ease;
+}
+
+.hero-reservation-cta:hover .hero-reservation-cta-arrow{
+  transform:translateX(3px);
+  background:rgba(255,255,255,.28);
+}
+
+@media(max-width:680px){
+  .hero-reservation-cta{
+    width:100%;
+    min-height:56px;
+    padding:14px 17px;
+    gap:9px;
+    font-size:.94rem;
+    line-height:1.4;
+    white-space:normal;
+  }
+
+  .hero-reservation-cta-arrow{
+    width:26px;
+    height:26px;
+    flex-basis:26px;
+  }
+}
+
+@media(max-width:390px){
+  .hero-reservation-cta{
+    font-size:.9rem;
+    padding-inline:14px;
+  }
+}
