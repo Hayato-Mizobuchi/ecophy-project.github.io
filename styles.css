@@ -3679,3 +3679,17 @@ button{
 .team-card .team-details-panel > p{
   padding:0 !important;
 }
+
+
+/* ===== Team lead emphasis ===== */
+.team-card .team-lead{
+  font-size:1.36rem !important;
+  line-height:1.5;
+}
+
+@media(max-width:680px){
+  .team-card .team-lead{
+    font-size:1.28rem !important;
+    line-height:1.5;
+  }
+}
