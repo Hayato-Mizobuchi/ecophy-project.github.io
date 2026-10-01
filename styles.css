@@ -3240,3 +3240,158 @@ button{
     font-size:.96rem;
   }
 }
+
+
+/* ===== Timeline accordion ===== */
+/* Native details/summary accordion for 「これまでの歩み」 */
+.timeline-accordion{
+  display:grid;
+  gap:14px;
+}
+
+.timeline-accordion::before{
+  display:none;
+}
+
+.timeline-dropdown{
+  display:block;
+  padding:0;
+  border:1px solid rgba(73,55,45,.13);
+  border-radius:14px;
+  background:rgba(255,255,255,.34);
+  overflow:hidden;
+}
+
+.timeline-dropdown::before{
+  display:none;
+}
+
+.timeline-dropdown summary{
+  display:grid;
+  grid-template-columns:145px minmax(0,1fr) 28px;
+  gap:22px;
+  align-items:center;
+  min-height:76px;
+  padding:17px 20px;
+  cursor:pointer;
+  list-style:none;
+  transition:background .18s ease;
+}
+
+.timeline-dropdown summary::-webkit-details-marker{
+  display:none;
+}
+
+.timeline-dropdown summary:hover{
+  background:rgba(255,255,255,.28);
+}
+
+.timeline-dropdown summary time{
+  margin:0;
+  color:var(--coffee);
+  font-size:.73rem;
+  font-weight:900;
+  letter-spacing:.09em;
+}
+
+.timeline-summary-title{
+  min-width:0;
+  color:var(--ink);
+  font-size:1.18rem;
+  font-weight:800;
+  line-height:1.46;
+  overflow-wrap:normal;
+  word-break:normal;
+  line-break:strict;
+  text-wrap:pretty;
+}
+
+@supports (word-break:auto-phrase){
+  .timeline-summary-title{
+    word-break:auto-phrase;
+  }
+}
+
+.timeline-toggle{
+  display:grid;
+  place-items:center;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:rgba(108,81,66,.10);
+  color:var(--coffee);
+  font-size:1.2rem;
+  font-weight:500;
+  line-height:1;
+  transition:transform .18s ease,background .18s ease;
+}
+
+.timeline-dropdown[open] .timeline-toggle{
+  transform:rotate(45deg);
+  background:rgba(108,81,66,.16);
+}
+
+.timeline-panel{
+  padding:0 68px 20px 187px;
+}
+
+.timeline-panel p{
+  margin:0;
+  color:var(--muted);
+  font-size:.94rem;
+  line-height:1.78;
+}
+
+.timeline-dropdown[open] summary{
+  background:rgba(255,255,255,.24);
+}
+
+.timeline-dropdown.timeline-future{
+  border-color:rgba(182,145,76,.28);
+}
+
+@media(max-width:680px){
+  .timeline-accordion{
+    gap:10px;
+  }
+
+  .timeline-dropdown{
+    border-radius:12px;
+  }
+
+  .timeline-dropdown summary{
+    grid-template-columns:minmax(0,1fr) 26px;
+    gap:8px 12px;
+    min-height:0;
+    padding:15px 14px;
+  }
+
+  .timeline-dropdown summary time{
+    grid-column:1;
+    font-size:.66rem;
+  }
+
+  .timeline-summary-title{
+    grid-column:1;
+    font-size:1rem;
+    line-height:1.5;
+  }
+
+  .timeline-toggle{
+    grid-column:2;
+    grid-row:1 / span 2;
+    align-self:center;
+    width:26px;
+    height:26px;
+    font-size:1.08rem;
+  }
+
+  .timeline-panel{
+    padding:0 14px 17px;
+  }
+
+  .timeline-panel p{
+    font-size:.88rem;
+    line-height:1.72;
+  }
+}
