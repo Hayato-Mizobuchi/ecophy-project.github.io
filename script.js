@@ -1847,6 +1847,9 @@ if (form) {
           data.note.trim(),
 
 
+        requestId:
+          createReservationRequestId(),
+
         submittedAt:
           new Date().toISOString(),
 
@@ -2015,6 +2018,476 @@ if (form) {
 
 
 /* ============================================================
+   予約送信の信頼性向上
+   - requestId を同じまま再送することで、サーバー側で重複排除できる
+   - サーバーレスポンスを確認してから「予約完了」にする
+   - タイムアウト/一時エラー時は状態確認後に再試行する
+   ============================================================ */
+
+const RESERVATION_RETRY_CONFIG = {
+  maxAttempts: 3,
+  requestTimeoutMs: 12000,
+  statusTimeoutMs: 8000,
+  retryDelaysMs: [1000, 2500]
+};
+
+
+function createReservationRequestId() {
+
+  if (
+    window.crypto &&
+    typeof window.crypto.randomUUID === "function"
+  ) {
+    return window.crypto.randomUUID();
+  }
+
+  return [
+    "ecophy",
+    Date.now().toString(36),
+    Math.random().toString(36).slice(2, 12)
+  ].join("-");
+
+}
+
+
+function wait(ms) {
+
+  return new Promise(
+    (resolve) => {
+      window.setTimeout(
+        resolve,
+        ms
+      );
+    }
+  );
+
+}
+
+
+async function fetchWithTimeout(
+  url,
+  options,
+  timeoutMs
+) {
+
+  const controller =
+    new AbortController();
+
+
+  const timer =
+    window.setTimeout(
+      () => {
+        controller.abort();
+      },
+      timeoutMs
+    );
+
+
+  try {
+
+    return await fetch(
+      url,
+      {
+        ...options,
+        signal: controller.signal
+      }
+    );
+
+  } finally {
+
+    window.clearTimeout(
+      timer
+    );
+
+  }
+
+}
+
+
+async function parseReservationResponse(
+  response
+) {
+
+  if (!response) {
+    throw new Error(
+      "サーバーから応答を取得できませんでした。"
+    );
+  }
+
+
+  if (!response.ok) {
+
+    const error =
+      new Error(
+        `サーバーエラー: HTTP ${response.status}`
+      );
+
+    error.retryable =
+      response.status >= 500 ||
+      response.status === 408 ||
+      response.status === 429;
+
+    throw error;
+
+  }
+
+
+  let result;
+
+
+  try {
+
+    result =
+      await response.json();
+
+  } catch (error) {
+
+    const parseError =
+      new Error(
+        "予約サーバーから正しいJSON応答を取得できませんでした。"
+      );
+
+    parseError.retryable =
+      true;
+
+    throw parseError;
+
+  }
+
+
+  if (
+    result &&
+    result.success === true
+  ) {
+
+    return result;
+
+  }
+
+
+  const serverError =
+    new Error(
+      result?.message ||
+      "予約サーバーが処理失敗を返しました。"
+    );
+
+
+  serverError.retryable =
+    result?.retryable !== false;
+
+
+  serverError.code =
+    result?.code || "";
+
+
+  throw serverError;
+
+}
+
+
+async function postReservationOnce(
+  payload
+) {
+
+  const response =
+    await fetchWithTimeout(
+      RESERVATION_ENDPOINT,
+      {
+        method: "POST",
+
+        /*
+          Apps Script 側がJSONを返す新版ではレスポンスを読めます。
+          Content-Type を text/plain にすることで不要なCORS preflightを避けます。
+        */
+        headers: {
+          "Content-Type":
+            "text/plain;charset=utf-8",
+          "Accept":
+            "application/json"
+        },
+
+        redirect:
+          "follow",
+
+        cache:
+          "no-store",
+
+        credentials:
+          "omit",
+
+        body:
+          JSON.stringify(
+            payload
+          )
+      },
+      RESERVATION_RETRY_CONFIG
+        .requestTimeoutMs
+    );
+
+
+  return await parseReservationResponse(
+    response
+  );
+
+}
+
+
+async function checkReservationStatus(
+  requestId
+) {
+
+  if (!requestId) {
+    return {
+      found: false
+    };
+  }
+
+
+  const url =
+    new URL(
+      RESERVATION_ENDPOINT
+    );
+
+
+  url.searchParams.set(
+    "action",
+    "status"
+  );
+
+
+  url.searchParams.set(
+    "requestId",
+    requestId
+  );
+
+
+  try {
+
+    const response =
+      await fetchWithTimeout(
+        url.toString(),
+        {
+          method:
+            "GET",
+
+          headers: {
+            "Accept":
+              "application/json"
+          },
+
+          redirect:
+            "follow",
+
+          cache:
+            "no-store",
+
+          credentials:
+            "omit"
+        },
+        RESERVATION_RETRY_CONFIG
+          .statusTimeoutMs
+      );
+
+
+    if (!response.ok) {
+
+      return {
+        found: false
+      };
+
+    }
+
+
+    const result =
+      await response.json();
+
+
+    return result &&
+      result.success === true
+        ? result
+        : {
+            found: false
+          };
+
+
+  } catch (error) {
+
+    return {
+      found: false,
+      statusCheckError: true
+    };
+
+  }
+
+}
+
+
+async function sendReservationWithRetry(
+  payload,
+  onAttempt
+) {
+
+  let lastError = null;
+
+
+  for (
+    let attempt = 1;
+    attempt <= RESERVATION_RETRY_CONFIG.maxAttempts;
+    attempt += 1
+  ) {
+
+    if (onAttempt) {
+      onAttempt(
+        attempt,
+        RESERVATION_RETRY_CONFIG.maxAttempts
+      );
+    }
+
+
+    try {
+
+      const result =
+        await postReservationOnce(
+          payload
+        );
+
+
+      return {
+        ...result,
+        confirmed:
+          true,
+        attempt
+      };
+
+
+    } catch (error) {
+
+      lastError =
+        error;
+
+
+      /*
+        POST がタイムアウトした場合、
+        実際にはサーバー側で保存が完了している可能性があります。
+        そのため再送前に requestId で状態確認します。
+      */
+      const status =
+        await checkReservationStatus(
+          payload.requestId
+        );
+
+
+      if (
+        status &&
+        status.found === true
+      ) {
+
+        return {
+          success: true,
+          confirmed: true,
+          duplicate:
+            true,
+          reservationId:
+            status.reservationId || "",
+          requestId:
+            payload.requestId,
+          attempt
+        };
+
+      }
+
+
+      /*
+        入力値エラーなど「再試行しても直らない」エラーは、
+        サーバーが retryable:false と返せます。
+      */
+      if (
+        error &&
+        error.retryable === false
+      ) {
+
+        throw error;
+
+      }
+
+
+      if (
+        attempt <
+        RESERVATION_RETRY_CONFIG.maxAttempts
+      ) {
+
+        const delay =
+          RESERVATION_RETRY_CONFIG
+            .retryDelaysMs[
+              attempt - 1
+            ] || 2500;
+
+
+        await wait(
+          delay
+        );
+
+      }
+
+    }
+
+  }
+
+
+  throw (
+    lastError ||
+    new Error(
+      "予約の完了を確認できませんでした。"
+    )
+  );
+
+}
+
+
+/*
+  旧Apps Scriptとの一時互換処理。
+  新版バックエンドをデプロイする前にCORS応答が取得できない場合でも、
+  予約を完全停止させないため「1回だけ」旧方式で送信します。
+  この場合は成功を断定せず「確認待ち」と表示します。
+*/
+async function legacyReservationFallback(
+  payload
+) {
+
+  await fetch(
+    RESERVATION_ENDPOINT,
+    {
+      method:
+        "POST",
+
+      mode:
+        "no-cors",
+
+      headers: {
+        "Content-Type":
+          "text/plain;charset=utf-8"
+      },
+
+      body:
+        JSON.stringify(
+          payload
+        )
+    }
+  );
+
+
+  return {
+    success: true,
+    confirmed: false,
+    legacyFallback: true,
+    requestId:
+      payload.requestId
+  };
+
+}
+
+
+/* ============================================================
    最終送信
    ============================================================ */
 
@@ -2034,43 +2507,88 @@ if (finalSubmit) {
       }
 
 
+      /*
+        requestId は同じ予約の再試行中は変えません。
+        サーバー側でこのIDを使って二重登録を防止します。
+      */
+      if (
+        !pendingData.requestId
+      ) {
+
+        pendingData.requestId =
+          createReservationRequestId();
+
+      }
+
+
       finalSubmit.disabled =
         true;
 
 
       finalSubmit.textContent =
-        "送信中…";
+        "送信を確認中…";
+
+
+      if (dialogNote) {
+
+        dialogNote.textContent =
+          "予約内容を送信し、サーバーで登録できたことを確認しています。";
+
+      }
+
+
+      let result;
 
 
       try {
 
-        await fetch(
+        try {
 
-          RESERVATION_ENDPOINT,
+          result =
+            await sendReservationWithRetry(
+              pendingData,
+              (
+                attempt,
+                maxAttempts
+              ) => {
 
-          {
+                finalSubmit.textContent =
+                  attempt === 1
+                    ? "送信を確認中…"
+                    : `再確認中… (${attempt}/${maxAttempts})`;
 
-            method:
-              "POST",
 
-            mode:
-              "no-cors",
+                if (dialogNote) {
 
-            headers: {
+                  dialogNote.textContent =
+                    attempt === 1
+                      ? "予約内容を送信し、サーバーで登録できたことを確認しています。"
+                      : `通信を再確認しています。登録済みの場合は二重登録されません。(${attempt}/${maxAttempts})`;
 
-              "Content-Type":
-                "text/plain;charset=utf-8"
+                }
 
-            },
+              }
+            );
 
-            body:
-              JSON.stringify(
-                pendingData
-              )
 
-          }
+        } catch (responseError) {
 
-        );
+          /*
+            旧バックエンドではレスポンスをブラウザから読めない場合があります。
+            その場合だけ旧方式を1回実行し、成功とは断定しません。
+          */
+          console.warn(
+            "Server confirmation unavailable; using one-time legacy fallback.",
+            responseError
+          );
+
+
+          result =
+            await legacyReservationFallback(
+              pendingData
+            );
+
+        }
 
 
         if (dialog) {
@@ -2080,36 +2598,70 @@ if (finalSubmit) {
         }
 
 
-        if (formStatus) {
+        if (
+          result.confirmed === true
+        ) {
 
-          formStatus.textContent =
-            "予約を送信しました。ありがとうございます。複数の商品もまとめて1件の予約として送信されています。";
+          const reservationId =
+            result.reservationId
+              ? ` 受付番号：${result.reservationId}`
+              : "";
+
+
+          if (formStatus) {
+
+            formStatus.textContent =
+              `予約を受け付けました。サーバーへの登録を確認済みです。${reservationId}`;
+
+          }
+
+
+          if (form) {
+
+            form.reset();
+
+          }
+
+
+          if (reservationItems) {
+
+            reservationItems.innerHTML =
+              "";
+
+
+            createReservationItem(
+              ""
+            );
+
+          }
+
+
+          pendingData =
+            null;
+
+
+        } else {
+
+          /*
+            旧方式ではサーバー保存の成否を断定できないため、
+            入力内容を保持します。
+          */
+          if (formStatus) {
+
+            formStatus.textContent =
+              "予約データは送信しましたが、サーバーから登録確認を取得できませんでした。入力内容は保持しています。時間をおいて再確認してください。";
+
+          }
+
+
+          if (dialogNote) {
+
+            dialogNote.textContent =
+              "送信は行いましたが、登録完了レスポンスを確認できませんでした。新版Apps Scriptへの更新後は自動確認・再試行が有効になります。";
+
+          }
 
         }
-
-
-        if (form) {
-
-          form.reset();
-
-        }
-
-
-        if (reservationItems) {
-
-          reservationItems.innerHTML =
-            "";
-
-
-          createReservationItem(
-            ""
-          );
-
-        }
-
-
-        pendingData =
-          null;
 
 
       } catch (error) {
@@ -2122,7 +2674,15 @@ if (finalSubmit) {
         if (dialogNote) {
 
           dialogNote.textContent =
-            "送信できませんでした。時間をおいて再度お試しください。";
+            "予約の登録を確認できませんでした。入力内容は保持されています。通信環境を確認して、もう一度お試しください。";
+
+        }
+
+
+        if (formStatus) {
+
+          formStatus.textContent =
+            "予約はまだ完了していません。入力内容は保持されています。";
 
         }
 
