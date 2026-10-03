@@ -2064,6 +2064,210 @@ function wait(ms) {
 }
 
 
+/* ============================================================
+   CORSに依存しない読み取り用 JSONP
+   Apps Script ContentService のGET応答確認に使用します。
+   ============================================================ */
+
+function fetchReservationJsonp(
+  params,
+  timeoutMs = 8000
+) {
+
+  return new Promise(
+    (resolve, reject) => {
+
+      const callbackName =
+        "__ecophyJsonp_" +
+        Date.now().toString(36) +
+        "_" +
+        Math.random()
+          .toString(36)
+          .slice(2, 9);
+
+
+      const script =
+        document.createElement(
+          "script"
+        );
+
+
+      const url =
+        new URL(
+          RESERVATION_ENDPOINT
+        );
+
+
+      Object.entries(
+        params || {}
+      ).forEach(
+        ([key, value]) => {
+
+          url.searchParams.set(
+            key,
+            String(value)
+          );
+
+        }
+      );
+
+
+      url.searchParams.set(
+        "callback",
+        callbackName
+      );
+
+
+      let finished =
+        false;
+
+
+      const cleanup = () => {
+
+        if (finished) {
+          return;
+        }
+
+
+        finished =
+          true;
+
+
+        window.clearTimeout(
+          timer
+        );
+
+
+        try {
+          delete window[
+            callbackName
+          ];
+        } catch (error) {
+          window[
+            callbackName
+          ] = undefined;
+        }
+
+
+        script.remove();
+
+      };
+
+
+      window[
+        callbackName
+      ] = (data) => {
+
+        cleanup();
+
+        resolve(
+          data
+        );
+
+      };
+
+
+      script.onerror =
+        () => {
+
+          cleanup();
+
+          reject(
+            new Error(
+              "予約サーバーの状態確認に失敗しました。"
+            )
+          );
+
+        };
+
+
+      const timer =
+        window.setTimeout(
+          () => {
+
+            cleanup();
+
+            reject(
+              new Error(
+                "予約サーバーの状態確認がタイムアウトしました。"
+              )
+            );
+
+          },
+          timeoutMs
+        );
+
+
+      script.src =
+        url.toString();
+
+
+      script.async =
+        true;
+
+
+      document.head.appendChild(
+        script
+      );
+
+    }
+  );
+
+}
+
+
+let reliableBackendCapability =
+  null;
+
+
+async function detectReliableReservationBackend() {
+
+  if (
+    reliableBackendCapability !== null
+  ) {
+
+    return reliableBackendCapability;
+
+  }
+
+
+  try {
+
+    const result =
+      await fetchReservationJsonp(
+        {
+          action:
+            "capabilities"
+        },
+        6000
+      );
+
+
+    reliableBackendCapability =
+      Boolean(
+        result &&
+        result.success === true &&
+        Number(
+          result.apiVersion
+        ) >= 2 &&
+        result.features?.idempotency === true &&
+        result.features?.statusCheck === true
+      );
+
+
+  } catch (error) {
+
+    reliableBackendCapability =
+      false;
+
+  }
+
+
+  return reliableBackendCapability;
+
+}
+
+
 async function fetchWithTimeout(
   url,
   options,
@@ -2243,25 +2447,38 @@ async function checkReservationStatus(
   }
 
 
-  const url =
-    new URL(
-      RESERVATION_ENDPOINT
+  const params = {
+    action:
+      "status",
+    requestId
+  };
+
+
+  /*
+    まず通常のfetchで確認し、CORS等で読めない場合は
+    読み取り専用JSONPにフォールバックします。
+  */
+  try {
+
+    const url =
+      new URL(
+        RESERVATION_ENDPOINT
+      );
+
+
+    Object.entries(
+      params
+    ).forEach(
+      ([key, value]) => {
+
+        url.searchParams.set(
+          key,
+          String(value)
+        );
+
+      }
     );
 
-
-  url.searchParams.set(
-    "action",
-    "status"
-  );
-
-
-  url.searchParams.set(
-    "requestId",
-    requestId
-  );
-
-
-  try {
 
     const response =
       await fetchWithTimeout(
@@ -2289,17 +2506,39 @@ async function checkReservationStatus(
       );
 
 
-    if (!response.ok) {
+    if (response.ok) {
 
-      return {
-        found: false
-      };
+      const result =
+        await response.json();
+
+
+      if (
+        result &&
+        result.success === true
+      ) {
+
+        return result;
+
+      }
 
     }
 
 
+  } catch (error) {
+
+    /* JSONP fallback below */
+
+  }
+
+
+  try {
+
     const result =
-      await response.json();
+      await fetchReservationJsonp(
+        params,
+        RESERVATION_RETRY_CONFIG
+          .statusTimeoutMs
+      );
 
 
     return result &&
@@ -2446,8 +2685,8 @@ async function sendReservationWithRetry(
 
 /*
   旧Apps Scriptとの一時互換処理。
-  新版バックエンドをデプロイする前にCORS応答が取得できない場合でも、
-  予約を完全停止させないため「1回だけ」旧方式で送信します。
+  新版バックエンド(apiVersion 2)が検出できない間は、
+  二重登録防止のため再試行せず「1回だけ」旧方式で送信します。
   この場合は成功を断定せず「確認待ち」と表示します。
 */
 async function legacyReservationFallback(
@@ -2542,7 +2781,11 @@ if (finalSubmit) {
 
       try {
 
-        try {
+        const reliableBackend =
+          await detectReliableReservationBackend();
+
+
+        if (reliableBackend) {
 
           result =
             await sendReservationWithRetry(
@@ -2571,15 +2814,14 @@ if (finalSubmit) {
             );
 
 
-        } catch (responseError) {
+        } else {
 
           /*
-            旧バックエンドではレスポンスをブラウザから読めない場合があります。
-            その場合だけ旧方式を1回実行し、成功とは断定しません。
+            新版バックエンドが確認できない間は再送を行いません。
+            旧バックエンドへの複数回POSTで二重予約を作らないためです。
           */
           console.warn(
-            "Server confirmation unavailable; using one-time legacy fallback.",
-            responseError
+            "Reliable reservation backend v2 is not active; using one-time legacy submission without retry."
           );
 
 
