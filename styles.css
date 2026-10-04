@@ -4634,3 +4634,159 @@ button{
     font-size:.87rem !important;
   }
 }
+
+
+/* ===== Reservation delete button / mobile polish 20261004 ===== */
+
+/* Added reservation rows: make the remove action obvious and easy to tap. */
+.reservation-item{
+  position:relative;
+}
+
+.reservation-item-head{
+  position:relative;
+  min-height:38px;
+  padding-right:96px;
+}
+
+.reservation-item-remove{
+  position:absolute;
+  top:0;
+  right:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:76px;
+  min-height:36px;
+  padding:8px 13px;
+  border:1px solid rgba(169,79,74,.34);
+  border-radius:999px;
+  background:#fff7f3;
+  color:#9b493f;
+  font:inherit;
+  font-size:.84rem;
+  font-weight:900;
+  line-height:1;
+  text-decoration:none;
+  cursor:pointer;
+  box-shadow:0 5px 12px rgba(112,66,52,.08);
+  transition:
+    background .18s ease,
+    color .18s ease,
+    border-color .18s ease,
+    transform .18s ease,
+    box-shadow .18s ease;
+}
+
+.reservation-item-remove::before{
+  content:"×";
+  margin-right:6px;
+  font-size:1rem;
+  line-height:1;
+}
+
+.reservation-item-remove:hover{
+  border-color:rgba(169,79,74,.58);
+  background:#f7e9e4;
+  color:#7f352f;
+  transform:translateY(-1px);
+  box-shadow:0 8px 17px rgba(112,66,52,.12);
+}
+
+.reservation-item-remove:focus-visible{
+  outline:3px solid rgba(197,107,111,.24);
+  outline-offset:2px;
+}
+
+/* The only item is intentionally not removable. */
+.reservation-item-remove[hidden]{
+  display:none !important;
+}
+
+@media(max-width:680px){
+
+  .reservation-item{
+    padding:15px 12px 14px;
+    overflow:hidden;
+  }
+
+  .reservation-item-head{
+    min-height:42px;
+    padding-right:88px;
+    margin-bottom:12px;
+  }
+
+  .reservation-item-title{
+    min-width:0;
+    font-size:.98rem;
+    line-height:1.4;
+  }
+
+  .reservation-item-remove{
+    top:0;
+    right:0;
+    min-width:76px;
+    min-height:38px;
+    padding:8px 11px;
+    font-size:.82rem;
+    touch-action:manipulation;
+    -webkit-tap-highlight-color:transparent;
+  }
+
+  .reservation-item-fields{
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:12px;
+  }
+
+  .reservation-item-fields label,
+  .reservation-item-print label{
+    min-width:0;
+    max-width:100%;
+  }
+
+  .reservation-item-product,
+  .reservation-item-quantity,
+  .reservation-item-print-input{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    font-size:16px !important;
+  }
+
+  .reservation-item-print-help{
+    display:block;
+    max-width:100%;
+    line-height:1.65;
+    overflow-wrap:anywhere;
+  }
+
+  .product-card [data-product][href="#reserve"]{
+    min-height:52px;
+    padding:12px 12px;
+    line-height:1.45;
+    white-space:normal !important;
+    text-wrap:balance;
+  }
+}
+
+@media(max-width:390px){
+
+  .reservation-item{
+    padding-inline:10px;
+  }
+
+  .reservation-item-head{
+    padding-right:82px;
+  }
+
+  .reservation-item-remove{
+    min-width:72px;
+    min-height:36px;
+    padding-inline:9px;
+    font-size:.78rem;
+  }
+
+  .product-card [data-product][href="#reserve"]{
+    font-size:.86rem !important;
+  }
+}
