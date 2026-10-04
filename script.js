@@ -420,7 +420,7 @@ function renderProducts() {
                     data-product="${escapeHtml(product.id)}"
                   >
 
-                    この商品を見てみる♬
+                    この商品を予約する♬
 
                   </a>
 
