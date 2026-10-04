@@ -4580,3 +4580,57 @@ button{
     font-size:.88rem !important;
   }
 }
+
+
+/* ===== Product anchor / mobile wording polish 20261004 ===== */
+
+/* Keep the fixed header from covering the products heading after anchor navigation. */
+#products{
+  scroll-margin-top:96px;
+}
+
+@media(max-width:680px){
+  #products{
+    scroll-margin-top:78px;
+  }
+
+  .reservation-main-heading{
+    max-width:100%;
+    text-wrap:balance;
+  }
+
+  .reservation-open-button{
+    min-height:56px !important;
+    padding:13px 14px !important;
+    font-size:.98rem !important;
+    line-height:1.4 !important;
+    white-space:normal !important;
+  }
+
+  .product-card [data-product][href="#reserve"]{
+    min-height:50px;
+    padding:12px 13px;
+    white-space:normal !important;
+    text-wrap:balance;
+  }
+
+  .hero-pick-cta{
+    touch-action:manipulation;
+    pointer-events:auto !important;
+  }
+}
+
+@media(max-width:390px){
+  .reservation-main-heading{
+    font-size:1.54rem !important;
+    line-height:1.24 !important;
+  }
+
+  .reservation-open-button{
+    font-size:.92rem !important;
+  }
+
+  .product-card [data-product][href="#reserve"]{
+    font-size:.87rem !important;
+  }
+}
